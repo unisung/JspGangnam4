@@ -38,6 +38,11 @@
         		  + (second<10?"0"+second:second) + " "+am_pm;
         out.print("현재 접속 시각: " + CT +"\n");		
      %>
+     <br>
+    
+  </div>
+  <div class="text-center">
+  <%@ include file="include02_header.jsp" %>
   </div>
 <hr>
 </div>

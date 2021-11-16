@@ -7,13 +7,7 @@
 <title>welcome</title>
 </head>
 <body>
-<nav class="navbar navbar-expand navbar-dark bg-dark">
-<div class="container">
-  <div class="navbar-header">
-  	<a class="navbar-brand" href="./welcome.jsp" >Home</a>
-  </div>
-</div>
-</nav>
+    <%@ include file="menu.jsp" %>
      <%!
      	 String greeting = "Welcome to Web Shopping Mall";
          String tagline = "Welcome to Web Market!";
@@ -47,10 +41,7 @@
   </div>
 <hr>
 </div>
-
-<footer class="container">
-  <p> &copy; WebMarket </p>
-</footer>  
+<%@ include file="footer.jsp" %>
 </body>
 </html>
 <!-- web.xml에 welcome-file-list에 페이지를 등록하면 

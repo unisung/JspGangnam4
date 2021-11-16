@@ -1,3 +1,4 @@
+<%@page import="java.util.Date"%>
 <%@ page contentType="text/html; charset=UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -7,7 +8,7 @@
 </head>
 <body>
 <!-- expression의 함수호출 결과 -->
-<p>Today's date:<%=new java.util.Date() %></p>
+<p>Today's date:<%=new Date() %></p>
 
 </body>
 </html>

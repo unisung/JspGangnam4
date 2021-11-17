@@ -1,4 +1,3 @@
-<%@page import="java.util.Date"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -8,11 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-<%-- request로 넘어온 날짜정보를 받아서 출력 --%>
-<%
-	Date date 
-	  =(Date)request.getAttribute("now");
-%>
-<h3>Today is:<%=date%></h3>
+<%-- 파라미터로 넘어온 "date"이름의 값 출력 --%>
+ Today is:<%=request.getParameter("date") %>
 </body>
 </html>

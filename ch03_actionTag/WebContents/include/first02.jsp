@@ -8,11 +8,9 @@
 <title>Insert title here</title>
 </head>
 <body>
-<%-- request로 넘어온 날짜정보를 받아서 출력 --%>
-<%
-	Date date 
-	  =(Date)request.getAttribute("now");
-%>
-<h3>Today is:<%=date%></h3>
+<h3>이 파일은 first02.jsp입니다</h3>
+<jsp:include page="second02.jsp">
+  <jsp:param value="<%=new Date()%>" name="date"/>
+</jsp:include>
 </body>
 </html>

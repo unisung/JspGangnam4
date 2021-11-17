@@ -1,4 +1,3 @@
-<%@page import="java.util.Date"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -8,11 +7,8 @@
 <title>Insert title here</title>
 </head>
 <body>
-<%-- request로 넘어온 날짜정보를 받아서 출력 --%>
-<%
-	Date date 
-	  =(Date)request.getAttribute("now");
-%>
-<h3>Today is:<%=date%></h3>
+<h3> 이 파일은 first.jsp입니다.</h3>
+<jsp:include page="second.jsp" flush="true"/>
+<p>Java Server Page</p>
 </body>
 </html>

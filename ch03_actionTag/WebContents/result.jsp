@@ -8,7 +8,8 @@
 </head>
 <body>
 <%
-    /* getAttribute의 결과 는 Object이므로 형변환(casting) 처리  */
+    /* getAttribute의 결과 는 Object이므로 형변환(casting) 처리 
+    */
 	Integer num1 =Integer.parseInt((String)request.getAttribute("num1"));
     Integer num2 =Integer.parseInt((String)request.getAttribute("num2"));
     String  op =(String)request.getAttribute("op");

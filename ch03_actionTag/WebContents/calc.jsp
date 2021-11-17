@@ -10,7 +10,8 @@
     String op = request.getParameter("op");
     String num2 = request.getParameter("num2");
     
-    /* forward전에 request에 setAttribute()로 저장 후 이동. */
+    /* forward전에 request에 setAttribute()로 저장 후 이동.
+       setAttribute(이름,Object) */
     request.setAttribute("num1", num1);
     request.setAttribute("num2", num2);
     request.setAttribute("op", op);

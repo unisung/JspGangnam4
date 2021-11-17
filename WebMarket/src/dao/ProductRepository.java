@@ -30,7 +30,9 @@ public ProductRepository() {
 	tablet.setUnitsInStock(1000);
 	tablet.setCondition("Old");
 	
-	listOfProducts.add(phone); listOfProducts.add(notebook); listOfProducts.add(tablet);
+	listOfProducts.add(phone); 
+	listOfProducts.add(notebook); 
+	listOfProducts.add(tablet);
 }
 
 //상품 리스트 출력 메소드

@@ -1,6 +1,11 @@
 package dto;
 
-public class Product {
+import java.io.Serializable;
+
+public class Product implements Serializable {
+ //원본여부확인번호
+ private static final long serialVersionUID = 1L;
+
  private String productId;   //상품 아이디
  private String pname;       //상품명
  private Integer unitPrice;  //상품가격
@@ -9,6 +14,8 @@ public class Product {
  private String category;    //분류
  private long unitsInStock;  //재고 수
  private String condition;   //신상품 or 중고품 or 재생품
+ 
+ 
  //생성자
 public Product() {}
 public Product(String productId, String pname, Integer unitPrice) {

@@ -7,12 +7,6 @@
  	int y=cal.get(Calendar.YEAR);
  	int m=cal.get(Calendar.MONTH)+1;
  	int d=cal.get(Calendar.DATE);
- 	String _y=request.getParameter("y");
- 	String _m=request.getParameter("m");
- 	if(_y!=null)
- 		y=Integer.parseInt(_y);
- 	if(_m!=null)
- 		m=Integer.parseInt(_m);
 
  	//y년 m월 1일의 요일
  	cal.set(y,m-1,1);
@@ -26,12 +20,6 @@
 <head>
 <meta content="text/html; charset=UTF-8">
 <title>Insert title here</title>
-<style type="text/css">
-	*{margin:0px; padding:0px;font-famaily: 돋움; font-size: 9pt;}
-	td{font-size: 9pt;}
-	a{text-decoration: none;}
-	a:HOVER{text=decoration: underline;color:tomato;}
-</style>
 </head>
 <body>
 <br><br><br>

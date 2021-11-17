@@ -12,7 +12,7 @@
 <td colspan="2"><jsp:include page="/module/top.jsp" flush="false"/> </td>
 </tr>
 <tr>
-<td width="50" valign="top"><jsp:include page="/module/left.jsp" flush="false"/></td>
+<td width="100" valign="top"><jsp:include page="/module/left.jsp" flush="false"/></td>
 <td width="300" valign="top" height="350">
   <!--내용부분 시작:  -->
   <jsp:include page="<%=contentPage %>" flush="false" />

@@ -13,7 +13,7 @@
 
 %>
 <jsp:forward page="template.jsp">
-   <jsp:param name="CONTENTPAGE" value="info_view2.jsp"/>
+   <jsp:param name="CONTENTPAGE" value="info_view.jsp"/>
 </jsp:forward>
 
 </body>

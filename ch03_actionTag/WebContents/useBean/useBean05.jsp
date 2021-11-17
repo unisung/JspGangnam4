@@ -7,7 +7,9 @@
 <title>Insert title here</title>
 </head>
 <body>
-<jsp:useBean id="person" ></jsp:useBean>
-
+<jsp:useBean id="person"  
+  class="com.dao.Person" scope="request"/>
+<p>아이디:<%=person.getId() %>
+<p>이 름:<%=person.getName() %> 
 </body>
 </html>

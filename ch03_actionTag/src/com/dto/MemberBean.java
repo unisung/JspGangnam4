@@ -2,12 +2,12 @@ package com.dto;
 
 import java.io.Serializable;
 
-public class MeberBean implements Serializable{
-	private int id;
-	private String name;
+public class MemberBean implements Serializable{
+	private int id;//0
+	private String name;//null
 	
 	//기본생성자
-	public MeberBean() {}
+	public MemberBean() {}
 
 	//getters/setters
 	public int getId() { return id;	}

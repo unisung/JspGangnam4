@@ -40,4 +40,18 @@ public ArrayList<Product> getAllProducts(){
 	return listOfProducts;
 } 
 
+//상품 id로 상품 상제 정보 얻기
+ public Product getProductById(String productId) {
+	 Product productById = null;
+    for(int i=0;i<listOfProducts.size();i++) {
+    	 Product product = listOfProducts.get(i);
+    	 if(product !=null && product.getProductId()!=null 
+    			 && product.getProductId().equals(productId)) {
+    		 productById = product;
+    		 break;
+    	  }
+    	 }
+	return  productById;
+ }//
+
 }

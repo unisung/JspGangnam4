@@ -1,9 +1,11 @@
+<%@page import="dao.ProductRepository"%>
 <%@page import="dto.Product"%>
 <%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%--  ProductRepository productDAO = new ProductRepository(); --%>
 <jsp:useBean id="productDAO" class="dao.ProductRepository" scope="session"/>    
+<%-- <%  ProductRepository productDAO = ProductRepository.getInstance();%> --%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -31,8 +33,9 @@
         <h3><%=product.getPname() %></h3>
         <p><%=product.getDescription() %></p>
         <p><%=product.getUnitPrice() %>원</p>
+        <!-- 링크태그 이동은 get방식 이동 -->
         <p><a href="./product.jsp?id=<%=product.getProductId()%>" 
-            class="btn btn-secondary" role="button">상세정보 &raquo;</a>
+            class="btn btn-success" role="button">상세정보 &raquo;</a>
       </div>
        <%
          }

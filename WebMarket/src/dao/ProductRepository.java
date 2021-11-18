@@ -3,11 +3,17 @@ package dao;
 import java.util.ArrayList;
 
 import dto.Product;
-
+//싱글톤으로 생성
 public class ProductRepository {
-  //필드
+ //자신타입의 private static 필드 선언 
+ private static ProductRepository instance=new ProductRepository();
+ //public 접근지정자를 가진 getInstance메소드 선언
+public static ProductRepository getInstance() {
+	return instance;
+}
+//필드
  private ArrayList<Product> listOfProducts = new ArrayList<>();
-
+//생성자 private
 public ProductRepository() {
 	Product phone = new Product("P1234", "iPhone 6s", 800000);
 	phone.setDescription("4.7-inch, 1334X750 Renina HD display, 8-megapixel iSight Camera");

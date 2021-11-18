@@ -3,10 +3,25 @@
   <display-name>ch04_implicitObject</display-name>
   <welcome-file-list>
     <welcome-file>index.html</welcome-file>
-    <welcome-file>index.htm</welcome-file>
-    <welcome-file>index.jsp</welcome-file>
-    <welcome-file>default.html</welcome-file>
-    <welcome-file>default.htm</welcome-file>
-    <welcome-file>default.jsp</welcome-file>
   </welcome-file-list>
+  <context-param>
+    <description>db드라이버</description>
+    <param-name>driver</param-name>
+    <param-value>oracle.jdbc.driver.OracleDriver</param-value>
+  </context-param>
+  <context-param>
+    <description>url정보</description>
+    <param-name>url</param-name>
+    <param-value>jdbc:oracle:thin:@localhost:1521:xe</param-value>
+  </context-param>
+  <context-param>
+    <description>user정보</description>
+    <param-name>user</param-name>
+    <param-value>scott</param-value>
+  </context-param>
+  <context-param>
+    <description>비밀번호</description>
+    <param-name>password</param-name>
+    <param-value>tiger</param-value>
+  </context-param>
 </web-app>

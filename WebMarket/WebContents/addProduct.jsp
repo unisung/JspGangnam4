@@ -71,7 +71,7 @@ function check(regExp, e, msg){
     <div class="form-group row">
        <label class="col-sm-2">상품 코드</label>
        <div class="col-sm-3">
-         <input type="text" name="productId" id="productId" class="form-control" required>
+         <input type="text" name="productId" id="productId" class="form-control"  dis>
        </div>
     </div>
    <div class="form-group row">

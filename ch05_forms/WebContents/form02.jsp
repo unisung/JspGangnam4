@@ -37,7 +37,7 @@
 		<p>취미 : <label>독서<input type="checkbox" name="hobby" checked value="독서"></label>
 				<label>운동<input type="checkbox" name="hobby" value="운동"></label> 
 				<label>영화<input type="checkbox" name="hobby" value="영화"></label>
-		<p><textarea rows="3" cols="30" 
+		<p><textarea rows="3" cols="30" name="comment"
 		     placeholder="가입 인사를 입력해주세요"></textarea>
 </fieldset>		     		
 		<p><input type="submit" value="가입하기"> 

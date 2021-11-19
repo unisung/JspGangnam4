@@ -14,6 +14,7 @@
 	/* web서버내의 파일경로 절대경로 */
 	String filePath 
 	  ="C:\\Users\\user\\git\\JspGangnam4\\ch04_implicitObject\\WebContents\\message\\notice.txt";
+	
 	try(InputStreamReader fr=new InputStreamReader(new FileInputStream(filePath),"UTF-8")){
 		while((len=fr.read(buff))!=-1){
 			out.print(new String(buff,0,len));

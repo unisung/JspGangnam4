@@ -3,25 +3,40 @@
 <!DOCTYPE html><html><head>
 <meta charset="UTF-8">
 <title>Form Processing</title>
+<script>
+function idChk(){
+ var id=document.member.id.value;
+ if(id.length==0){
+	 alert("아이디를 입력하세요");
+	 document.member.id.focus();
+	 return;
+ }else{
+  /* 팝업창 열기 window.open(페이지); <-현재페이지는 opener임. */
+  window.open('idCheck.jsp?id='+id);
+ }
+}
+</script>
 </head>
 <body>
 <h3>회원가입</h3>
 	<form action="process03.jsp" name="member" method="post">
 	<fieldset>
 	 <legend>필수 입력사항</legend>
-		<p>아이디 : <input name="id"> <input type="button" value="아이디 중복검사">
-		<p>비밀번호 : <input type="password" name="passwd">
-		<p>이름 : <input  name="name">
-		<p>연락처 : <select name="phone1">
+		<p>아이디 : <input name="id" required> 
+		          <input type="button" value="아이디 중복검사" onclick="idChk()">
+		<p>비밀번호 : <input type="password" name="passwd" required>
+		<p>비밀번호 확인 : <input type="password" name="passwd1" required>
+		<p>이름 : <input  name="name" required>
+		<p>연락처 : <select name="phone1" required>
 		              <option value="010">010</option>
 		              <option value="011">011</option>
 		              <option value="016">016</option>
 		              <option value="017">017</option>
 		              <option value="019">019</option>
 		           </select>
-				- <input maxlength="4" size="4" name="phone2"> -
-				<input maxlength="4" size="4" name="phone3">
-		<p> <select name="city" size="3">
+				- <input maxlength="4" size="4" name="phone2" required> -
+				<input maxlength="4" size="4" name="phone3" required>
+		<p> <select name="city" size="3" required>
 		     <option value="서울시">서울특별시</option>
 		     <option value="경기도">경기도</option>
 		     <option value="인천시">인천시</option>

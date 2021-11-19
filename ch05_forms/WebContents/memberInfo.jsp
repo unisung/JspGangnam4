@@ -5,7 +5,8 @@
 <title>Insert title here</title>
 </head>
 <body>
-<jsp:useBean id="memberDAO" class="dao.MemberRepository" scope="session"/>
+<jsp:useBean id="memberDAO" class="dao.MemberRepository" 
+   scope="session"/>
 <%
    String id = request.getParameter("id");
     Member member = memberDAO.getMemberById(id) ;

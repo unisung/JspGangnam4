@@ -16,6 +16,20 @@ function idChk(){
  }
 }
 </script>
+<script>
+function chk(){
+	var pass1 = document.member.passwd.value;
+	var pass2 = document.member.passwd1.value;
+	if(pass1!=pass2){
+		alert("입력한 비밀번호와 확인번호가 서로 다릅니다.");
+		document.member.passwd.value='';
+		document.member.passwd1.value='';
+		document.member.passwd.focus();
+		return false;
+	}
+	return true;
+}
+</script>
 </head>
 <body>
 <h3>회원가입</h3>
@@ -55,7 +69,7 @@ function idChk(){
 		<p><textarea rows="3" cols="30" name="comment"
 		     placeholder="가입 인사를 입력해주세요"></textarea>
 </fieldset>		     		
-		<p><input type="submit" value="가입하기"> 
+		<p><input type="submit" value="가입하기" onclick="return chk()"> 
 			<input type="reset"	value="다시쓰기">
 	</form>
 </body>

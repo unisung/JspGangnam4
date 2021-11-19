@@ -60,4 +60,8 @@ public ArrayList<Product> getAllProducts(){
 	return  productById;
  }//
 
+ //상품등록
+ public void addProduct(Product product) {
+	 listOfProducts.add(product);
+ }
 }

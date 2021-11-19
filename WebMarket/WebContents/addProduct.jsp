@@ -31,6 +31,21 @@ function chk(){
 	}else if(!check(/^\d+(?:[.]?[\d]?[\d])?$/,unitPrice, "[가격]\n소수점 둘째 자리까지만 입력하세요")){
 		return false;
 	}
+	//재고 수 체크
+	if(unitsInStock.value.lenght==0 || isNaN(unitsInStock.value)){
+		alert("[재고 수]\n숫자만 입력하세요");
+		unitsInStock.select();
+		unitsInStock.focus();
+		return false;
+	}
+	//
+	if(unitsInStock.value < 0 ){
+		alert("[재고 수]\n음수를 입력할 수 없습니다.");
+		unitsInStock.select();
+		unitsInStock.focus();
+		return false;
+	}
+	
 	document.newProduct.submit();
 }
 /* check(정규표현신, element, 메세지) */

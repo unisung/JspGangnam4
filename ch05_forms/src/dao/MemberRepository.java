@@ -24,5 +24,13 @@ public class MemberRepository {
 		 listOfMembers.add(member);
 	}
 	
-
+	//아이디로 회원정보 가져오기
+	public Member getMemberById(String id){
+		for(int i=0;i<listOfMembers.size();i++) {
+			 if(listOfMembers.get(i).getId().equals(id)) {
+				 return listOfMembers.get(i);
+			 }
+		}
+		return null;
+	}
 }

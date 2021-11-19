@@ -18,7 +18,7 @@
 <jsp:useBean id="memberDAO" class="dao.MemberRepository" scope="session"/>
 <jsp:useBean id="member" class="dto.Member" scope="session"/>
 <jsp:setProperty property="*" name="member"/>
-<b><%=member %></b>
+<b><%=member %></b><br><br>
 <%
 	memberDAO.registerMember(member);
 %>
@@ -26,7 +26,7 @@
  List<Member> list = memberDAO.getMembers();
  for(int i=0;i<list.size();i++){
 %>
- <%=list.get(i) %><br>
+ 회원정보:<%=(i+1)%>:<a href="memberInfo.jsp?id=<%=list.get(i).getId()%>"><%=list.get(i).getId()%></a><%=list.get(i) %><br>
 <%} %>
 </body>
 </html>

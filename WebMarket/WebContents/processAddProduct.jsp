@@ -22,11 +22,11 @@
    String condition = request.getParameter("condition");
   
    Integer price;
-   if(unitPrice.isEmpty()) price=0;
+   if(unitPrice==null || unitPrice.isEmpty()) price=0;
    else price =Integer.valueOf(unitPrice);
    
    long stock;
-   if(unitsInStock.isEmpty()) stock=0;
+   if(unitsInStock==null || unitsInStock.isEmpty()) stock=0;
    else stock = Long.valueOf(unitsInStock);
    
    //상품등록
@@ -47,7 +47,6 @@
    
    //상품 리스트로 이동
    response.sendRedirect("products.jsp");
-
 %>
 </body>
 </html>

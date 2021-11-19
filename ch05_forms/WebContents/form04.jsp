@@ -33,7 +33,7 @@ function chk(){
 </head>
 <body>
 <h3>회원가입</h3>
-	<form action="process03.jsp" name="member" method="post">
+	<form action="process03.jsp" name="member" method="post" onsubmit="return chk()">
 	<fieldset>
 	 <legend>필수 입력사항</legend>
 		<p>아이디 : <input name="id" required> 
@@ -69,7 +69,7 @@ function chk(){
 		<p><textarea rows="3" cols="30" name="comment"
 		     placeholder="가입 인사를 입력해주세요"></textarea>
 </fieldset>		     		
-		<p><input type="submit" value="가입하기" onclick="return chk()"> 
+		<p><input type="submit" value="가입하기" > 
 			<input type="reset"	value="다시쓰기">
 	</form>
 </body>

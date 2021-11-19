@@ -10,7 +10,7 @@ function chk(){
 	var productId = document.getElementById("productId");
 	var unitPrice = document.getElementById("unitPrice");
 	var unitsInStock = document.getElementById("unitsInStock");
-	//상품 아이디 체크
+	//상품 아이디 체크 {m,n}:m~n개, {m,}:m개 이상 ,{,n}:n개 이하
 	if(!check(/^P[0-9]{4,11}$/, productId,
 			  "[상품코드]\nP와 숫자를 조합하여 5~12자 까지 입력하세요\n첫 글자는 반드시 P로 시작하세요" )){
 		return false;
@@ -122,7 +122,6 @@ function check(regExp, e, msg){
    </div>
    
    <div class="form-group row">
-       <label class="col-sm-2">상태</label>
        <div class="col-sm-offset-2 col-sm-10">
          <input type="submit" value="등록" class="btn btn-primary" onclick="return chk()">
        </div>

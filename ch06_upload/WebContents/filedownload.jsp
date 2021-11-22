@@ -51,6 +51,8 @@ try{
 		  }
 		response.setHeader("Content-Length",""+file.length());
 		
+		
+		
 		//다운로드 처리
 		os = response.getOutputStream();
 		byte[] b = new byte[(int)file.length()];
@@ -61,7 +63,7 @@ try{
 		}
 	  }else{//파일이 없을 때
 		  response.setContentType("text/html;charset=utf-8");
-	      out.print("<script>alert('파일을 찾을 수 없습니다.'); history.back(); <script>");
+	      out.print("<script>alert('파일을 찾을 수 없습니다.'); history.back(); </script>");
 	  }
 	  in.close(); os.close();
 	  

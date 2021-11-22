@@ -31,7 +31,7 @@
       		 Product product = listOfProducts.get(i);
       %>
       <div class="col-md-4">
-        <img src="c:/upload/<%=product.getFilename()%>"  style="width:100%">
+        <img src="./resources/images/<%=product.getFilename()%>"  style="width:100%">
         <h3><%=product.getPname() %></h3>
         <p><%=product.getDescription() %></p>
         <p><%=product.getUnitPrice() %>원</p>

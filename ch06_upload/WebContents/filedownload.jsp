@@ -51,7 +51,10 @@ try{
 		  }
 		response.setHeader("Content-Length",""+file.length());
 		
-		
+		//아래 오류 발생 방지 처리
+		//java.lang.IllegalStateException: 이 응답을 위해 getOutputStream()이 이미 호출되었습니다.
+		out.clear();
+		out = pageContext.pushBody();
 		
 		//다운로드 처리
 		os = response.getOutputStream();

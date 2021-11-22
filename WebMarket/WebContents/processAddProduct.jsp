@@ -35,7 +35,7 @@
    String description = multi.getParameter("description");
    String manufacturer = multi.getParameter("manufacturer");
    String category = multi.getParameter("category");
-   String unitsInStock = multi.getParameter("untisInStock");
+   String unitsInStock = multi.getParameter("unitsInStock");//오타입니다.
    String condition = multi.getParameter("condition");
   
    Integer price;

@@ -1,3 +1,4 @@
+<%@page import="java.util.ArrayList"%>
 <%@page import="java.util.Enumeration"%>
 <%@page import="com.oreilly.servlet.multipart.DefaultFileRenamePolicy"%>
 <%@page import="javax.swing.DefaultBoundedRangeModel"%>
@@ -29,7 +30,8 @@
     		                 encType, 
     		                 new DefaultFileRenamePolicy());
    //request -> multi로 변경
-   String productId = multi.getParameter("productId");
+   //String productId = multi.getParameter("productId");
+    
    String name = multi.getParameter("name");
    String unitPrice = multi.getParameter("unitPrice");
    String description = multi.getParameter("description");
@@ -53,9 +55,17 @@
    
    //상품등록
    ProductRepository dao = ProductRepository.getInstance();
+   ArrayList<Product> list = dao.getAllProducts();
+   //seq Max값 추출
+   Product pro = list.get(list.size()-1);
+   //max + 1값 
+   int seq = Integer.parseInt(pro.getProductId().substring(1)) + 1;
    
    Product newProduct = new Product();
-   newProduct.setProductId(productId);
+   
+   //"P" + max+1값 설정
+   newProduct.setProductId("P"+seq);
+   
    newProduct.setPname(name);
    newProduct.setUnitPrice(price);
    newProduct.setDescription(description);

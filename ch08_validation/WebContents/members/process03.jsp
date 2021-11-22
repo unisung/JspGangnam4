@@ -22,6 +22,7 @@
 %>
 <jsp:useBean id="member" class="dto.Member" scope="page"/>
 <jsp:setProperty property="*" name="member"/>
+<jsp:setProperty property="hobbies" name="member" param="hobby"/>
 <b><%=member %></b><br><br>
 <%
 	memberDAO.registerMember(member);

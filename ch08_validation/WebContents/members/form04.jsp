@@ -91,7 +91,12 @@ function chk(){
 </script>
 <script>
 function selectDomain(obj){
-	alert(obj.selectedIndex);
+	if(obj.value==""){
+		document.member.emailDomain.focus();
+		document.member.emailDomain.value='';	
+	}else{
+	 document.member.emailDomain.value=obj.value;
+	}
 }
 </script>
 </head>
@@ -117,6 +122,7 @@ function selectDomain(obj){
 				
 		<p>email :<input name="emailId">@<input name="emailDomain">
 		          <select name="emailDomainList" onchange="selectDomain(this)">
+		           <option value="선택" checked >선택</option>
 		           <option value="naver.com">naver.com</option>
 		           <option value="daum.net">daum.net</option>
 		           <option value="gmail.com">gmail.com</option>

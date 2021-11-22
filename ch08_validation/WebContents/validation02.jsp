@@ -94,7 +94,7 @@
 <title>Insert title here</title>
 </head>
 <script>
-fuction checkLogin(){
+function checkLogin(){
 	var form = document.loginForm;
 	if(form.idname.value==""){
 		alert("아이디를 입력해주세요");
@@ -134,7 +134,7 @@ fuction checkLogin(){
 				</p>
 
 				<p>
-				<input type="submit" value="전송"  onclick="checkLogin()">
+				<input type="submit" value="전송"  onclick="return checkLogin()">
 				</p>
 			</form>
 		</div>

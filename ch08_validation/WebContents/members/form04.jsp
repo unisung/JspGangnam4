@@ -66,7 +66,7 @@ function chk(){
 	if(!regExpPassword.test(passwd)){
 		alert("비밀번호는 숫자만 입력해주세요");
 		form.passwd.focus();
-		form.passw.value='';
+		form.passwd.value='';
 		form.passw1.value='';
 		return false;
 	}

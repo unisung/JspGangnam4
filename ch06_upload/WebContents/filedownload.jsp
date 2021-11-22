@@ -72,7 +72,6 @@ try{
 	      out.print("<script>alert('파일을 찾을 수 없습니다.'); history.back(); </script>");
 	  }
 	  in.close(); os.close();
-	  
 }catch(Exception e){
   e.printStackTrace();	
 }

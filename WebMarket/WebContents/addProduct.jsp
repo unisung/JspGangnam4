@@ -73,7 +73,8 @@
    <div class="form-group row">
       <label class="col-sm-2">이미지</label>
        <div class="col-sm-5">
-         <input type="file" name="productImage" class="form-control">
+         <img style="width: 500px;" id="preview-image" >
+         <input type="file" name="productImage" class="form-control" id="input-image">
        </div>
    </div>
    
@@ -87,3 +88,23 @@
 <jsp:include page="footer.jsp"/>
 </body>
 </html>
+<script>
+function readImage(input) {
+    // 인풋 태그에 파일이 있는 경우
+    if(input.files && input.files[0]) {
+        // 이미지 파일인지 검사 (생략)
+        // FileReader 인스턴스 생성
+        const reader = new FileReader()
+        // 이미지가 로드가 된 경우
+        reader.onload = e => {
+            const previewImage = document.getElementById("preview-image")
+            previewImage.src = e.target.result
+        }
+        // reader가 이미지 읽도록 하기
+        reader.readAsDataURL(input.files[0])
+    }
+}
+// input file에 change 이벤트 부여
+const inputImage = document.getElementById("input-image")
+inputImage.addEventListener("change", e => {readImage(e.target)})
+</script>

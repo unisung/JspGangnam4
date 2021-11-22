@@ -1,3 +1,4 @@
+<%@page import="dao.MemberRepository"%>
 <%@page import="dto.Member"%>
 <%@page import="java.util.List"%>
 <%@page import="java.util.Arrays"%>
@@ -15,8 +16,11 @@
   /* request로 넘어온 파라미터의 문자셋 설정 */
   request.setCharacterEncoding("utf-8");
 %>
-<jsp:useBean id="memberDAO" class="dao.MemberRepository" scope="session"/>
-<jsp:useBean id="member" class="dto.Member" scope="session"/>
+<%-- <jsp:useBean id="memberDAO" class="dao.MemberRepository" scope="session"/> --%>
+<%
+ MemberRepository memberDAO = MemberRepository.getInstance();
+%>
+<jsp:useBean id="member" class="dto.Member" scope="page"/>
 <jsp:setProperty property="*" name="member"/>
 <b><%=member %></b><br><br>
 <%

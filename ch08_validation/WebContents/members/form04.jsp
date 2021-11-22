@@ -40,14 +40,14 @@ function chk(){
 	var regExpPassword =/^[0-9]*$/;
 	var regExpPhone = /^\d{3}-\d{3,4}-\d{4}$/;
 	var regExpEmail = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i; //akim
-	
+	//form명
 	var form = document.member;
+	
 	var id = form.id.value;
 	var name = form.name.value;
 	var passwd = form.passwd.value;
 	var phone = form.phone1.value +"-" + form.phone2.value +"-" + form.phone3.value;
 	var email = form.emailId.value +"@"+form.emailDomain.value;
-	
 	
 	if(!regExpId.test(id)){
 		alert("아이디는 문자로 시작해주세요");
@@ -56,9 +56,42 @@ function chk(){
 		return false;
 	}
 	
+	if(!regExpName.test(name)){
+		alert("이름은 한글만 입력해주세요!");
+		form.name.focus();
+		form.name.value='';
+		return false;
+	}
+	
+	if(!regExpPassword.test(passwd)){
+		alert("비밀번호는 숫자만 입력해주세요");
+		form.passwd.focus();
+		form.passw.value='';
+		form.passw1.value='';
+		return false;
+	}
+	
+	if(!regExpPhone.test(phone)){
+		alert("연락처 입력을 확인 해주세요");
+		form.phone2.focus();
+		form.phone2.value='';
+		form.phone3.value='';
+		return false;	
+	}
+	if(!regExpEmail.test(email)){
+		alert("이메일 입력을 확인 해주세요");
+	    form.emailId.focus();
+		form.emailId.value='';
+		form.emailDomain.value='';
+		return false;	
+	}
+	
 	return true;
-	
-	
+}
+</script>
+<script>
+function selectDomain(obj){
+	alert(obj.selectedIndex);
 }
 </script>
 </head>
@@ -82,8 +115,8 @@ function chk(){
 				- <input maxlength="4" size="4" name="phone2" required> -
 				<input maxlength="4" size="4" name="phone3" required>
 				
-		<p>email :<input name="emailId">@
-		          <select name="emailDomain">
+		<p>email :<input name="emailId">@<input name="emailDomain">
+		          <select name="emailDomainList" onchange="selectDomain(this)">
 		           <option value="naver.com">naver.com</option>
 		           <option value="daum.net">daum.net</option>
 		           <option value="gmail.com">gmail.com</option>

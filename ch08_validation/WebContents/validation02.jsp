@@ -100,6 +100,10 @@ function checkLogin(){
 		alert("아이디를 입력해주세요");
 		form.idname.focus();
 		return false;
+	}else if(form.idname.value.length < 6 || form.idname.value.length > 12){
+		alert("아이디의 길이를 6~12자 이내로 입력해주세요");
+		form.idname.select();
+		return false;
 	}else if(form.pw.value==""){
 		alert("비밀번호를 입력해주세요");
 		form.pw.focus();

@@ -10,6 +10,7 @@
 <body>
 <%
   String fileUploadPath = "c:\\upload";
+  
   DiskFileUpload upload = new DiskFileUpload();
   //request를 parsing하여 아이템들 추출
   List items = upload.parseRequest(request);

@@ -40,7 +40,8 @@
 	      fileName = fileName.substring(fileName.lastIndexOf("\\")+1);// "c:\\temp\\a.jpg" ->a.jpg
 	      long fileSize = item.getSize();//전송된 파일의 크기 구하기
 	      
-File file = new File(path +"/" + fileName); // "c:\\upload" + "\\" + "a.jpg" -> "c:\\upload\\a.jpg"
+         File file = new File(path +"/" + fileName); 
+	        // "c:\\upload" + "\\" + "a.jpg" -> "c:\\upload\\a.jpg"
          item.write(file);
 
          //저장내용 출력

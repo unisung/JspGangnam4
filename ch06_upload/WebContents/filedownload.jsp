@@ -38,9 +38,12 @@ try{
 	  response.setContentType("application/octet-stream");
 	  response.setHeader("Content-Description","JSP Generated Data");
 	  
+	  System.out.println("client:"+client);
+	  
 	  if(!skip){
 		  //IE
-		  if(client.indexOf("MSIE")!=-1){//internetExplorere 브라우저인 겨우
+		  //if(client.indexOf("MSIE")!=-1){//internetExplorere 브라우저인 겨우
+		  if(client.indexOf("Trident")!=-1){//internetExplorere 브라우저인 겨우
 			 response.setHeader("Content-Disposition", "attachment; filename="
 		                        +new String(orgfilename.getBytes("KSC5601"),"ISO8859_1"));
 		  }else{//IE 아닌 다른 브라우저

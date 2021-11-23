@@ -8,7 +8,7 @@
 <body>
 <%-- request.setCharacterEncoding("문자셋") --%>
 <fmt:requestEncoding value="utf-8"/>
-요청 파라미터:<% out.print(request.getParameter("id"));%>
+요청 파라미터:<%=request.getParameter("id")==null?"":request.getParameter("id")%>
 <p><%=response.getLocale() %>
 
 <form action="#" method="post">

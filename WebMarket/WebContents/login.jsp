@@ -28,7 +28,7 @@
              <label for="inputUserName" class="sr-only">User Name</label>
              <input type="text" class="form-control" placeholder="ID" name='j_username' required autofocus>
           </div>
-          <div class="from-group">
+          <div class="form-group">
              <label for="inputPassword" class="sr-only">Password</label>
              <input type="password" class="form-control" placeholder="Password" name='j_password' required>
           </div>

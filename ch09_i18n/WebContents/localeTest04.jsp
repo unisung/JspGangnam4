@@ -15,7 +15,7 @@
     String fcurency = currency.format(1234567);
     String fpercentage = percentage.format(0.25);
 %>
-<p> 로케일의 통화 형식 : <%=fcurency %><br>
+<p> 로케일의 통화 형식 :<%=fcurency %><br>
 <p> 로케일의 비율 형식 : <%=fpercentage %>
 </body>
 </html>

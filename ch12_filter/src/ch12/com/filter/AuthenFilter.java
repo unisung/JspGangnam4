@@ -9,20 +9,26 @@ import javax.servlet.FilterConfig;
 import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
+import javax.servlet.http.HttpServletRequest;
 
 public class AuthenFilter implements Filter {
-
+   private String encoding;
+   
 	@Override
 	public void init(FilterConfig filterConfig) throws ServletException {
 		System.out.println("Filter01 초기화...");
+		encoding="UTF-8";
 	}
 
 	@Override
 	public void doFilter(ServletRequest request, 
 			             ServletResponse response, 
 			             FilterChain chain)
-			throws IOException, ServletException {
+			throws IOException, ServletException {		
 		  System.out.println("Filter01.jsp 수행...");
+		  //파라미터 받기 전 실행
+		  request.setCharacterEncoding(encoding);
+		  
 		  String name = request.getParameter("name");
 		  
 		  if(name==null|| name.equals("")) {

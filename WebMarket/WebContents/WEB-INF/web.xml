@@ -32,6 +32,9 @@ xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.
     <error-code>404</error-code>
     <location>/exceptionNoPage.jsp</location>
   </error-page>
-  
+  <error-page>
+    <error-code>500</error-code>
+    <location>/exceptionServerErrorPage.jsp</location>
+  </error-page>
   
 </web-app>

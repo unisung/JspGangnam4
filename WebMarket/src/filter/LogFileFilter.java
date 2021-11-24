@@ -17,7 +17,6 @@ import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
 
 
-@WebFilter("/LogFileFilter")
 public class LogFileFilter implements Filter {
 	PrintWriter writer;
 	
@@ -37,7 +36,7 @@ public class LogFileFilter implements Filter {
        writer.println("접속한 클라이언트 IP : "+request.getRemoteAddr());
        long start = System.currentTimeMillis();
        writer.println("접근한 URL 경로:" +getURLPath(request));
-       writer.println("요청한 처리 시작 시각:" +getCurrTime());
+       writer.println("요청한 처리 시작 시각:" +getCurrentTime());
 				
 		chain.doFilter(request, response);
 		

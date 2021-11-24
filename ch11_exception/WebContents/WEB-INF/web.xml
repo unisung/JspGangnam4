@@ -10,7 +10,7 @@
     <welcome-file>default.jsp</welcome-file>
   </welcome-file-list>
   <!-- HTTP 오류 발생시 처리 페이지 지정 -->
-  <error-page>
+<error-page>
     <error-code>404</error-code>
     <location>/errorCode_error.jsp</location>
   </error-page>

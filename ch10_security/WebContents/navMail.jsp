@@ -36,10 +36,31 @@ try{
 		mailSession.setDebug(true); 
 		// Create a default MimeMessage object. 
 		Message message = new MimeMessage(mailSession); 
-		// Set From: header field of the header. message.setFrom(new InternetAddress(sf)); // Set To: header field of the header. message.addRecipient(Message.RecipientType.TO, new InternetAddress(st)); // Set Subject: header field message.setSubject(sbj); // Now set the actual message message.setContent(sMsg, "text/html;charset=utf-8"); // 내용과 인코딩 // Send message Transport.send(message); // System.out.println("Sent message successfully...."); // sResult = "Sent message successfully...."; } catch (MessagingException e) { e.printStackTrace(); System.out.println("Error: unable to send message...." + e.toString()); sResult = "ERR"; } }catch (Exception err){ System.out.println(err.toString()); sResult = "ERR"; }finally { // dbhandle.close(dbhandle.con); }
+		// Set From: header field of the header.
+		message.setFrom(new InternetAddress(sf)); 
+		// Set To: header field of the header. 
+		message.addRecipient(Message.RecipientType.TO, new InternetAddress(st)); 
+		// Set Subject: header field 
+		message.setSubject(sbj); 
+		// Now set the actual message 
+		message.setContent(sMsg, "text/html;charset=utf-8"); 
+		// 내용과 인코딩 // Send message 
+		Transport.send(message); 
+		// System.out.println("Sent message successfully...."); 
+		// sResult = "Sent message successfully...."; 
+		} catch (MessagingException e) { 
+			e.printStackTrace(); 
+			System.out.println("Error: unable to send message...." + e.toString()); 
+			sResult = "ERR"; 
+		} 
+	}catch (Exception err){ 
+		System.out.println(err.toString()); 
+		sResult = "ERR"; 
+	}finally { 
+		// dbhandle.close(dbhandle.con); 
+  }
+//출처: https://godlvkhj.tistory.com/125?category=66323 [하은양 믿음군 효실맘 호홍홍집s]
 %>
 <%
 out.clear();
 %><%=sResult%>
-
-출처: https://godlvkhj.tistory.com/125?category=66323 [하은양 믿음군 효실맘 호홍홍집s]

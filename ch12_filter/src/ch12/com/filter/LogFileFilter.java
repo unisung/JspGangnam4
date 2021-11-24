@@ -20,7 +20,7 @@ import javax.servlet.http.HttpServletRequest;
 
 @WebFilter(
 		description = "로그파일 필터", 
-		urlPatterns = { "/ch12/filter02_process.jsp" }, 
+		urlPatterns = { "/ch12/filter02_process.jsp","/ch12/filter01_process.jsp" }, 
 		initParams = { 
 				@WebInitParam(name = "filename", value = "c:\\logs\\monitor.log")
 		})

@@ -7,12 +7,11 @@
 <title>Insert title here</title>
 </head>
 <body>
-<form action="exception_process.jsp" 
+<form action="exception_process2.jsp" 
           method="post">
    <p>숫자1 : <input name="num1">
    <p>숫자2 : <input name="num2">
    <p><input type="submit" value="나누기">
 </form>
-
 </body>
 </html>

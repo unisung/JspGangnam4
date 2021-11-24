@@ -9,12 +9,18 @@
     <welcome-file>default.htm</welcome-file>
     <welcome-file>default.jsp</welcome-file>
   </welcome-file-list>
+  <!-- HTTP 오류 발생시 처리 페이지 지정 -->
+  <error-page>
+    <error-code>404</error-code>
+    <location>/errorCode_error.jsp</location>
+  </error-page>
   <error-page>
     <error-code>500</error-code>
     <location>/errorCode_error.jsp</location>
   </error-page>
+  
   <error-page>
-    <error-code>404</error-code>
-    <location>/errorCode_error.jsp</location>
+     <exception-type>java.lang.Exception</exception-type>
+     <location>/errorCode_error.jsp</location>
   </error-page>
 </web-app>

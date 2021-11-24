@@ -11,8 +11,10 @@
 설정된 세션의 속성 값[1]:<%=user_id %><br>
 설정된 세션의 속성 값[2]:<%=user_pw %><br>
 <%
+     
     if(request.isRequestedSessionIdValid() == true){
     	out.print("세션이 유효합니다.");
+    	out.print(session.getId());
     }else{
     	out.print("세션이 유효하지 않습니다.");
     }
@@ -25,8 +27,10 @@
 <%
     if(request.isRequestedSessionIdValid() == true){
     	out.print("세션이 유효합니다.");
+    	out.print(session.getId());
     }else{
     	out.print("세션이 유효하지 않습니다.");
+    	out.print(session.getId());
     }
 %>
 </body>

@@ -6,12 +6,12 @@
 <%
 	Cookie[] cookies = request.getCookies();
     out.print("현재 설정된 쿠키의 개수 =>" +cookies.length+"<br>");
-    out.print("<hr>");
+    out.print("-------------------------------------------<br>");
 
    for(int i=0;i<cookies.length;i++){
 		out.print("설정된 쿠키의 속성 이름 ["+i+"]:"+cookies[i].getName()+"<br>");	   
 		out.print("설정된 쿠키의 속성 값 ["+i+"]:"+cookies[i].getValue()+"<br>");
-		out.print("<hr>");
+		out.print("----------------------------------------<br>");
 	}
 %>
 </body>

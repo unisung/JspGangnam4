@@ -118,10 +118,6 @@
       <a href="./checkOutCancelled.jsp" class="btn btn-secondary" role="button">취소</a> 
     </div>    
 </div>
-
-
-
-
-
+<jsp:include page="footer.jsp"/>
 </body>
 </html>

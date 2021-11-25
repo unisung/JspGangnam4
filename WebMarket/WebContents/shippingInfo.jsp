@@ -75,6 +75,7 @@
          </div>
    </form>
 </div>
+<jsp:include page="footer.jsp"/>
 </body>
 </html>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>

@@ -30,7 +30,7 @@ function updateCartQty(id){
         <tr>
           <td align="left"><a href="./deleteCart.jsp?cartId=<%=cartId%>" 
                              class="btn btn-danger">삭제하기</a></td>
-          <td align="right"><a href="./shippingInfo.jsp?cartId=<%=cartId%>" class="btn bnt-success">주문하기</a></td>         
+          <td align="right"><a href="./shippingInfo.jsp?cartId=<%=cartId%>" class="btn btn-success">주문하기</a></td>         
         </tr>
      </table>
   </div>

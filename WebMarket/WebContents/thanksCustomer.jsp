@@ -103,6 +103,6 @@ if(cookies!=null){
 	}
 
 %> 
-
+<jsp:include page="footer.jsp"/>
 </body>
 </html>

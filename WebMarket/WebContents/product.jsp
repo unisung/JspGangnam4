@@ -1,3 +1,5 @@
+<%@page import="dto.RecentProduct"%>
+<%@page import="java.util.ArrayList"%>
 <%@page import="dao.ProductRepository"%>
 <%@page import="dto.Product"%>
 <%@ page contentType="text/html; charset=UTF-8"%>
@@ -5,6 +7,19 @@
 <!-- 서버와 접속 후 브라우저 종료전 까지 모든 페이지에서 사용가능한 session범위로 지정 -->
 <%-- <jsp:useBean id="productDAO" class="dao.ProductRepository" scope="session"/> --%>
 <% ProductRepository productDAO = ProductRepository.getInstance(); %>
+<%
+String id = request.getParameter("id");
+Product product =productDAO.getProductById(id);
+
+ ArrayList<RecentProduct> recentProducts 
+                =(ArrayList<RecentProduct>)session.getAttribute("recentProducts");
+ 
+ if(recentProducts==null) {
+     recentProducts = new ArrayList<RecentProduct>();
+     recentProducts.add(new RecentProduct(id,product.getPname()));
+     session.setAttribute("recentProducts", recentProducts);
+ }
+%>
 <!DOCTYPE html><html><head>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
 <meta charset="UTF-8">
@@ -25,16 +40,13 @@ function addToCart(){
       <h1 class="display-3">상품 정보</h1>
     </div>
 </div>
-<%
-	String id = request.getParameter("id");
-    Product product =productDAO.getProductById(id);
-%>
 <div class="container">
   <div class="row">
      <div class="col-md-5">
         <img src="/resources/images/<%=product.getFilename()%>" style="width:100%">
      </div>
      <div class="col-md-6">
+       <p>★★★★☆</p>
        <h3><%=product.getPname() %></h3>
        <p><%=product.getDescription() %>
        <p><b>상품 코드 : </b><span class="badge badge-danger"><%=product.getProductId() %></span>

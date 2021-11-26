@@ -14,10 +14,18 @@ Product product =productDAO.getProductById(id);
  ArrayList<RecentProduct> recentProducts 
                 =(ArrayList<RecentProduct>)session.getAttribute("recentProducts");
  
+ RecentProduct recentProduct = new RecentProduct(id,product.getPname());
+ 
  if(recentProducts==null) {
      recentProducts = new ArrayList<RecentProduct>();
      recentProducts.add(new RecentProduct(id,product.getPname()));
      session.setAttribute("recentProducts", recentProducts);
+ }else{
+	 //세션에 최근본 상품이 없으면 생성하여 추가
+	 if(!recentProducts.contains(recentProduct)){
+		 recentProducts.add(new RecentProduct(id,product.getPname()));
+		 session.setAttribute("recentProducts", recentProducts);
+	 }
  }
 %>
 <!DOCTYPE html><html><head>
@@ -46,7 +54,7 @@ function addToCart(){
         <img src="/resources/images/<%=product.getFilename()%>" style="width:100%">
      </div>
      <div class="col-md-6">
-       <p>★★★★☆</p>
+        <p><% for(int i=1;i<=4;i++){out.print("★");} %></p>
        <h3><%=product.getPname() %></h3>
        <p><%=product.getDescription() %>
        <p><b>상품 코드 : </b><span class="badge badge-danger"><%=product.getProductId() %></span>
@@ -55,7 +63,10 @@ function addToCart(){
        <p><b>재고 수</b>:<%=product.getUnitsInStock() %>
        <h4><%=product.getUnitPrice() %>원</h4>
        <p><form name="addForm" action="./addCart.jsp?id=<%=product.getProductId()%>" method="post">
-          <input type="number" name="qty" value="0"><a href="#" class="btn btn-info" onclick="addToCart()">상품주문 &raquo;</a>
+          <div class="col-md-2">
+          <input type="number" name="qty" value="0" class="form-control input-md">
+          </div>
+          <a href="#" class="btn btn-info" onclick="addToCart()">상품주문 &raquo;</a>
           <a href="./cart.jsp" class="btn btn-warning">장바구니 &raquo;</a>
           <a href="./products.jsp" class="btn btn-secondary">상품 목록 &raquo;</a>
           </form>

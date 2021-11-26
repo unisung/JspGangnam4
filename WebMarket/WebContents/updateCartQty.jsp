@@ -25,11 +25,14 @@
   for(int i=0;i<cartList.size();i++){
 	   goodsQnt = cartList.get(i);
 	   if(goodsQnt.getProductId().equals(id)){
-		  //변경수량 저장
+		  goodsQnt.setQuantity(Integer.parseInt(qty));
 	   }
   }
   
   //카트페이지로 이동하여 삭제후 내역확인
-  response.sendRedirect("cart.jsp");
-
+  //response.sendRedirect("cart.jsp");
 %>
+<script>
+  alert("장바구니 수량을 수정하였습니다");
+  location.href="cart.jsp";
+</script>

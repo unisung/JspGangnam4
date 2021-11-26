@@ -8,17 +8,6 @@
 <%--  ProductRepository productDAO = new ProductRepository(); --%>
 <%-- <jsp:useBean id="productDAO" class="dao.ProductRepository" scope="session"/>  --%>   
 <%  ProductRepository productDAO = ProductRepository.getInstance();%>
-<%
-ArrayList<RecentProduct> recentProducts 
-=(ArrayList<RecentProduct>)session.getAttribute("recentProducts");
-
-if(recentProducts!=null) {
-	for(int i=0;i<recentProducts.size();i++){
-		RecentProduct recentProduct= recentProducts.get(i);
-		out.print("<script>document.getElementById('recentPanel')....</script>");
-	}
-}
-%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -65,12 +54,24 @@ if(recentProducts!=null) {
 </div>
 </fmt:bundle>
 <jsp:include page="footer.jsp"/>
-<div id="recentPanel" style="position:fixed; width:200px; height:100px; top:50px; right:50px; border:1px solid black; ">
-  <h5>최근 본 상품</h5>
+<div id="recentPanel" 
+     class="card bg-light mb-3" 
+      style="position:fixed; max-width:18rem; top:55px; right:50px;">
+  <h5 class="card-header">최근 본 상품</h5>
   <div>
     <ul>
-     <li><a href="product.jsp?id=P1234">P1234-galaxyPhone</a>
-     <li><a href="product.jsp?id=P1236">P1236-galaxyTab</a>
+<%
+ArrayList<RecentProduct> recentProducts 
+=(ArrayList<RecentProduct>)session.getAttribute("recentProducts");
+
+if(recentProducts!=null) {
+	for(int i=0;i<recentProducts.size();i++){
+		RecentProduct recentProduct= recentProducts.get(i);
+		out.print("<li><a href='product.jsp?id="+recentProduct.getProductId()+"'>"
+		           +recentProduct.getPname()+"</a></li>");
+	}
+}
+%>
     </ul>
   </div>
 </div>

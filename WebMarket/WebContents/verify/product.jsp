@@ -18,12 +18,46 @@ function addToCart(){
 	}
 }
 </script>
+<link rel='stylesheet' 
+href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css'/>
+<style>
+.inner-star::before{color: #FF9600;}
+.outer-star {position: relative;display: inline-block;color: #CCCCCC;}
+.inner-star {position: absolute;left: 0;top: 0;width: 0%;overflow: hidden;white-space: nowrap;}
+.outer-star::before, .inner-star::before {content: '\f005 \f005 \f005 \f005 \f005';font-family: 'Font Awesome 5 free';font-weight: 900;}
+</style>
+
+<script>
+ratings = {RatingScore: 4.5} 
+totalRating = 5;
+table = document.querySelector('.RatingStar');
+
+	function rateIt() {
+		for (rating in ratings) {
+			ratingPercentage = ratings[rating] / totalRating * 100;
+			ratingRounded = Math.round(ratingPercentage / 10) * 10 + '%';
+			star = table.querySelector('.${"4"} .inner-star');
+			numberRating = table.querySelector(`.${rating} .numberRating`);
+			star.style.width = ratingRounded;
+			numberRating.innerText = ratings[rating];
+		}
+	}
+	rateIt();
+</script>
+
 </head>
 <body>
 <div class="jumbotron">
     <div class="container">
       <h1 class="display-3">상품 정보</h1>
     </div>
+    <div class='RatingStar'>
+	    <div class='RatingScore'>
+	      <div class='outer-star'>
+	      	<div class='inner-star'></div>
+		 </div>
+    </div>
+</div>
 </div>
 <%
 	String id = request.getParameter("id");
@@ -35,6 +69,7 @@ function addToCart(){
         <img src="/resources/images/<%=product.getFilename()%>" style="width:100%">
      </div>
      <div class="col-md-6">
+       <p><% for(int i=1;i<=4;i++){out.print("★");} %></p>
        <h3><%=product.getPname() %></h3>
        <p><%=product.getDescription() %>
        <p><b>상품 코드 : </b><span class="badge badge-danger"><%=product.getProductId() %></span>
@@ -50,6 +85,6 @@ function addToCart(){
      </div>
   </div>
 </div>
-<jsp:include page="footer.jsp"/>
+<jsp:include page="../footer.jsp"/>
 </body>
 </html>

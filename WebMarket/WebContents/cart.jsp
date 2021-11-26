@@ -12,8 +12,9 @@
 <script>
 function updateCartQty(id){
   var qty = document.getElementById('qty').value;
-  alert(id+":"+qty);
-  location.href ="updateCartQty.jsp?id="+id+"&qty="+qty;
+  if(confirm("수량을 수정하시겠습니까?")){
+      location.href ="updateCartQty.jsp?id="+id+"&qty="+qty;
+  }
 }
 </script>
 </head>

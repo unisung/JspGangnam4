@@ -41,13 +41,13 @@
 	  goodsQnt = list.get(i);
 	  if(goodsQnt.getProductId().equals(id)){//해당id상품이 이미 존재하면
 		  cnt++;//수량증가
-		  int orderQuantity = goodsQnt.getQuantity()+1;//상품정보의 장바구니속성을 1증가
+		  int orderQuantity = goodsQnt.getQuantity()+qty;//상품정보의 장바구니속성을 1증가
 		  goodsQnt.setQuantity(orderQuantity);//
 	  }
   }
     //cnt가 0이란건 장바구니에 해당 상품이 없다는 것임.
     if(cnt==0){
-    	goods.setQuantity(1);//최초갯수 1 개 설정
+    	goods.setQuantity(qty);//최초갯수 1 개 설정
     	list.add(goods);//장바구니에 수량1로 추가
     }
 

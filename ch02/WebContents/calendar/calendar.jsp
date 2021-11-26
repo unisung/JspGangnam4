@@ -1,3 +1,6 @@
+<%@page import="dto.Schedule"%>
+<%@page import="java.util.List"%>
+<%@page import="dao.ScheduleRepository"%>
 <%@page import="java.util.Calendar"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -20,6 +23,16 @@
 <head>
 <meta content="text/html; charset=UTF-8">
 <title>Insert title here</title>
+<script>
+function register(date){
+	location.href="registerTodoForm.jsp?ymd="+<%=y%>+<%=m%>+(date<10?"0"+date:date);
+}
+</script>
+<script>
+function viewSchedule(date,seq){
+	location.href="viewSchedule.jsp?ymd="+<%=y%>+<%=m%>+(date<10?"0"+date:date)+"&seq="+seq;
+}
+</script>
 </head>
 <body>
 <br><br><br>
@@ -51,24 +64,42 @@
 	<td width="100" bgcolor="#c8c8c8" align="center"><font color="blue">토</font></td>
 </tr>
 <%
-	//1일 앞부분 공백처리
+
+ScheduleRepository repository = ScheduleRepository.getInstance();
+List<Schedule> list = repository.getAllSchedules();
+int[] schedules = repository.getScheduleCounts();
+%>
+<%	//1일 앞부분 공백처리
 	out.println("<tr height='25'>");
 	for(int i=1; i<w; i++){ // 6월의 1일은 토요일이라 w=7 따라서 공백 6번을 써준다.
 		out.println("<td bgcolor='#ffffff'>&nbsp;</td>" );
 	}
 	//1~마지막일 계산
 	String fc;
-	for(int i=1; i<=cal.getActualMaximum(Calendar.DATE); i++){
+	for(int i=1,k=0; i<=cal.getActualMaximum(Calendar.DATE); i++){
 		fc=w%7==1?"red":(w%7==0?"blue":"black");
 		out.println("<td align='center' bgcolor='#ffffff' style='color:"+fc+";'>");
-		out.print(i+"</td>");
+		out.print(i+"<a href='javascript:register("+i+")'>"+i+"</a></td>");
 		w++;
+
 		if(w%7==1&&i!=cal.getActualMaximum(Calendar.DATE)){
 			out.println("</tr>");
 			out.println("<tr height='100'>"); // 공백 부분
-			for(int j=1; j<=7;j++)
-				out.println("<td align='center' bgcolor='#ffffff';>&nbsp;</td>");
-			    out.println("</tr>");					//  공백 부분
+			for(int j=1; j<=7;j++){
+				int seq=schedules[k++];
+				if(seq>0){
+					out.println("<td align='right' valign='top' bgcolor='#ffffff';>");
+					for(int i1=0;i1<seq;i1++){
+					out.print("<a href='javascript:viewSchedule("+(k-1)+","+i1+")'>"+i1+"</a><br>");
+					System.out.println(i1+",");
+					}
+					out.print("</td>");
+				}else{
+				    out.println("<td align='right' bgcolor='#ffffff';>&nbsp;</td>");
+				}
+				}  
+				
+				out.println("</tr>");					//  공백 부분
 			    out.println("<tr height='25'>");
 		}
 	}

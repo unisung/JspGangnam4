@@ -9,6 +9,6 @@
      username="root"
      password="1234"
      factory="org.apache.tomcat.dbcp.dbcp2.BasicDataSourceFactory"
-     maxActiv="500"
+     maxActive="500"
   />
 </Context>

@@ -29,7 +29,13 @@
 		  //입력 처리
 		  int result =pstmt.executeUpdate();
 		  //결과 확인
-		  if(result>0) out.print("Member 테이블에 삽입이 성공했습니다.");
+		  if(result>0){
+			  //out.print("Member 테이블에 삽입이 성공했습니다.");
+			  response.sendRedirect("select02.jsp");
+		  }else{
+			  out.print("<script>alert('입력실패');</script>");
+			  out.print("<script>history.back();</script>");/* 이전페이지로 되돌아가기 */
+		  }
 	 }catch(Exception e){
 		  out.print("Member 테이블 삽입 실패<br>");
 		  out.print("SQLException: " + e.getMessage());

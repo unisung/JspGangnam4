@@ -13,7 +13,7 @@
 	PreparedStatement pstmt = conn.prepareStatement(sql);
 	ResultSet rs =pstmt.executeQuery();
 	while(rs.next()){
-		out.println(rs.getInt(1)+":"+rs.getString(2)+":"+rs.getShort(3));
+		out.println(rs.getInt(1)+":"+rs.getString(2)+":"+rs.getShort(3)+"<br>");
 	}
 %>
 

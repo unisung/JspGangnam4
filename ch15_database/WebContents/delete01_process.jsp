@@ -14,6 +14,7 @@ try{
 	  String sql ="delete from member where id=?";
 	  //preparedStatement객체 생성
 	  pstmt = conn.prepareStatement(sql);
+	  conn.setAutoCommit(false);
 	  //바인딩 변수 설정
 	 pstmt.setString(1,id);
 	  //입력 처리
@@ -27,12 +28,15 @@ try{
 		  out.print("<script>alert('삭제실패');</script>");
 		  out.print("<script>history.back();</script>");/* 이전페이지로 되돌아가기 */
 	  }
+	  conn.commit();
 }catch(Exception e){
+	 conn.rollback();
 	  out.print("Member 테이블 삭제 실패<br>");
 	  out.print("SQLException: " + e.getMessage());
 }finally{
 	 if(pstmt!=null) pstmt.close();
 	 if(conn!=null) conn.close();
+	  conn.setAutoCommit(true);
 }
 
 %>

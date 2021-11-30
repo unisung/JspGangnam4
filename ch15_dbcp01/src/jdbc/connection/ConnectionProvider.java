@@ -6,6 +6,6 @@ import java.sql.SQLException;
 
 public class ConnectionProvider {
   public static Connection getConntion() throws SQLException{
-	  return DriverManager.getConnection("jdbc:apache:commons:dbcp:board");
+	  return DriverManager.getConnection("jdbc:apache:commons:dbcp:webmarketDB");
   }
 }

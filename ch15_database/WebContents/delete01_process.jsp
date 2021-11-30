@@ -34,9 +34,9 @@ try{
 	  out.print("Member 테이블 삭제 실패<br>");
 	  out.print("SQLException: " + e.getMessage());
 }finally{
+	  conn.setAutoCommit(true);
 	 if(pstmt!=null) pstmt.close();
 	 if(conn!=null) conn.close();
-	  conn.setAutoCommit(true);
 }
 
 %>

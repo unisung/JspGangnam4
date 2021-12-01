@@ -48,17 +48,21 @@
    
    //상품등록
       //seq Max값 추출
-   String sql = "select substr(max(p_id),2) + 1 from product";
+   String sql = "select cast(substr(max(p_id),2) as signed integer) + 1 from product";
+   
    PreparedStatement pstmt = conn.prepareStatement(sql);
    ResultSet rs=pstmt.executeQuery();
    String seq ="";
    if(rs.next()){ 
-      seq = rs.getString(1);
+      seq = "P"+rs.getString(1);
+      System.out.println("seq:"+seq);
    }
-   
+   //입력처리 
    sql="insert into product values (?,?,?,?,?,?,?,?,?)";
+   pstmt = conn.prepareStatement(sql);
+   
     int i=0;
-    pstmt.setString(++i,"P"+seq);
+    pstmt.setString(++i,seq);
     pstmt.setString(++i,name);
     pstmt.setInt(++i,price);
     pstmt.setString(++i,description);

@@ -54,6 +54,8 @@ function deleteConfirm(id){
             %>
             <a href="./updateProduct.jsp?id=<%=rs.getString("p_id") %>"
                class="btn btn-success" role="button"><fmt:message key="buttonEdit"/> &raquo;</a>		  
+        </p>
+        </div>	
         	<%
         	  } else if(edit.equals("delete")){
             %>

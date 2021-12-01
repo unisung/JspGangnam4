@@ -4,7 +4,6 @@
 <%@ include file="dbconn.jsp" %>
 <%
    String productId = request.getParameter("id");
-  
    PreparedStatement pstmt =null;
    ResultSet rs = null;
    
@@ -17,10 +16,10 @@
 	   sql = "delete from product where p_id=?";
 	   pstmt = conn.prepareStatement(sql);
 	   pstmt.setString(1,productId);
-	   pstmt.executeQuery();
+	   pstmt.executeUpdate();
    }else{
 	   out.print("일치하는 상품이 없습니다.");
-   }
+   } 
    
    if(rs!=null) rs.close();
    if(pstmt!=null)pstmt.close();

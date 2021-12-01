@@ -10,6 +10,14 @@
 <fmt:setLocale value='<%=request.getParameter("language") %>'/>
 <fmt:bundle basename="resourceBundle.message">
 <title><fmt:message key="editTitle"/></title>
+<script>
+function deleteConfirm(id){
+	if(confirm("해당상품을 삭제합니다!!")){
+		location.href="./deleteProduct.jsp?id="+id;
+	}else
+		return;
+}
+</script>
 </head>
 <%
 	String edit = request.getParameter("edit");
@@ -49,10 +57,12 @@
         	<%
         	  } else if(edit.equals("delete")){
             %>
-            <a href="#" onclick="deleteConfirm('<%=rs.getString("p_id")%>')" class="btn btn-danger" role="button">삭제 &raquo;</a>
+            <a href="#" onclick='deleteConfirm("<%=rs.getString("p_id")%>")' 
+               class="btn btn-danger" role="button"><fmt:message key="buttonDelete"/> &raquo;</a>
       </div>
        <%
-         }
+          }/*if else 끝.  */
+        }/* while끝. */
          if(rs!=null) rs.close();
          if(pstmt!=null) pstmt.close();
          if(conn!=null) conn.close();

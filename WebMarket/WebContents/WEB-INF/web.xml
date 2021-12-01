@@ -14,6 +14,7 @@ xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.
   	<web-resource-collection>
   		<web-resource-name>WebMarket</web-resource-name>
   		<url-pattern>/addProduct.jsp</url-pattern>
+  		<url-pattern>/editProduct.jsp</url-pattern>
   	</web-resource-collection>
   	<auth-constraint>
   		<description>권한 관리자명</description>

@@ -11,6 +11,9 @@
 <fmt:bundle basename="resourceBundle.message">
 <title><fmt:message key="editTitle"/></title>
 </head>
+<%
+	String edit = request.getParameter("edit");
+%>
 <body>
 <jsp:include page="menu.jsp"/>
 <div class="jumbotron">
@@ -20,7 +23,7 @@
 </div>
 <div class="container">
 	<div class="text-right">
-         <a href="?language=ko">Korean</a>|<a href="?language=en">English</a>
+         <a href="?language=ko&edit=update">Korean</a>|<a href="?language=en&edit=update">English</a>
    </div>
    <div class="row" align="center">
     <%@ include file="dbconn.jsp" %>
@@ -37,12 +40,21 @@
         <h3><%=rs.getString("p_name") %></h3>
         <p><%=rs.getString("p_description") %></p>
         <p><%=rs.getInt("p_unitPrice") %>원</p>
-        <!-- 링크태그 이동은 get방식 이동 -->
-        <p><a href="./product.jsp?id=<%=rs.getString("P_id")%>" 
-            class="btn btn-success" role="button"><fmt:message key="productInfo"/> &raquo;</a>
+        <!-- 수정페이지로 이동, 링크태그 이동은 get방식 이동 -->
+        <p><%
+        	  if(edit.equals("update")){
+            %>
+            <a href="./updateProduct.jsp?id=<%=rs.getString("p_id") %>"
+               class="btn btn-success" role="button">수정 &raquo;</a>		  
+        	<%
+        	  }
+            %>
       </div>
        <%
          }
+         if(rs!=null) rs.close();
+         if(pstmt!=null) pstmt.close();
+         if(conn!=null) conn.close();
        %>
    </div>
    <hr>   

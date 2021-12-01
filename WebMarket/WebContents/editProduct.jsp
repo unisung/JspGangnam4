@@ -39,13 +39,13 @@
         <img src="/resources/images/<%=rs.getString("p_fileName")%>"  style="width:100%">
         <h3><%=rs.getString("p_name") %></h3>
         <p><%=rs.getString("p_description") %></p>
-        <p><%=rs.getInt("p_unitPrice") %>원</p>
+        <p><fmt:formatNumber value='<%=rs.getInt("p_unitPrice") %>'/>원</p>
         <!-- 수정페이지로 이동, 링크태그 이동은 get방식 이동 -->
         <p><%
         	  if(edit.equals("update")){
             %>
             <a href="./updateProduct.jsp?id=<%=rs.getString("p_id") %>"
-               class="btn btn-success" role="button">수정 &raquo;</a>		  
+               class="btn btn-success" role="button"><fmt:message key="buttonEdit"/> &raquo;</a>		  
         	<%
         	  }
             %>

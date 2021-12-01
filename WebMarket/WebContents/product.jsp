@@ -32,6 +32,29 @@ Product product =productDAO.getProductById(id);
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<style>
+.star_rating{font-size: 0; letter-spacing: -4px;}
+.star_rating a{
+	font-size: 22px;
+	letter-spacing: 0;
+	display: inline-block;
+	margin-left: 5px;
+	color:#ccc;
+	text-decoration: none;
+}
+.star_rating a:first-child{margin-left: 0;}
+.star_rating a.on{color:#777;}
+</style>
+<script src="http://code.jquery.com/jquery-2.2.4.min.js"></script>
+<script>
+$(document).ready(function(){
+	$(".star_rating a").click(function(){
+		$(this).parent().children("a").removeClass("on");
+		$(this).addClass("on").prevAll("a").addClass("on");
+		return false;
+	});
+});
+</script>
 <script>
 function addToCart(){
 	if(confirm("상품을 장바구니에 추가하시겠습니까?")){
@@ -41,6 +64,7 @@ function addToCart(){
 	}
 }
 </script>
+
 </head>
 <body>
 <div class="jumbotron">
@@ -54,7 +78,16 @@ function addToCart(){
         <img src="/resources/images/<%=product.getFilename()%>" style="width:100%">
      </div>
      <div class="col-md-6">
-        <p><% for(int i=1;i<=4;i++){out.print("★");} %></p>
+        <p class='star_rating' >
+         <% 
+             for(int i=1;i<=5;i++){
+            	if(i<=4)
+            	 out.print("<a href='#' class='on'>★</a>");
+            	else
+            	 out.print("<a href='#' >★</a>");
+             } 
+           %>
+         </p>
        <h3><%=product.getPname() %></h3>
        <p><%=product.getDescription() %>
        <p><b>상품 코드 : </b><span class="badge badge-danger"><%=product.getProductId() %></span>

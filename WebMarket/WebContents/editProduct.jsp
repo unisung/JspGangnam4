@@ -6,6 +6,10 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>        
 <!DOCTYPE html><html><head>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  
 <meta charset="UTF-8">
 <fmt:setLocale value='<%=request.getParameter("language") %>'/>
 <fmt:bundle basename="resourceBundle.message">
@@ -17,6 +21,15 @@ function deleteConfirm(id){
 	}else
 		return;
 }
+</script>
+<script>
+$(document).ready(function(){
+	$('#deleteModal').click(function(){
+		alert($('#pid').val());
+		alert("클릭");
+	});
+	
+});
 </script>
 </head>
 <%
@@ -60,7 +73,37 @@ function deleteConfirm(id){
         	  } else if(edit.equals("delete")){
             %>
             <a href="#" onclick='deleteConfirm("<%=rs.getString("p_id")%>")' 
-               class="btn btn-danger" role="button"><fmt:message key="buttonDelete"/> &raquo;</a>
+               class="btn btn-danger" role="button" data-toggle="modal" data-target="#myModal"><fmt:message key="buttonDelete"/> &raquo;</a>
+             <input type="hidden" id="pid" value="<%=rs.getString("p_id")%>">                 
+            <div class="container">
+ 
+
+  <!-- The Modal -->
+  <div class="modal fade" id="myModal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+      
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <h4 class="modal-title">Modal Heading</h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        
+        <!-- Modal body -->
+        <div class="modal-body">
+          해당상품을 삭제합니다!!
+        </div>
+        
+        <!-- Modal footer -->
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" id="deleteModal" data-dismiss="modal">Close</button>
+        </div>
+        
+      </div>
+    </div>
+  </div>
+  
+</div>   
       </div>
        <%
           }/*if else 끝.  */

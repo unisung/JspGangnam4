@@ -1,19 +1,12 @@
-<%@page import="java.util.ArrayList"%>
-<%@page import="java.util.Enumeration"%>
-<%@page import="com.oreilly.servlet.multipart.DefaultFileRenamePolicy"%>
-<%@page import="javax.swing.DefaultBoundedRangeModel"%>
-<%@page import="com.oreilly.servlet.MultipartRequest"%>
-<%@page import="dto.Product"%>
-<%@page import="dao.ProductRepository"%>
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
+<%@page import="java.sql.ResultSet"%>
+<%@page import="java.sql.PreparedStatement"%>
+<%@page import="java.util.ArrayList"%><%@page import="java.util.Enumeration"%><%@page import="com.oreilly.servlet.multipart.DefaultFileRenamePolicy"%>
+<%@page import="javax.swing.DefaultBoundedRangeModel"%><%@page import="com.oreilly.servlet.MultipartRequest"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"%>
+<!DOCTYPE html><html><head><meta charset="UTF-8"><title>Insert title here</title>
 </head>
 <body>
+<%@ include file="dbconn.jsp" %>
 <%
 	request.setCharacterEncoding("UTF-8");
      //upload처리
@@ -54,31 +47,32 @@
    String fileName = multi.getFilesystemName(fname);//전송되어서 서버로 넘어온파일명
    
    //상품등록
-   ProductRepository dao = ProductRepository.getInstance();
-   ArrayList<Product> list = dao.getAllProducts();
-   //seq Max값 추출
-   Product pro = list.get(list.size()-1);
-   //max + 1값 
-   int seq = Integer.parseInt(pro.getProductId().substring(1)) + 1;
+      //seq Max값 추출
+   String sql = "select substr(max(p_id),2) + 1 from product";
+   PreparedStatement pstmt = conn.prepareStatement(sql);
+   ResultSet rs=pstmt.executeQuery();
+   String seq ="";
+   if(rs.next()){ 
+      seq = rs.getString(1);
+   }
    
-   Product newProduct = new Product();
-   
-   //"P" + max+1값 설정
-   newProduct.setProductId("P"+seq);
-   
-   newProduct.setPname(name);
-   newProduct.setUnitPrice(price);
-   newProduct.setDescription(description);
-   newProduct.setManufacturer(manufacturer);
-   newProduct.setCategory(category);
-   newProduct.setUnitsInStock(stock);
-   newProduct.setCondition(condition);
-   //전송된 파일의 이름 저장
-   newProduct.setFilename(fileName);
-   
-   //상품 정보 추가
-   dao.addProduct(newProduct);
-   
+   sql="insert into product values (?,?,?,?,?,?,?,?,?)";
+    int i=0;
+    pstmt.setString(++i,"P"+seq);
+    pstmt.setString(++i,name);
+    pstmt.setInt(++i,price);
+    pstmt.setString(++i,description);
+    pstmt.setString(++i,manufacturer);
+    pstmt.setString(++i,category);
+    pstmt.setLong(++i,stock);
+    pstmt.setString(++i,condition);
+    pstmt.setString(++i,fileName);
+  
+    pstmt.executeUpdate();
+    
+    if(pstmt!=null) pstmt.close();
+    if(conn!=null) conn.close();
+    
    //상품 리스트로 이동
    response.sendRedirect("products.jsp");
 %>

@@ -1,7 +1,5 @@
 <%@page import="java.sql.PreparedStatement"%>
-<%@page import="com.mysql.cj.PreparedQuery"%>
 <%@page import="java.sql.ResultSet"%>
-<%@page import="com.mysql.cj.xdevapi.PreparableStatement"%>
 <%@page import="dto.RecentProduct"%><%@page import="dao.ProductRepository"%><%@page import="dto.Product"%><%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -60,7 +58,6 @@
 <%
 ArrayList<RecentProduct> recentProducts 
 =(ArrayList<RecentProduct>)session.getAttribute("recentProducts");
-
 if(recentProducts!=null) {
 	for(int i=0;i<recentProducts.size();i++){
 		RecentProduct recentProduct= recentProducts.get(i);

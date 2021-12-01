@@ -47,8 +47,9 @@
             <a href="./updateProduct.jsp?id=<%=rs.getString("p_id") %>"
                class="btn btn-success" role="button"><fmt:message key="buttonEdit"/> &raquo;</a>		  
         	<%
-        	  }
+        	  } else if(edit.equals("delete")){
             %>
+            <a href="#" onclick="deleteConfirm('<%=rs.getString("p_id")%>')" class="btn btn-danger" role="button">삭제 &raquo;</a>
       </div>
        <%
          }

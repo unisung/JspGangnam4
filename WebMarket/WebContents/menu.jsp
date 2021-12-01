@@ -9,6 +9,7 @@
   	  <li class="nav-item"><a class="nav-link" href="./products.jsp">상품 목록</a>
   	  <li class="nav-item"><a class="nav-link" href="./addProduct.jsp">상품 등록</a>
   	  <li class="nav-item"><a class="nav-link" href="./editProduct.jsp?edit=update">상품 수정</a>
+  	  <li class="nav-item"><a class="nav-link" href="./editProduct.jsp?edit=delete">상품 삭제</a>
   	</ul>
   </div>
 </div>

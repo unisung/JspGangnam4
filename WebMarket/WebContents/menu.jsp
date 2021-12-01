@@ -1,4 +1,4 @@
-<%@ page contentType="text/html; charset=utf-8" %>
+<%@ page contentType="text/html; charset=UTF-8" %>
 <nav class="navbar navbar-expand navbar-dark bg-dark">
 <div class="container">
   <div class="navbar-header">
@@ -6,7 +6,7 @@
   </div>
   <div>
   	<ul class="navbar-nav mr-auto">
-  	  <li class="nav-item"><a class="nav-link" href="./prouducts.jsp">상품 목록</a>
+  	  <li class="nav-item"><a class="nav-link" href="./products.jsp">상품 목록</a>
   	</ul>
   </div>
 </div>

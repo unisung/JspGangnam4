@@ -1,3 +1,5 @@
+<%@page import="java.sql.ResultSet"%>
+<%@page import="java.sql.PreparedStatement"%>
 <%@page import="dto.RecentProduct"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="dao.ProductRepository"%>
@@ -7,9 +9,20 @@
 <!-- 서버와 접속 후 브라우저 종료전 까지 모든 페이지에서 사용가능한 session범위로 지정 -->
 <%-- <jsp:useBean id="productDAO" class="dao.ProductRepository" scope="session"/> --%>
 <% ProductRepository productDAO = ProductRepository.getInstance(); %>
+<%@ include file="dbconn.jsp" %>
 <%
 String id = request.getParameter("id");
-Product product =productDAO.getProductById(id);
+
+String sql="select * from product where p_id=?";
+PreparedStatement pstmt = conn.prepareStatement(sql);
+pstmt.setString(1,id);
+ResultSet rs=pstmt.executeQuery();
+
+Product product =null;
+
+if(rs.next()){
+   product=new Product(id, rs.getString("p_name"), rs.getInt("p_unitPrice"));        	
+}
 
  ArrayList<RecentProduct> recentProducts 
                 =(ArrayList<RecentProduct>)session.getAttribute("recentProducts");
@@ -72,10 +85,17 @@ function addToCart(){
       <h1 class="display-3">상품 정보</h1>
     </div>
 </div>
+<%
+	sql="select * from product where p_id=?";
+    pstmt = conn.prepareStatement(sql);
+    pstmt.setString(1,id);
+    rs=pstmt.executeQuery();
+    if(rs.next()){
+%>
 <div class="container">
   <div class="row">
      <div class="col-md-5">
-        <img src="/resources/images/<%=product.getFilename()%>" style="width:100%">
+        <img src="/resources/images/<%=rs.getString("p_fileName")%>" style="width:100%">
      </div>
      <div class="col-md-6">
         <p class='star_rating' >
@@ -88,14 +108,14 @@ function addToCart(){
              } 
            %>
          </p>
-       <h3><%=product.getPname() %></h3>
-       <p><%=product.getDescription() %>
-       <p><b>상품 코드 : </b><span class="badge badge-danger"><%=product.getProductId() %></span>
-       <p><b>제조사</b>:<%=product.getManufacturer() %>
-       <p><b>분류</b>:<%=product.getCategory() %>
-       <p><b>재고 수</b>:<%=product.getUnitsInStock() %>
-       <h4><%=product.getUnitPrice() %>원</h4>
-       <p><form name="addForm" action="./addCart.jsp?id=<%=product.getProductId()%>" method="post">
+       <h3><%=rs.getString("p_name") %></h3>
+       <p><%=rs.getString("p_description") %>
+       <p><b>상품 코드 : </b><span class="badge badge-danger"><%=rs.getString("p_id")%></span>
+       <p><b>제조사</b>:<%=rs.getString("p_manufacturer") %>
+       <p><b>분류</b>:<%=rs.getString("p_category") %>
+       <p><b>재고 수</b>:<%=rs.getLong("p_unitsInStock") %>
+       <h4><%=rs.getInt("p_unitPrice") %>원</h4>
+       <p><form name="addForm" action="./addCart.jsp?id=<%=rs.getString("p_id")%>" method="post">
           <div class="col-md-2">
           <input type="number" name="qty" value="0" class="form-control input-md">
           </div>
@@ -105,6 +125,7 @@ function addToCart(){
           </form>
      </div>
   </div>
+   <%} %>
 </div>
 <jsp:include page="footer.jsp"/>
 </body>

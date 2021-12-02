@@ -8,15 +8,6 @@
 <%
   String cartId = session.getId();
 %>
-<%-- <%=cartId %> --%>
-<script>
-function updateCartQty(id){
-  var qty = document.getElementById('qty').value;
-  if(confirm("수량을 수정하시겠습니까?")){
-      location.href ="updateCartQty.jsp?id="+id+"&qty="+qty;
-  }
-}
-</script>
 </head>
 <body>
 <jsp:include page="menu.jsp" />
@@ -55,9 +46,13 @@ function updateCartQty(id){
           <tr>
           <td><%=product.getProductId()%> - <%=product.getPname() %></td>
           <td><%=product.getUnitPrice()%></td>
-          <td><input type="number" id="qty" value="<%=product.getQuantity() %>">
-              <a href="javascript:updateCartQty('<%=product.getProductId()%>')" 
-          class="badge badge-danger">수정</a></td>
+          <td>
+          <form action="updateCartQty.jsp">
+            <input type="number" id="qty" name="qty" value="<%=product.getQuantity() %>">
+            <input type="hidden" name="id" value="<%=product.getProductId()%>">
+              <input type="submit" class="btn btn-primary btn-sm" value="수정">
+          </form>    
+           </td>
           <td><%=total %></td>
           <td><a href="./removeCart.jsp?id=<%=product.getProductId()%>" 
                    class="badge badge-danger">삭제</a></td>

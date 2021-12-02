@@ -5,53 +5,39 @@
 <!DOCTYPE html><html><head>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
 <meta charset="UTF-8">
-<title>배송 정보</title>
-<script>
-function registerDelivery(){
-  location.href="registerDelivery.jsp";	
-}
-</script>
-<script>
-function listDelivery(){
-	window.open("listDelivery.jsp");
-}
-</script>
+<title>배송지 상세보기</title>
 </head>
 <body>
 <jsp:include page="menu.jsp" />
 <div class="jumbotron">
    <div class="container">
-   		<h1 class="display-3">배송 정보</h1>
+   		<h1 class="display-3">배송지 상세보기</h1>
    </div>
 </div>
 <%@include file="dbconn.jsp" %>
 <%
-    String sql="select * from delivery where seq=1";
+    String seq=request.getParameter("seq");
+    String sql="select * from delivery where seq=?";
+   
 	PreparedStatement pstmt = conn.prepareStatement(sql);
+	pstmt.setString(1,seq);
+	
 	ResultSet rs=pstmt.executeQuery();
 	if(rs.next()){
 %>
 <div class="container">
-   <form action="./processShippingInfo.jsp" class="form-horizontal" method="post">
-         <input type="hidden" name="cartId" value="<%=request.getParameter("cartId") %>">
+   <form action="./processDeliveryUpdate.jsp" class="form-horizontal" method="post">
+         <input type="hidden" name="seq" value="<%=seq%>">
          <div class="form-group row">
-             <label class="col-sm-2">배송지 명</label>
+             <label class="col-sm-2">배송지명</label>
              <div class="col-sm-3">
-                 <input name="name" type="text" class="form-control" value="<%=rs.getString("nickName")%>">
-                 <input type="button" value="배송지등록" class="btn btn-primary" onclick="registerDelivery()">
-                 <input type="button" value="배송지리스트" class="btn btn-success" onclick="listDelivery()">
-             </div>
-         </div>
-         <div class="form-group row">
-             <label class="col-sm-2">배송일</label>
-             <div class="col-sm-3">
-                 <input name="shippingDate" type="text" class="form-control">(yyyy/mm/dd)
+                 <input name="name" type="text" class="form-control" value="<%=rs.getString("nickName")%>" >
              </div>
          </div>
          <div class="form-group row">
              <label class="col-sm-2">국가</label>
              <div class="col-sm-3">
-                 <input name="country" type="text" class="form-control" value="<%=rs.getString("country")%>">
+                 <input name="country" type="text" class="form-control" value="<%=rs.getString("country")%>" >
              </div>
          </div>
          <div class="form-group row">
@@ -64,13 +50,13 @@ function listDelivery(){
           <div class="form-group row">
              <label class="col-sm-2">도로명주소</label>
              <div class="col-sm-3">
-                 <input name="roadAddress" id="roadAddress"  type="text" class="form-control" value="<%=rs.getString("roadAddress")%>">
+                 <input name="roadAddress" id="roadAddress"  type="text" class="form-control" value="<%=rs.getString("roadAddress")%>" >
              </div>
          </div>
          <div class="form-group row">
              <label class="col-sm-2">지번주소</label>
              <div class="col-sm-3">
-                 <input name="jibunAddress" id="jibunAddress"  type="text" class="form-control" value="<%=rs.getString("jibunAddress")%>">
+                 <input name="jibunAddress" id="jibunAddress"  type="text" class="form-control" value="<%=rs.getString("jibunAddress")%>" >
              </div>
          </div>
          <span id="guide" style="color:#999;display:none"></span>
@@ -88,14 +74,12 @@ function listDelivery(){
          </div>
          <div class="form-group row">
              <div class="col-sm-offset-2 col-sm-10">
-                <a href="./cart.jsp?cartId=<%=request.getParameter("cartId")%>" 
-                             class="btn btn-secondary" role="button">이전</a>
-                <input type="submit" class="btn btn-primary" value="등록">
-                <a href="./checkOutCancelled.jsp" class="btn btn-secondary" role="button">취소</a>             
+                <input type="submit" class="btn btn-primary" value="수정">
+                <input type="reset"  class="btn btn-secondary" value="취소">             
              </div>
          </div>
-    <% } %>     
    </form>
+   <% } %>
 </div>
 <jsp:include page="footer.jsp"/>
 </body>

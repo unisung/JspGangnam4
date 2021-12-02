@@ -32,8 +32,7 @@ function removeDeliveryInfo(seq){
   <div style="padding-top:50px;">
     <table class="table table-hover">
       <tr>
-        <th>순번</th><th>배송지명</th><th>국가</th><th>우편번호</th><th>도로명</th><th>지번</th>
-             <th>상세주소</th><th colspan="2">참고항목</th>
+        <th>순번</th><th>배송지명</th><th>국가</th><th>우편번호</th><th>도로명</th><th>지번</th><th>상세주소</th><th colspan="2">참고항목</th>
       </tr>
       <%
       while(rs.next()){

@@ -1,7 +1,10 @@
+<%@page import="java.sql.ResultSet"%>
+<%@page import="java.sql.PreparedStatement"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="dto.Product"%>
 <%@page import="dao.ProductRepository"%>
 <%@ page contentType="text/html; charset=UTF-8"%>
+<%@ include file="dbconn.jsp" %>
 <%
   String id = request.getParameter("id");
   String sQty = request.getParameter("qty");
@@ -12,18 +15,19 @@
 	   response.sendRedirect("products.jsp");
 	   return;
   }
+  String sql="select * from product where p_id=?";
+  PreparedStatement pstmt=conn.prepareStatement(sql);
+  pstmt.setString(1,id);
+  ResultSet rs  = pstmt.executeQuery();
    
-  ProductRepository dao = ProductRepository.getInstance();
-  //id에 해당하는 상품정보 얻기
-  Product product = dao.getProductById(id);
+  Product goods =null;
+  //id에 해당하는 상품정보 얻기 
   //상품정보없으면 에러페이지로 이동 처리
-  if(product == null){ response.sendRedirect("exceptionNoProductId.jsp");}
-  //상품등록리스트에서 상품정보 얻기  
-  ArrayList<Product> goodsList = dao.getAllProducts();
-  Product goods = new Product();
-  for(int i=0;i<goodsList.size();i++){
-	  goods = goodsList.get(i);
-	  if(goods.getProductId().equals(id)) break;
+  if(!rs.next()){ 
+	  response.sendRedirect("exceptionNoProductId.jsp");
+   }else{    
+  //상품등록리스트에서 상품정보 얻기
+     goods = new Product(id,rs.getString("p_name"),rs.getInt("p_unitPrice")); 
   }
   
   //세션으로부터 장바구니 객체 얻기
@@ -53,4 +57,5 @@
 
     //다시 원래 상세 페이지로 이동처리
     response.sendRedirect("product.jsp?id=" +id);
+    //out.print("<script>location.href='product.jsp?id="+id+"'</script>");
 %>

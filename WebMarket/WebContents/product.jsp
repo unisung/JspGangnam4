@@ -12,6 +12,7 @@
 <%@ include file="dbconn.jsp" %>
 <%
 String id = request.getParameter("id");
+ System.out.println("p_id:"+id);
 
 String sql="select * from product where p_id=?";
 PreparedStatement pstmt = conn.prepareStatement(sql);
@@ -111,12 +112,12 @@ function addToCart(){
          </p>
        <h3><%=rs.getString("p_name") %></h3>
        <p><%=rs.getString("p_description") %>
-       <p><b>상품 코드 : </b><span class="badge badge-danger"><%=rs.getString("p_id")%></span>
+       <p><b>상품 코드 : </b><span class="badge badge-danger"><%=id%></span>
        <p><b>제조사</b>:<%=rs.getString("p_manufacturer") %>
        <p><b>분류</b>:<%=rs.getString("p_category") %>
        <p><b>재고 수</b>:<%=rs.getLong("p_unitsInStock") %>
        <h4><%=rs.getInt("p_unitPrice") %>원</h4>
-       <p><form name="addForm" action="./addCart.jsp?id=<%=rs.getString("p_id")%>" method="post">
+       <p><form name="addForm" action="./addCart.jsp?id=<%=id%>" method="post">
           <div class="col-md-2">
           <input type="number" name="qty" value="0" class="form-control input-md">
           </div>

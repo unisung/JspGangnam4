@@ -8,7 +8,7 @@
 <%@ page errorPage="exceptionNoProductId.jsp" %>
 <!-- 서버와 접속 후 브라우저 종료전 까지 모든 페이지에서 사용가능한 session범위로 지정 -->
 <%-- <jsp:useBean id="productDAO" class="dao.ProductRepository" scope="session"/> --%>
-<% ProductRepository productDAO = ProductRepository.getInstance(); %>
+<%-- <% ProductRepository productDAO = ProductRepository.getInstance(); %> --%>
 <%@ include file="dbconn.jsp" %>
 <%
 String id = request.getParameter("id");
@@ -80,6 +80,7 @@ function addToCart(){
 
 </head>
 <body>
+<%@ include file="menu.jsp" %>
 <div class="jumbotron">
     <div class="container">
       <h1 class="display-3">상품 정보</h1>

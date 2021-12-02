@@ -1,3 +1,5 @@
+<%@page import="java.util.ArrayList"%>
+<%@page import="java.util.List"%>
 <%@page import="java.sql.ResultSet"%>
 <%@page import="java.sql.PreparedStatement"%>
 <%@page import="com.mysql.cj.xdevapi.PreparableStatement"%>
@@ -21,12 +23,34 @@
 	</div>
 	<%@ include file="dbconn.jsp"%>
 	<%
-		String productId = request.getParameter("id");
-
-		PreparedStatement pstmt = null;
-		ResultSet rs = null;
+	PreparedStatement pstmt = null;
+	ResultSet rs = null;
+    String sql="select p_manufacturer, name from manufacturer";
 	
-		String sql = "select * from product where p_id = ?";
+	pstmt= conn.prepareStatement(sql);
+    rs = pstmt.executeQuery();
+	List<String> list = new ArrayList<String>();
+	while(rs.next()){
+		list.add(rs.getString(1)+"-"+rs.getString(2));
+	}
+	/* for(String s:list)
+		System.out.println(s); */
+	%>
+	<%
+    sql="select p_category, name from category";
+	pstmt = conn.prepareStatement(sql);
+    rs = pstmt.executeQuery();
+	List<String> cateList = new ArrayList<String>();
+	while(rs.next()){
+		cateList.add(rs.getString(1)+"-"+rs.getString(2));
+	}
+/* 	 for(String s:cateList)
+		System.out.println(s);  */
+	%>
+	<%
+		String productId = request.getParameter("id");
+	
+		sql = "select * from product where p_id = ?";
 		pstmt = conn.prepareStatement(sql);
 		pstmt.setString(1, productId);
 		rs = pstmt.executeQuery();
@@ -71,17 +95,29 @@
 					<div class="form-group row">
 						<label class="col-sm-2">제조사</label>
 						<div class="col-sm-3">
-							<input type="text" name="manufacturer" class="form-control" value="<%=rs.getString("p_manufacturer")%>">
+							<select name="manufacturer" class="form-control">
+						<%
+						for(String s:list)
+							out.print("<option value='"+s.substring(0,s.indexOf('-'))+"'>"
+						                     +s.substring(s.indexOf('-')+1)+"</option>");
+						%>	
+						</select>	
 						</div>
 					</div>
 					<div class="form-group row">
 						<label class="col-sm-2">분류</label>
 						<div class="col-sm-3">
-							<input type="text" name="category" class="form-control" value="<%=rs.getString("p_category")%>">
+							<select name="category" class="form-control">
+							<%
+							for(String s:cateList)
+								out.print("<option value='"+s.substring(0,s.indexOf('-'))+"'>"
+							                  +s.substring(s.indexOf('-')+1)+"</option>");
+							%>
+							</select>
 						</div>
 					</div>
 					<div class="form-group row">
-						<label class="col-sm-2">제고 수</label>
+						<label class="col-sm-2">재고 수</label>
 						<div class="col-sm-3">
 							<input type="text" id="unitsInStock" name="unitsInStock" class="form-control" value="<%=rs.getLong("p_unitsInStock")%>">
 						</div>

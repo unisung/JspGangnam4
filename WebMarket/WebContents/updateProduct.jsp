@@ -97,7 +97,8 @@
 					<div class="form-group row">
 						<label class="col-sm-2">이미지</label>
 						<div class="col-sm-5">
-							<input type="file" name="productImage" class="form-control">
+						    <img style="width: 500px;" id="preview-image" >
+							<input type="file" name="productImage" id="productImage" class="form-control" >
 						</div>
 					</div>
 					<div class="form-group row">
@@ -138,6 +139,6 @@ function readImage(input) {
     }
 }
 // input file에 change 이벤트 부여
-const inputImage = document.getElementById("input-image")
+const inputImage = document.getElementById("productImage")
 inputImage.addEventListener("change", e => {readImage(e.target)})
 </script>

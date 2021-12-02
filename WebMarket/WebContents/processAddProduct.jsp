@@ -66,8 +66,8 @@
     pstmt.setString(++i,name);
     pstmt.setInt(++i,price);
     pstmt.setString(++i,description);
-    pstmt.setString(++i,manufacturer);
     pstmt.setString(++i,category);
+    pstmt.setString(++i,manufacturer);
     pstmt.setLong(++i,stock);
     pstmt.setString(++i,condition);
     pstmt.setString(++i,fileName);

@@ -1,3 +1,6 @@
+<%@page import="java.sql.ResultSet"%>
+<%@page import="java.sql.PreparedStatement"%>
+<%@page import="com.mysql.cj.xdevapi.PreparableStatement"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>    
@@ -17,6 +20,8 @@
   </div>
 </div>
 <div class="container">
+   <%@ include file="dbconn.jsp" %>
+   
    <div class="text-right">
          <a href="?language=ko">Korean</a>|<a href="?language=en">English</a>
          <a href="logout.jsp" class="btn btn-sm btn-success pull-right">logout</a>
@@ -49,16 +54,35 @@
          <textarea rows="2" cols="50" name="description" class="form-control" required></textarea>
        </div>
    </div>
+   <%
+   	  PreparedStatement pstmt 
+   	     = conn.prepareStatement("select p_manufacturer, name from manufacturer");
+      ResultSet rs = pstmt.executeQuery();
+   %>
    <div class="form-group row">
        <label class="col-sm-2"><fmt:message key="manufacturer"/></label>
        <div class="col-sm-3">
-         <input type="text" name="manufacturer" class="form-control" required>
+         <select name="manufacturer" class="form-control" required>
+           <%
+              while(rs.next()){
+            	  out.print("<option value='"+rs.getString(1)+"'>"+rs.getString(2)+"</option>");
+              }
+           %>
+         </select>
        </div>
    </div>
   <div class="form-group row">
        <label class="col-sm-2"><fmt:message key="category"/></label>
        <div class="col-sm-3">
-         <input type="text" name="category" class="form-control" required>
+         <select name="category" class="form-control" required>
+           <%
+            pstmt = conn.prepareStatement("select p_category, name from category");
+            rs = pstmt.executeQuery();
+              while(rs.next()){
+            	  out.print("<option value='"+rs.getString(1)+"'>"+rs.getString(2)+"</option>");
+              }
+           %>
+         </select>
        </div>
    </div>
    

@@ -8,7 +8,8 @@
 <jsp:setProperty property="*" name="deliveryInfo"/>
 <%@ include file="dbconn.jsp" %>
 <%
-  String sql="update delivery set nickName=?,country=?,zipcode=?,roadAddress=?,jibunAddress=?,detailAddress=?,extraAddress=? where seq=?";
+  String sql="update delivery set nickName=?,country=?,zipcode=?,roadAddress=?, "
+		    +" jibunAddress=?,detailAddress=?,extraAddress=? where seq=?";
   PreparedStatement pstmt =conn.prepareStatement(sql);
   pstmt.setString(1,deliveryInfo.getName());
   pstmt.setString(2,deliveryInfo.getCountry());
@@ -22,7 +23,7 @@
   int result = pstmt.executeUpdate();
   if(result>0){
 	 out.print("<script>alert('배송지 정보 수정 완료');</script>");  
-	 out.print("<script>location.href='shippingInfo.jsp';</script>");
+	 out.print("<script>location.href='listDelivery.jsp';</script>");
   }else{
 	  out.print("<script>alert('배송지 정보 수정 실패');</script>");
 	  out.print("<script>history.go(-1);</script>");

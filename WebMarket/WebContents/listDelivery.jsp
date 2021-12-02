@@ -4,6 +4,15 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
 <title>배송지 리스트</title></head>
 <body>
+<script>
+function removeDeliveryInfo(seq){
+	if(confirm("정말 삭제하시겠습니까?")){
+	  location.href="removeDeliveryInfo.jsp?seq="+seq;
+	}else{
+		return false;
+	}
+}
+</script>
 <jsp:include page="menu.jsp" />
 <div class="jumbotron">
    <div class="container">
@@ -38,7 +47,7 @@
           <td><%=rs.getString(6) %></td>
           <td><%=rs.getString(7) %></td>
           <td><%=rs.getString(8) %></td>
-          <td><a href="./removeDeliveryInfo.jsp?seq=<%=rs.getInt(1)%>" 
+          <td><a href="javascript:removeDeliveryInfo('<%=rs.getInt(1)%>')" 
                    class="badge badge-danger">삭제</a></td>
           </tr>    	 
       	<% 

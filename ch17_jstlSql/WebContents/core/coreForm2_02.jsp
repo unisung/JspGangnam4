@@ -4,8 +4,7 @@
 <title>JSTL</title>
 </head>
 <body>
-<form action="core02_process2.jsp" 
-       method="post">
+<form action="core02_process.jsp" method="post">
    <p>숫자:<input name="number">
    <p><input type="submit" value="전송">
 </form>

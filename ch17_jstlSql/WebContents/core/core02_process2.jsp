@@ -8,16 +8,18 @@
 <%
 	String number = request.getParameter("number");
 %>
-<%-- 파라미터는 String, set 에 의해 int타입으로 변환 --%>
 <c:set var="number" value="<%=number %>"/>
-
-<c:if test="${number %2==0}">
-  ${number }는 짝수입니다.
-</c:if>
-<c:if test="${number %2!=0}">
-  ${number }는 홀수입니다.
-</c:if>
-
+<c:choose>
+  <c:when test="${number %2==0}">
+      <c:out value="${number}"></c:out> 은 짝수입니다.
+  </c:when>
+  <c:when test="${number %2!=0}">
+      <c:out value="${number}"/>은 홀수 입니다.
+  </c:when>
+  <c:otherwise>
+    숫자가 아닙니다.
+  </c:otherwise>
+</c:choose>
 
 </body>
 </html>

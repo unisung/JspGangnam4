@@ -7,7 +7,7 @@
 <body>
  <%-- 데이타 소스 선언 --%>
  <sql:setDataSource var="dataSource" url="jdbc:mysql://localhost:3306/webmarketDB"
-      driver="com.mysql.jdbc.Driver" user="root" password="1234"
+      driver="com.mysql.cj.jdbc.Driver" user="root" password="1234"
   />
   
   <%-- 쿼리 전송 --%>

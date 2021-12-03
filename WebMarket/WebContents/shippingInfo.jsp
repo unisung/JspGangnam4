@@ -13,7 +13,7 @@ function registerDelivery(){
 </script>
 <script>
 function listDelivery(){
-	window.open("listDelivery.jsp");
+	window.open("listDelivery.jsp","배송지리스트","toolbar=yes, scrollbars=yes, resizable=yes, top=50, left=50, width=960,height=640");
 }
 </script>
 </head>
@@ -36,7 +36,7 @@ function listDelivery(){
 	if(rs.next()){
 %>
 <div class="container">
-   <form action="./processShippingInfo.jsp" class="form-horizontal" method="post">
+   <form name="frm" action="./processShippingInfo.jsp" class="form-horizontal" method="post">
          <input type="hidden" name="cartId" value="<%=request.getParameter("cartId") %>">
          <div class="form-group row">
              <label class="col-sm-2">배송지 명</label>

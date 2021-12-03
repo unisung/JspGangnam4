@@ -13,6 +13,22 @@ function removeDeliveryInfo(seq){
 	}
 }
 </script>
+<script>
+function selectDeliveryInfo(seq,name,country,zipcode,roadAddress,jibunAddress, detailAddress,extraAddress){
+  	//alert(seq+","+name+","+country+","+zipcode+","+roadAddress+","+jibunAddress+","+detailAddress+","+extraAddress);
+  	//오프너의 요소에 값 전송
+  	opener.document.frm.name.value=name;
+  	opener.document.frm.country.value=country;
+  	opener.document.frm.zipcode.value=zipcode;
+  	opener.document.frm.roadAddress.value=roadAddress;
+  	opener.document.frm.jibunAddress.value=jibunAddress;
+  	opener.document.frm.detailAddress.value=detailAddress;
+  	opener.document.frm.name.extraAddress=extraAddress;
+  	//자신은 닫기
+  	//self.close();
+  	window.close();
+}
+</script>
 <jsp:include page="menu.jsp" />
 <div class="jumbotron">
    <div class="container">
@@ -47,7 +63,10 @@ function removeDeliveryInfo(seq){
           <td><%=rs.getString(7) %></td>
           <td><%=rs.getString(8) %></td>
           <td><a href="javascript:removeDeliveryInfo('<%=rs.getInt(1)%>')" 
-                   class="badge badge-danger">삭제</a></td>
+                   class="badge badge-danger">삭제</a>
+              <a href="javascript:selectDeliveryInfo('<%=rs.getInt(1)%>','<%=rs.getString(2) %>','<%=rs.getString(3) %>','<%=rs.getString(4) %>','<%=rs.getString(5) %>','<%=rs.getString(6) %>','<%=rs.getString(7) %>','<%=rs.getString(8) %>')" 
+                   class="badge badge-primary">선택</a>     
+                   </td>
           </tr>    	 
       	<% 
          }

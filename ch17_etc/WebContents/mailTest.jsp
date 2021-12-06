@@ -1,3 +1,4 @@
+<%@page import="javax.mail.PasswordAuthentication"%>
 <%@page import="ch17_etc.MyAuthentication"%>
 <%@page import="javax.mail.Transport"%>
 <%@page import="javax.mail.Message"%>
@@ -16,17 +17,24 @@
  p.put("mail.smtp.auth","true");
  p.put("mail.smtp.port","587");//네이버 포트
  p.put("mail.smtp.port","587");//네이버 포트
+ p.put("mail.smtp.ssl.protocols", "TLSv1.2");
  
  Authenticator auth = new MyAuthentication();
  //session 생성 및 MimeMessage 생성
- Session session2 =Session.getDefaultInstance(p,auth);
+ Session session2 =Session.getDefaultInstance(p,new javax.mail.Authenticator() {
+		String un="vctor@naver.com";
+		String pw="@gildong123!";
+		protected  PasswordAuthentication getPasswordAuthentication() {
+			return new PasswordAuthentication(un, pw);
+		}
+	});
  MimeMessage msg = new MimeMessage(session2);
  try{
 	 msg.setSentDate(new Date());//전송시간
 	 InternetAddress from = new InternetAddress();
-	 from = new InternetAddress("test@naver.com");//발신자 아이디
+	 from = new InternetAddress("vctor@naver.com");//발신자 아이디
 	 msg.setFrom(from);//이메일 발신자
-	 InternetAddress to = new InternetAddress("test@naver.com");//수신자
+	 InternetAddress to = new InternetAddress("vctor@naver.com");//수신자
 	 msg.setRecipient(Message.RecipientType.TO, to);//수신자
 	 msg.setSubject("메일전송 테스트","UTF-8");//이메일 제목
 	 msg.setText("메일전송 테스트 내용","UTF-8");//이메일 내용

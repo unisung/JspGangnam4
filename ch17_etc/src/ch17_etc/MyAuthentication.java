@@ -8,8 +8,8 @@ public class MyAuthentication extends Authenticator {
 
 public MyAuthentication() {
 	
-	String id="test@naver.com"; //가입한 본인 이메일 아이디
-	String pw="password";//가입한 본인 이메일 비밀번호
+	String id="vctor@naver.com"; //가입한 본인 이메일 아이디
+	String pw="@gildong123!";//가입한 본인 이메일 비밀번호
 	
 	pa=new PasswordAuthentication(id, pw);
 }

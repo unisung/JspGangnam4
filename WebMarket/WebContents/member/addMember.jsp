@@ -70,7 +70,23 @@ function checkForm(){
 	}
 	
 	return true;
-}      
+}
+</script>
+<script>
+/* id check function() */
+function idChk(){
+ var id=document.newMember.id.value;
+ if(id.length==0){
+	 alert("아이디를 입력하세요");
+	 document.newMember.id.focus();
+	 return;
+ }else{
+  /* 팝업창 열기 window.open(페이지); <-현재페이지는 opener임. */
+  window.open('idCheck.jsp?id='+id);
+ }
+}
+</script>
+
 <meta charset="UTF-8">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
 <title>회원 가입</title>

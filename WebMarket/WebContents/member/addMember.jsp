@@ -1,6 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html><html><head>
+<script>
+function selectDomain(obj){
+	document.newMember.mail2.value=obj.value;
+	if(obj.value=="") document.newMember.mail2.focus();
+}
+</script>        
 <meta charset="UTF-8">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
 <title>회원 가입</title>
@@ -79,12 +85,6 @@
               </div>
         </div>
         
-<script>
-function selectDomain(obj){
-	document.newMember.mail2.value=obj.value;
-	if(obj.value=="") document.newMember.mail2.focus();
-}
-</script>        
        <div class="form-group row">
              <label class="col-sm-2">이메일</label>
              <div class="col-sm-10">
@@ -99,7 +99,9 @@ function selectDomain(obj){
                     <option value="">직접입력</option>
                 </select>
              </div>
-       </div> 
+       </div>
+       
+        
         
         
         

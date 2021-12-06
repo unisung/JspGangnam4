@@ -90,7 +90,7 @@ function idChk(){
 function sendEmail(){
 	var mailId = document.newMember.mail1.value+'@'+document.newMember.mail2.value;
 	var emailPassword =prompt("이메일 비번을 입력하세요",'');
-if(emailPassword.lenght>0){	
+if(emailPassword.length>0){	
 		window.open("certMail.jsp?email="+mailId+"&emailPassword="+emailPassword);
 	  }
 }
@@ -109,7 +109,7 @@ if(emailPassword.lenght>0){
   
   <div class="container">
     <form name="newMember" class="form-horizontal" action="processAddMember.jsp" 
-                method="post" onsubmit="return checkForm()">
+                method="post" onsubmit="return checkForm()"> 
         <div class="form-group row">
               <label class="col-sm-2">아이디</label>
               <div class="col-sm-3">
@@ -193,7 +193,7 @@ if(emailPassword.lenght>0){
               <label class="col-sm-2">이메일 인증</label>
               <div class="col-sm-3">
                    <input type="button" value="이메일 인증"  class="btn btn-success" onclick="sendEmail()">
-                   <input class="form-control" name="cert" type="password">
+                   <input class="form-control" name="cert" type="password" id="cert" value="">
                    <input type="button" value="확인" class="btn btn-success" onclick="confirm()">
               </div>
         </div>

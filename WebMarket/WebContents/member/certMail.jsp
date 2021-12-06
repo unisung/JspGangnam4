@@ -15,13 +15,11 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
 <title>이메일 인증</title>
 <%
-	String email=request.getParameter("email");
-    String password=request.getParameter("emailPassword");
+	String email=request.getParameter("email").trim();
+    String password=request.getParameter("emailPassword").trim();
 %>
 </head>
-<body> 
-</body>
-</html>    
+<body>    
 <%
    //비번문자생성
      int[] arr= {(int)(Math.random()*92)+33,
@@ -71,10 +69,11 @@
      //전송 처리
      Transport.send(msg,msg.getAllRecipients());
      //out.print("메일전송 성공");
-    out.print("<script>opner.newMember.cert.value="+certStrig+"</script>");
-    out.print("<script>window.close();</script>");
  }catch(Exception e){
 	 e.printStackTrace();
  }
 %>
-
+<script>opener.newMember.cert.value='<%=certStrig%>'</script>
+<script>window.close();</script>
+</body>
+</html> 

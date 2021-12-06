@@ -18,15 +18,15 @@
             /* 파라미터 값: 0-수정, 1-가입(입력), 2-로그인, 없으면 삭제 */
             if(msg !=null){
             	     if(msg.equals("0"))
-            	       	  out.print("<h2 class='alert alert-danger'>회원정보가 수정되었습니다.</h2>");
+            	       	  out.print("<h2 class='alert alert-parimary'>회원정보가 수정되었습니다.</h2>");
             	     else if(msg.equals("1"))
-           	       	  out.print("<h2 class='alert alert-danger'>회원가입을 축하드립니다.</h2>");
+           	       	  out.print("<h2 class='alert alert-success'>회원가입을 축하드립니다.</h2>");
             	     else if(msg.equals("2")){
             	    	  String loginId = (String)session.getAttribute("sessionId");
-              	       	  out.print("<h2 class='alert alert-danger'>"+loginId+"님 환영합니다.</h2>");
+              	       	  out.print("<h2 class='alert alert-info'>"+loginId+"님 환영합니다.</h2>");
             	     } 	  
             }else{
-            	  out.print("<h2 class='alert alert-danger'>회원정보가 삭제되었습니다.</h2>");
+            	  out.print("<h2 class='alert alert-secondary'>회원정보가 삭제되었습니다.</h2>");
             }      
       %>
   </div>

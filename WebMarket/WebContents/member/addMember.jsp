@@ -69,6 +69,11 @@ function checkForm(){
 		return false;	
 	}
 	
+	if(!isConfirm){
+		alert("본인 인증을 해주세요!");
+		form.cert.focus();
+		return false;
+	}
 	return true;
 }
 </script>
@@ -93,6 +98,23 @@ function sendEmail(){
 if(emailPassword.length>0){	
 		window.open("certMail.jsp?email="+mailId+"&emailPassword="+emailPassword);
 	  }
+}
+</script>
+<script>
+/* 글로벌 변수 */
+var isConfirm=false;
+
+function confirm(){
+	var cert1 = document.getElementById("cert").value;
+	var cert2= document.getElementById("cert_confirm").value;
+	if(cert1!=cert2){
+		alert("cert1:"+cert1);
+		alert("cert2:"+cert2);
+		alert("인증확인요망");
+	}else{
+		alert("인증이 완료되었습니다.");
+		isConfirm=true;
+	}
 }
 </script>
 <meta charset="UTF-8">
@@ -194,6 +216,7 @@ if(emailPassword.length>0){
               <div class="col-sm-3">
                    <input type="button" value="이메일 인증"  class="btn btn-success" onclick="sendEmail()">
                    <input class="form-control" name="cert" type="password" id="cert" value="">
+                   <input class="form-control" name="cert_confirm" id="cert_confirm" type="password"value="">
                    <input type="button" value="확인" class="btn btn-success" onclick="confirm()">
               </div>
         </div>

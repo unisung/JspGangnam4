@@ -29,9 +29,10 @@
     		     (int)(Math.random()*92)+33,
     		     (int)(Math.random()*92)+33
                };
-   String certStrig="";
+   String certString="";
    for(int i=0;i<arr.length;i++)
-	   certStrig+=(char)(arr[i]);
+	   certString+=(char)(arr[i]);
+   //System.out.println(certString);
 %>
 <%
  Properties p=System.getProperties();
@@ -64,7 +65,7 @@
 	 InternetAddress to = new InternetAddress(email);//수신자
 	 msg.setRecipient(Message.RecipientType.TO, to);//수신자
 	 msg.setSubject("회원가입인증메일-WebMarket","UTF-8");//이메일 제목
-	 msg.setText(certStrig,"UTF-8");//이메일 내용
+	 msg.setText(certString,"UTF-8");//이메일 내용
      msg.setHeader("content-Type", "text/html");//이메일 헤더
      //전송 처리
      Transport.send(msg,msg.getAllRecipients());
@@ -73,7 +74,7 @@
 	 e.printStackTrace();
  }
 %>
-<script>opener.newMember.cert.value='<%=certStrig%>'</script>
+<script>opener.newMember.cert.value='<%=certString%>'</script>
 <script>window.close();</script>
 </body>
 </html> 

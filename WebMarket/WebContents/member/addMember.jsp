@@ -88,19 +88,11 @@ function idChk(){
 </script>
 <script>
 function sendEmail(){
-/* 	var arr = [parseInt((Math.random()*92))+33,
-			parseInt((Math.random()*92))+33,
-			parseInt((Math.random()*92))+33,
-			parseInt((Math.random()*92))+33,
-			parseInt((Math.random()*92))+33,
-			parseInt((Math.random()*92))+33
-	]
-	
-	for(var i=0;i<arr.length;i++){
-		alert(String.fromCharCode(arr[i]));
-	} */
 	var mailId = document.newMember.mail1.value+'@'+document.newMember.mail2.value;
-	window.open("certMail.jsp?email="+mailId);
+	var emailPassword =prompt("이메일 비번을 입력하세요",'');
+if(emailPassword.lenght>0){	
+		window.open("certMail.jsp?email="+mailId+"&emailPassword="+emailPassword);
+	  }
 }
 </script>
 <meta charset="UTF-8">

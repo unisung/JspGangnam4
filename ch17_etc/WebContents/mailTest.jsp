@@ -1,4 +1,3 @@
-<%@page import="javax.mail.PasswordAuthentication"%>
 <%@page import="ch17_etc.MyAuthentication"%>
 <%@page import="javax.mail.Transport"%>
 <%@page import="javax.mail.Message"%>
@@ -17,17 +16,11 @@
  p.put("mail.smtp.auth","true");
  p.put("mail.smtp.port","587");//네이버 포트
  p.put("mail.smtp.port","587");//네이버 포트
- p.put("mail.smtp.ssl.protocols", "TLSv1.2");
+ p.put("mail.smtp.ssl.protocols", "TLSv1.2");//시큐어 프로토콜 추가
  
  Authenticator auth = new MyAuthentication();
  //session 생성 및 MimeMessage 생성
- Session session2 =Session.getDefaultInstance(p,new javax.mail.Authenticator() {
-		String un="vctor@naver.com";
-		String pw="@gildong123!";
-		protected  PasswordAuthentication getPasswordAuthentication() {
-			return new PasswordAuthentication(un, pw);
-		}
-	});
+ Session session2 =Session.getDefaultInstance(p,auth);
  MimeMessage msg = new MimeMessage(session2);
  try{
 	 msg.setSentDate(new Date());//전송시간

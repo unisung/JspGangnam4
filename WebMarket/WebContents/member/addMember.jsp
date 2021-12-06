@@ -86,6 +86,21 @@ function idChk(){
  }
 }
 </script>
+<script>
+function sendEmail(){
+	var arr = [parseInt((Math.random()*92))+33,
+			parseInt((Math.random()*92))+33,
+			parseInt((Math.random()*92))+33,
+			parseInt((Math.random()*92))+33,
+			parseInt((Math.random()*92))+33,
+			parseInt((Math.random()*92))+33
+	]
+	
+	for(var i=0;i<arr.length;i++){
+		alert(String.fromCharCode(arr[i]));
+	}
+}
+</script>
 
 <meta charset="UTF-8">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
@@ -123,7 +138,6 @@ function idChk(){
                    <input name="password_confirm" type="password" class="form-control" placeholder="password" required>
               </div>
         </div>
-        
         <div class="form-group row">
               <label class="col-sm-2">성명</label>
               <div class="col-sm-3">
@@ -182,6 +196,13 @@ function idChk(){
              </div>
        </div>
        
+        <div class="form-group row">
+              <label class="col-sm-2">이메일 인증</label>
+              <div class="col-sm-3">
+                   <input type="button" value="이메일 인증"  class="btn btn-success" onclick="sendEmail()">
+              </div>
+        </div>
+        
        <div class="form-group row">
          <label class="col-sm-2">전화번호</label>
          <div class="col-sm-5">

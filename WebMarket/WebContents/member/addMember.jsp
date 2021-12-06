@@ -79,6 +79,28 @@
               </div>
         </div>
         
+<script>
+function selectDomain(obj){
+	document.newMember.mail2.value=obj.value;
+	if(obj.value=="") document.newMember.mail2.focus();
+}
+</script>        
+       <div class="form-group row">
+             <label class="col-sm-2">이메일</label>
+             <div class="col-sm-10">
+                <input type="text" name="mail1" maxlength="50">@
+                <input type="text" name="mail2" maxlength="50">
+                 <select name="mail2_select" onchange="selectDomain(this)">
+                    <option disabled="disabled" selected="selected">선택</option>
+                    <option>namver.com</option>
+                    <option>daum.net</option>
+                    <option>gmail.com</option>
+                    <option>nate.com</option>
+                    <option value="">직접입력</option>
+                </select>
+             </div>
+       </div> 
+        
         
         
     </form>

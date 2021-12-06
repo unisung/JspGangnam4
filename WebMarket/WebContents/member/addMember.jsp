@@ -88,7 +88,7 @@ function idChk(){
 </script>
 <script>
 function sendEmail(){
-	var arr = [parseInt((Math.random()*92))+33,
+/* 	var arr = [parseInt((Math.random()*92))+33,
 			parseInt((Math.random()*92))+33,
 			parseInt((Math.random()*92))+33,
 			parseInt((Math.random()*92))+33,
@@ -98,10 +98,11 @@ function sendEmail(){
 	
 	for(var i=0;i<arr.length;i++){
 		alert(String.fromCharCode(arr[i]));
-	}
+	} */
+	var mailId = document.newMember.mail1.value+'@'+document.newMember.mail2.value;
+	window.open("certMail.jsp?email="+mailId);
 }
 </script>
-
 <meta charset="UTF-8">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
 <title>회원 가입</title>
@@ -187,7 +188,7 @@ function sendEmail(){
                 <input type="text" name="mail2" maxlength="50" required>
                  <select name="mail2_select" onchange="selectDomain(this)">
                     <option disabled="disabled" selected="selected">선택</option>
-                    <option>namver.com</option>
+                    <option>naver.com</option>
                     <option>daum.net</option>
                     <option>gmail.com</option>
                     <option>nate.com</option>
@@ -200,6 +201,8 @@ function sendEmail(){
               <label class="col-sm-2">이메일 인증</label>
               <div class="col-sm-3">
                    <input type="button" value="이메일 인증"  class="btn btn-success" onclick="sendEmail()">
+                   <input class="form-control" name="cert" type="password">
+                   <input type="button" value="확인" class="btn btn-success" onclick="confirm()">
               </div>
         </div>
         

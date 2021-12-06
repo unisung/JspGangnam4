@@ -1,3 +1,4 @@
+<%@page import="javax.mail.PasswordAuthentication"%>
 <%@page import="ch17_etc.MyAuthentication"%>
 <%@page import="javax.mail.Transport"%>
 <%@page import="javax.mail.Message"%>
@@ -17,10 +18,22 @@
  p.put("mail.smtp.port","587");//네이버 포트
  p.put("mail.smtp.port","587");//네이버 포트
  p.put("mail.smtp.ssl.protocols", "TLSv1.2");//시큐어 프로토콜 추가
+ /* Caused by: javax.net.ssl.SSLHandshakeException: PKIX path building failed: sun.security.provider.certpath.SunCertPathBuilderException: unable to find valid certification path to requested target
+ */
+ p.put("mail.smtp.ssl.trust","*"); //인증서 전부 신뢰
  
  Authenticator auth = new MyAuthentication();
  //session 생성 및 MimeMessage 생성
- Session session2 =Session.getDefaultInstance(p,auth);
+ //session 생성 및 MimeMessage 생성
+ Session session2 =Session.getDefaultInstance(p,new javax.mail.Authenticator() {
+		String un="vctor@naver.com";
+		String pw="@gildong123!";
+		protected  PasswordAuthentication getPasswordAuthentication() {
+			return new PasswordAuthentication(un, pw);
+		}
+	});
+	
+ //Session session2 =Session.getDefaultInstance(p,auth);
  MimeMessage msg = new MimeMessage(session2);
  try{
 	 msg.setSentDate(new Date());//전송시간
@@ -35,6 +48,7 @@
      //전송 처리
      Transport.send(msg,msg.getAllRecipients());
 	 
+     out.print("메일전송 성공");
  }catch(Exception e){
 	 e.printStackTrace();
  }

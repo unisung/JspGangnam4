@@ -1,3 +1,4 @@
+<%@page import="java.util.Date"%>
 <%@ page contentType="text/html; charset=UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="sql" uri="http://java.sun.com/jsp/jstl/sql" %>
@@ -24,8 +25,12 @@
   String jibunAddress= request.getParameter("jibunAddress");
   String detailAddress = request.getParameter("detailAddress");
   String extraAddress = request.getParameter("extraAddress");
+  
+  Date currentDatetime = new Date(System.currentTimeMillis());
+  java.sql.Date sqlDate = new java.sql.Date(currentDatetime.getTime());//long타입의값을 매개변수 생성
+  java.sql.Timestamp timestamp = new java.sql.Timestamp(currentDatetime.getTime());
 %>
-<%=id %><br>
+<%-- <%=id %><br>
 <%=name %><br>
 <%=password %><br>
 <%=gender %><br>
@@ -36,12 +41,31 @@
 <%=roadAddress %><br>
 <%=jibunAddress %><br>
 <%=detailAddress %><br>
-<%=extraAddress %><br>
+<%=extraAddress %><br> --%>
+<sql:setDataSource var="dataSource"  
+     url="jdbc:mysql://localhost:3306/WebMarketDB" 
+     driver="com.mysql.cj.jdbc.Driver" user="root" password="1234" />
+     
+<sql:update dataSource="${dataSource}" var="resultSet">
+insert into member values (?,?,?,?,?,?,?,?,?,?,?,?,?)
+<sql:param value="<%=id%>"/>
+<sql:param value="<%=password %>"/>
+<sql:param value="<%=name %>"/>
+<sql:param value="<%=gender %>"/>
+<sql:param value="<%=birth %>"/>
+<sql:param value="<%=mail %>"/>
+<sql:param value="<%=phone %>"/>
+<sql:param value="<%=zipCode %>"/>
+<sql:param value="<%=roadAddress %>"/>
+<sql:param value="<%=jibunAddress %>"/>
+<sql:param value="<%=detailAddress %>"/>
+<sql:param value="<%=extraAddress %>"/>
+<sql:param value="<%=timestamp %>"/>
+</sql:update>     
 
-<!DOCTYPE html><html><head><meta charset="UTF-8">
-<title>Insert title here</title>
-</head>
-<body>
-
-</body>
-</html>
+<!-- response.sendRedirect -->
+<c:if test="${resultSet >=1}">
+   <c:redirect url="resultMember.jsp?msg=1"/>
+</c:if>
+     
+     

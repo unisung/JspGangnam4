@@ -15,16 +15,16 @@
 <body>
 <%
   /* 가입한 gmail계정 정보 입력  */
-  String user ="javavora@gmail.com";
-  String password="googleVctor7!";
+  String user ="본인 gmail계정";
+  String password="본인 gmail 비밀번호";
   
   //SMTP서버 정보 설정
    Properties prop = new Properties();   
    prop.put("mail.smtp.host","smtp.gmail.com");//stmp서버 주소
    prop.put("mail.smtp.starttls.enable","true");//
    prop.put("mail.smtp.auth","true");
-   prop.put("mail.smtp.port","587");//네이버 포트
-   prop.put("mail.smtp.port","587");//네이버 포트
+   prop.put("mail.smtp.port","587");//gmail 포트
+   prop.put("mail.smtp.port","587");//gmail 포트
    prop.put("mail.smtp.ssl.protocols", "TLSv1.2");//시큐어 프로토콜 추가
    /* Caused by: javax.net.ssl.SSLHandshakeException: PKIX path building failed: sun.security.provider.certpath.SunCertPathBuilderException: unable to find valid certification path to requested target
    */

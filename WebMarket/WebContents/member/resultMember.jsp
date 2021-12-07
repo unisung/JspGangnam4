@@ -24,10 +24,14 @@
             	     else if(msg.equals("2")){
             	    	  String loginId = (String)session.getAttribute("sessionId");
               	       	  out.print("<h2 class='alert alert-info'>"+loginId+"님 환영합니다.</h2>");
-            	     } 	  
-            }else{
+            	     }else if(msg.equals("3")){
+            	    	 out.print("<h2 class='alert alert-secondary'>회원정보가 삭제되었습니다.</h2>");
+            	     }
+            	     
+            	     
+            }/* else{
             	  out.print("<h2 class='alert alert-secondary'>회원정보가 삭제되었습니다.</h2>");
-            }      
+            }  */     
       %>
   </div>
 </body>

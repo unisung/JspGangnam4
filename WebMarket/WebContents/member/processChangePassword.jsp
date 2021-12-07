@@ -21,13 +21,13 @@
   <sql:param value="<%=currentPassword%>"/>
 </sql:query>
 
-<c:if test="${not empty resultSet.row}">
+<%--출력 결과 처리, session에 id정보 저장 후, 결과 페이지로 이동(get방식) --%>
+<c:forEach var="row" items="${resultSet.rows}" >
   <sql:update dataSource="${dataSource}" var="result" >
-  update member set password=? where id=? 
-  <sql:param value="<%=newPassword%>"/>
-  <sql:param value="<%=sessionId%>" />
-</sql:update>
-	<c:if test="${result}">
-	      <script>window.close();</script>
-	</c:if>
-</c:if>
+  	update member set password=? where id=? 
+    <sql:param value="<%=newPassword%>"/>
+    <sql:param value="<%=sessionId%>" />
+  </sql:update>
+  <script>alert('비밀번호가 변경되었습니다.');</script>
+  <script>window.close();</script> 
+</c:forEach>

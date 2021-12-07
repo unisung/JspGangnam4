@@ -15,16 +15,20 @@
 <body>
 <%
   /* 가입한 gmail계정 정보 입력  */
-  String user ="본인 계정";
-  String password="본인 패스워드";
+  String user ="본인 gmail계정아이디";
+  String password="gmail비밀번호";
   
   //SMTP서버 정보 설정
    Properties prop = new Properties();   
-   prop.put("mail.smtp.host","smtp.gmail.com");
-   prop.put("mail.smtp.port",465);//gmail port
+   prop.put("mail.smtp.host","smtp.gmail.com");//stmp서버 주소
+   prop.put("mail.smtp.starttls.enable","true");//
    prop.put("mail.smtp.auth","true");
-   prop.put("mail.smtp.ssl.enable","true");
-   prop.put("mail.smtp.ssl.trust","smtp.gmail.com");
+   prop.put("mail.smtp.port","587");//네이버 포트
+   prop.put("mail.smtp.port","587");//네이버 포트
+   prop.put("mail.smtp.ssl.protocols", "TLSv1.2");//시큐어 프로토콜 추가
+   /* Caused by: javax.net.ssl.SSLHandshakeException: PKIX path building failed: sun.security.provider.certpath.SunCertPathBuilderException: unable to find valid certification path to requested target
+   */
+   //prop.put("mail.smtp.ssl.trust","*"); //인증서 전부 신뢰
    
    //세션정보 생성
    Session session2 = Session.getDefaultInstance(prop,new Authenticator(){
@@ -38,7 +42,7 @@
 	   //발신자 정보
 	   message.setFrom(new InternetAddress(user));
 	   //수신자 정보
-	   message.addRecipient(Message.RecipientType.TO, new InternetAddress(user));
+	   message.addRecipient(Message.RecipientType.TO, new InternetAddress("수신자 email주소"));
 	   //제목
 	   message.setSubject("gmail 테스트 ");
 	   //내용
@@ -54,6 +58,5 @@
 	   e.printStackTrace();
    }
 %>
-
 </body>
 </html>

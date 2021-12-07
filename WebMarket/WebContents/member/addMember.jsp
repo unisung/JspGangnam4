@@ -214,7 +214,7 @@ function confirm(){
         <div class="form-group row">
               <label class="col-sm-2">이메일 인증</label>
               <div class="col-sm-3">
-                   <input type="button" value="이메일 인증"  class="btn btn-success" onclick="sendEmail()">
+                   <input type="button" value="네이버메일 인증"  class="btn btn-success" onclick="sendEmail()">
                    <input class="form-control" name="cert" type="password" id="cert" value="">
                    <input class="form-control" name="cert_confirm" id="cert_confirm" type="password"value="">
                    <input type="button" value="확인" class="btn btn-success" onclick="confirm()">

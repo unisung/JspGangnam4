@@ -16,8 +16,8 @@
 %>
 <script>
 alert('이미 존재하는 id입니다.');
- opener.member.id.value='';
- opener.member.id.focus();
+ opener.newMember.id.value='';
+ opener.newMember.id.focus();
  self.close();/*자신을 닫는 함수  */
 </script>
 <%}else{%>

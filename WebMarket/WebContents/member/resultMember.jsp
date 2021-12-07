@@ -15,7 +15,7 @@
       <%
              /* 파라미터로 넘어온 msg 값 얻기 */
       		String msg = request.getParameter("msg");
-            /* 파라미터 값: 0-수정, 1-가입(입력), 2-로그인, 없으면 삭제 */
+            /* 파라미터 값: 0-수정, 1-가입(입력), 2-로그인, 3-회원삭제 */
             if(msg !=null){
             	     if(msg.equals("0"))
             	       	  out.print("<h2 class='alert alert-parimary'>회원정보가 수정되었습니다.</h2>");
@@ -27,8 +27,6 @@
             	     }else if(msg.equals("3")){
             	    	 out.print("<h2 class='alert alert-secondary'>회원정보가 삭제되었습니다.</h2>");
             	     }
-            	     
-            	     
             }/* else{
             	  out.print("<h2 class='alert alert-secondary'>회원정보가 삭제되었습니다.</h2>");
             }  */     

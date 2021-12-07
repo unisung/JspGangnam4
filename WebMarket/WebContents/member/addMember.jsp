@@ -96,8 +96,8 @@ function sendEmail(){
 	var mailId = document.newMember.mail1.value+'@'+document.newMember.mail2.value;
 	//var emailPassword =prompt("이메일 비번을 입력하세요",'');
 	var emailPassword = document.getElementById('Emailpassword').value;
-	alert(mailId+":"+emailPassword);
-	console.log(mailId, emailPassword);
+	//alert(mailId+":"+emailPassword);
+	//console.log(mailId, emailPassword);
  if(emailPassword.length>0){	
 		window.open("certMail.jsp?email="+mailId+"&emailPassword="+emailPassword);
 	  } 
@@ -299,7 +299,7 @@ function confirm(){
         </form>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" >Close</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
         <button type="button" class="btn btn-primary" onclick="sendEmail()">Send message</button>
       </div>
     </div>

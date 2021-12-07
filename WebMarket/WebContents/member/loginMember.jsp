@@ -21,7 +21,18 @@
             	  out.print("아이디와 비밀번호를 확인해 주세요");
             	  out.print("</div>");
               }
-          %>     
+          %> 
+          <form class="form-gignin" action="processLoginMember.jsp" method="post">
+              <div class="form-group">
+                  <label for="inputUserName" class="sr-only">User Name</label>
+                  <input type="text" class="form-control" placeholder="ID" name="id" required autofocus>
+              </div>
+              <div class="form-group">
+                 <label class="sr-only" for="inputPassword">Password</label>
+                 <input type="password" class="form-control" placeholder="Password" name="password" required>
+              </div>
+              <button class="btn btn btn-lg btn-success btn-block" type="submit">로그인</button>
+          </form>
      </div>
   </div>
 </body>

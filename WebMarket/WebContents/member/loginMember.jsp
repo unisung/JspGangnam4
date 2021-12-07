@@ -22,7 +22,7 @@
             	  out.print("</div>");
               }
           %> 
-          <form class="form-gignin" action="processLoginMember.jsp" method="post">
+          <form class="form-signin" action="processLoginMember.jsp" method="post">
               <div class="form-group">
                   <label for="inputUserName" class="sr-only">User Name</label>
                   <input type="text" class="form-control" placeholder="ID" name="id" required autofocus>
@@ -32,6 +32,8 @@
                  <input type="password" class="form-control" placeholder="Password" name="password" required>
               </div>
               <button class="btn btn btn-lg btn-success btn-block" type="submit">로그인</button>
+              <button class="btn btn btn-lg btn-secondary btn-block" type="button" 
+                        onclick="location.href='addMember.jsp'">회원가입</button>
           </form>
      </div>
   </div>

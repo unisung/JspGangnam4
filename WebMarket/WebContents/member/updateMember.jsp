@@ -104,6 +104,11 @@ function confirm(){
 	}
 }
 </script>
+<script>
+function changePasswordForm(){
+	window.open("changePassword.jsp");
+}
+</script>
 <meta charset="UTF-8">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"/>
 <%
@@ -157,6 +162,7 @@ function confirm(){
               <label class="col-sm-2">비밀번호</label>
               <div class="col-sm-3">
                    <input name="password" type="password" class="form-control" placeholder="password" required>
+                   <input type="button" value="비밀번호변경"  class="btn btn-success" onclick="changePasswordForm()">
               </div>
         </div>
         
@@ -242,11 +248,11 @@ function confirm(){
          <label class="col-sm-2">전화번호</label>
          <div class="col-sm-5">
                <select name="phone1" required>
-		              <option value="010" selected>010</option>
-		              <option value="011">011</option>
-		              <option value="016">016</option>
-		              <option value="017">017</option>
-		              <option value="019">019</option>
+		              <option value="010" <c:if test="${phone1.equals('010')}"><c:out value="selected"/></c:if> >010</option>
+		              <option value="011" <c:if test="${phone1.equals('011')}"><c:out value="selected"/></c:if> >011</option>
+		              <option value="016" <c:if test="${phone1.equals('016')}"><c:out value="selected"/></c:if> >016</option>
+		              <option value="017" <c:if test="${phone1.equals('017')}"><c:out value="selected"/></c:if> >017</option>
+		              <option value="019" <c:if test="${phone1.equals('019')}"><c:out value="selected"/></c:if> >019</option>
 		           </select>
 				- <input maxlength="4" size="4" name="phone2" required value="${phone2}" > -
 				<input maxlength="4" size="4" name="phone3" required value="${phone3}">
@@ -256,33 +262,33 @@ function confirm(){
   <div class="form-group row">
              <label class="col-sm-2">우편번호</label>
              <div class="col-sm-3">
-                 <input name="zipcode" id="zipcode" type="text" class="form-control" placeholder="우편번호" required>
+                 <input name="zipcode" id="zipcode" type="text" class="form-control" placeholder="우편번호" value="${row.zipcode}" required>
                  <input type="button" onclick="Postcode()" value="우편번호 찾기"><br>
              </div>
          </div>
           <div class="form-group row">
              <label class="col-sm-2">도로명주소</label>
-             <div class="col-sm-3">
-                 <input name="roadAddress" id="roadAddress"  type="text" class="form-control" placeholder="도로명주소" required>
+             <div class="col-sm-5">
+                 <input name="roadAddress" id="roadAddress"  type="text" class="form-control" placeholder="도로명주소" value="${row.roadAddress}" required>
              </div>
          </div>
          <div class="form-group row">
              <label class="col-sm-2">지번주소</label>
-             <div class="col-sm-3">
-                 <input name="jibunAddress" id="jibunAddress"  type="text" class="form-control" placeholder="지번주소" required>
+             <div class="col-sm-5">
+                 <input name="jibunAddress" id="jibunAddress"  type="text" class="form-control" placeholder="지번주소" value="${row.jibunAddress}" required>
              </div>
          </div>
          <span id="guide" style="color:#999;display:none"></span>
          <div class="form-group row">
              <label class="col-sm-2">상세주소</label>
-             <div class="col-sm-3">
-                 <input name="detailAddress"  id="detailAddress" type="text" class="form-control" placeholder="상세주소" required>
+             <div class="col-sm-5">
+                 <input name="detailAddress"  id="detailAddress" type="text" class="form-control" placeholder="상세주소" value="${row.detailAddress}" required>
              </div>
          </div>
          <div class="form-group row">
              <label class="col-sm-2">참고항목</label>
              <div class="col-sm-3">
-                 <input name="extraAddress"id="extraAddress" type="text" class="form-control" placeholder="참고항목" required>
+                 <input name="extraAddress"id="extraAddress" type="text" class="form-control" placeholder="참고항목" value="${row.extraAddress}" required>
              </div>
          </div>
        

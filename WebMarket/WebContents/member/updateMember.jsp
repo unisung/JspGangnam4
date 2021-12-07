@@ -20,6 +20,31 @@
 <title>회원 수정</title>
 </head>
 <body>
+<jsp:include page="/menu.jsp" />
+ <div class="jumbotron">
+    <div class="container">
+         <h1 class="display-3">회원 수정</h1>
+    </div>
+ </div>
+  <c:forEach var="row" items="${resultSet.rows}">
+     <c:set var="mail" value="${row.mail}"/>
+     <c:set var="mail1" value="${mail.split('@')[0]}"/>
+     <c:set var="mail2" value="${mail.split('@')[1]}"/>
+     
+     <c:set var="birth" value="${row.birth}"/>
+     <c:set var="year" value="${birth.split('/')[0]}"/>
+     <c:set var="month" value="${birth.split('/')[1]}"/>
+     <c:set var="day" value="${birth.split('/')[2]}"/>
+     
+    <div class="container">
+       <form name="newMember" class="form-hotizontal" action="processUpdateMember.jsp" 
+             method="post" onsubmit="reutrn checkForm()">
+       
+       
+       </form>
+    </div><!-- container끝.  --> 
+  </c:forEach>
+
 
 </body>
 </html>

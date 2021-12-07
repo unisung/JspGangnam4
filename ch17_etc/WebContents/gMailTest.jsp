@@ -15,8 +15,8 @@
 <body>
 <%
   /* 가입한 gmail계정 정보 입력  */
-  String user ="본인 gmail계정아이디";
-  String password="gmail비밀번호";
+  String user ="javavora@gmail.com";
+  String password="googleVctor7!";
   
   //SMTP서버 정보 설정
    Properties prop = new Properties();   
@@ -42,11 +42,19 @@
 	   //발신자 정보
 	   message.setFrom(new InternetAddress(user));
 	   //수신자 정보
-	   message.addRecipient(Message.RecipientType.TO, new InternetAddress("수신자 email주소"));
+	   //message.addRecipient(Message.RecipientType.TO, new InternetAddress("수신자 email주소"));
+	   //수신자 이메일 주소 배열 생성
+	   InternetAddress[] addArray = {
+				
+		new InternetAddress("vctor@naver.com")
+	   };
+	   //
+	   message.addRecipients(Message.RecipientType.TO, addArray);
+	   
 	   //제목
-	   message.setSubject("gmail 테스트 ");
+	   message.setSubject("gmail 단체 메일 테스트 ");
 	   //내용
-	   message.setText("gmail 내용 테스트 입니다.");
+	   message.setText("gmail 내용 테스트 입니다. 확인 부탁드립니다.");
 	   
 	   //메일 전송처리
 	   Transport.send(message);

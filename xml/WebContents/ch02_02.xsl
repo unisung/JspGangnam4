@@ -1,43 +1,41 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<xsl:stylesheet version="1.0" 
-     xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
-	<xsl:template match="/">
-	   <HTML>
-	    <HEAD><TITLE>μ ν’λ‚΄μ—­μ…λ‹λ‹¤.</TITLE>
-	    </HEAD>
-	   </HTML>
-	   <BODY>
-	    <BR/>
-	    <P align="center"><font color='#FA4C79' size='6'>ν•Έλ“ν° λ¦¬μ¤νΈ</font></P>
-	    <BR/>
-	    <TABLE align="center" BORDER="1" cellpadding="5"  cellspacing="2">
-	     <THEAD>
-	      <TR>
-	       <TH bgcolor="green"><font color="white">λª¨λΈλª…</font></TH>
-	       <TH bgcolor="green"><font color="white">ν†µμ‹ μ‚¬</font></TH>
-	       <TH bgcolor="green"><font color="white">κµ¬μ…ν•νƒ</font></TH>
-	       <TH bgcolor="green"><font color="white">μ μ΅°μ‚¬</font></TH>
-	       <TH bgcolor="green"><font color="white">μƒ‰μƒ</font></TH>
-	       <TH bgcolor="green"><font color="white">μλ‰</font></TH>
-	       <TH bgcolor="green"><font color="white">κ°€κ²©</font></TH>
-	      </TR>
-	     </THEAD>
-	     <TBODY>
-	       <xsl:apply-templates select="/μ ν’/ν•Έλ“ν°"/>
-	     </TBODY>    
-	    </TABLE>
-	   </BODY>
-	</xsl:template>
-	
-	<xsl:template match="/μ ν’/ν•Έλ“ν°">
-	 <TR>
-	  <TD><xsl:value-of select="λª¨λΈλª…"/></TD>
-	  <TD><xsl:value-of select="ν†µμ‹ μ‚¬"/></TD>
-	  <TD><xsl:value-of select="κµ¬μ…ν•νƒ"/></TD>
-	  <TD><xsl:value-of select="μ μ΅°μ‚¬"/></TD>
-	  <TD><xsl:value-of select="μƒ‰μƒ"/></TD>
-	  <TD><xsl:value-of select="μλ‰"/></TD>
-	  <TD><xsl:value-of select="κ°€κ²©"/></TD>
-	 </TR>
-	</xsl:template>
+<?xml version="1.0" encoding="euc-kr"?>
+<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0">
+  <xsl:template match="/">
+    <HTML>
+      <HEAD><TITLE>Α¦Η° ³»ΏªΐΤ΄Ο΄Ω. </TITLE>
+    </HEAD>	
+      <BODY>       <BR/>
+	  <P align="center"><font color="#FA4C79" size="6"> ΗΪµεΖω Έ®½ΊΖ® </font></P>
+        <BR/>
+        <TABLE align="center" BORDER="1" cellpadding="5" cellspacing="2">
+          <THEAD>
+            <TR>
+             <TH bgcolor="navy"><font color="white">Έπµ¨Έν</font></TH>
+             <TH bgcolor="navy"><font color="white">Ελ½Ε»η</font></TH>
+             <TH bgcolor="navy"><font color="white">±ΈΐΤΗόΕΒ</font></TH>
+             <TH bgcolor="navy"><font color="white">Α¦Α¶»η</font></TH>
+             <TH bgcolor="navy"><font color="white">»φ»σ</font></TH>
+             <TH bgcolor="navy"><font color="white">Όφ·®</font></TH>
+             <TH bgcolor="navy"><font color="white">°΅°έ</font></TH>
+            </TR>
+          </THEAD>
+          <TBODY>
+            <xsl:apply-templates select = "/Α¦Η°/ΗΪµεΖω"/>
+          </TBODY>
+        </TABLE>
+      </BODY>
+    </HTML>
+  </xsl:template>
+
+  <xsl:template match = "/Α¦Η°/ΗΪµεΖω">
+  <TR>
+    <TD><xsl:value-of select="Έπµ¨Έν"/></TD>
+    <TD><xsl:value-of select="Ελ½Ε»η"/></TD>
+    <TD><xsl:value-of select="±ΈΐΤΗόΕΒ"/></TD>
+    <TD><xsl:value-of select="Α¦Α¶»η"/></TD>
+    <TD><xsl:value-of select="»φ»σ"/></TD>
+    <TD><xsl:value-of select="Όφ·®"/></TD>
+    <TD><xsl:value-of select="°΅°έ"/></TD>
+  </TR>
+  </xsl:template>
 </xsl:stylesheet>

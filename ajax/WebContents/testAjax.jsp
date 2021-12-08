@@ -26,13 +26,14 @@ function load(url){
 }
 
 function viewMessage(){
-	if(httpRequest.readyState==4){
-		if(httpRequest.status==200){
+/* 	alert(httpRequest.readyState); */
+	if(httpRequest.readyState==4){ //요청전송후 결과데이타 가 완전히 전송되었을때 이고,
+		if(httpRequest.status==200){//전송결과가 정상일때
 			alert(httpRequest.responseText);//요청 전달 후 받은 결과 text
 		}else{
 			alert("실패:"+httpRequest.status);
 		}
-	}
+ 	}
 }
 </script>
 </head>

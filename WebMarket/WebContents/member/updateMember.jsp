@@ -304,6 +304,7 @@ $(document).ready(function(){
           <div class="col-sm-offset-2 col-sm-10">
                <input type="submit" class="btn btn-primary" value="수정">
                <input type="reset"  class="btn btn-warning" value="취소" onclick="reset()">
+               
           </div>
        </div>
        </form>

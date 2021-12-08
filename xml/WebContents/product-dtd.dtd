@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!ELEMENT 제품군 (제품*)>
+ <!ELEMENT 제품 (제조사, 제품명, 제품가격, 할인율, 제품코드)>
+  <!ELEMENT 제조사 (#PCDATA)>
+  <!ELEMENT 제품명 (#PCDATA)>
+  <!ELEMENT 제품가격 (#PCDATA)>
+  <!ELEMENT 할인율 (#PCDATA)>
+  <!ELEMENT 제품코드 (#PCDATA)>

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 특수문자 -->
+<char>
+ <and><![CDATA[YOU & ME]]> </and>
+ <And><![CDATA[YOU & ME]]></And>
+</char>

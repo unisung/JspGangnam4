@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+<xs:element name="제품군">
+  <xs:complexType>
+  	<xs:sequence>
+  		<xs:element name="제품">
+  		 <xs:complexType>
+  		  <xs:sequence>
+  		 	<xs:element name="제조사" type="xs:string"/>
+  		 	<xs:element name="제품명" type="xs:string"/>
+  		 	<xs:element name="제품가격" type="xs:integer"/>
+  		 	<xs:element name="할인율" type="xs:integer"/>
+  		 	<xs:element name="제품코드" type="xs:string"/>
+  		  </xs:sequence>	
+  		 </xs:complexType>
+  		</xs:element> 	
+  	</xs:sequence>
+  </xs:complexType>
+</xs:element>
+</xs:schema>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Cus:User xmlns:Cus ="http://www.pop.com/buy/cus"
+          xmlns:Order="http://www.techcom.net/2002/Order">
+  <Cus:ID>pinkgirl</Cus:ID>
+  <Cus:Password>123-456</Cus:Password>
+  <Cus:Name>전원지</Cus:Name>
+  <Cus:Email>pink@naver.com</Cus:Email>
+  <Cus:Phone>02-777-7777</Cus:Phone>
+  <Cus:Goods>
+  	<Order:Good>
+  	<Order:ID>19-908-098</Order:ID>
+  	<Order:CategoryID>7</Order:CategoryID>
+  	<Order:Name>NoteBook</Order:Name>
+  	<Order:Price>2250000</Order:Price>
+  	</Order:Good>
+  </Cus:Goods>
+</Cus:User>

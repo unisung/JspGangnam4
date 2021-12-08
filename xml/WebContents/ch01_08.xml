@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<User>
+  <ID>pinkgirl</ID>
+  <Password>123-456</Password>
+  <Name>전원지</Name>
+  <Email>pink@naver.com</Email>
+  <Phone>02-777-7777</Phone>
+  <Goods>
+  	<ID>19-908-098</ID>
+  	<CategoryID>7</CategoryID>
+  	<Name>NoteBook</Name>
+  	<Price>2250000</Price>
+  </Goods>
+</User>

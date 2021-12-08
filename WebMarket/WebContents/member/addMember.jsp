@@ -69,11 +69,11 @@ function checkForm(){
 		return false;	
 	}
 	
- 	if(!isConfirm){
+ 	/* if(!isConfirm){
 		alert("본인 인증을 해주세요!");
 		form.cert.focus();
 		return false;
-	} 
+	}  */
 	return true;
 }
 </script>

@@ -2,7 +2,7 @@
  * 
  */
 var httpRequest = null;
-function getXMLHttpRequest(){
+function getRequest(){
 	if(window.ActiveXObject){
 		return new ActiveXObject("Msxml2.XMLHTTP");
 	}else if(window.XMLHttpRequest){
@@ -36,6 +36,6 @@ function sendRequest(url, params,callback, method){
 function log(msg){
 	var con=document.getElementById('console');
 	if(msg!=null){
-		con.innerHTML +=msg='<br>';
+		con.innerHTML +=msg+'<br>';
 	}
 }

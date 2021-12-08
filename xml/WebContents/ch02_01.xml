@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml:stylesheet type="text/css" href="ch02_01.css"?>
+<goods>
+	<good>
+	  <company>(주)한지 정보통신</company>
+	  <name>컴퓨터</name>
+	  <price>1270000</price>
+	  <discount>10</discount>
+	</good>
+</goods>

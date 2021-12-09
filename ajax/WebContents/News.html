@@ -1,0 +1,24 @@
+<!DOCTYPE html><html><head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript" src="httpRequest.js"></script>
+<script>
+function loadNews(){
+	 sendRequest("getNews.jsp", null, loadedNews, 'get');
+}
+function loadedNews(){
+	if(httpRequest.readyState==4){
+		if(httpRequest.status==200){
+		    var newsList = document.getElementById('newsList');
+		    newsList.innerHTML = httpRequest.responseText;
+		}
+	}
+}
+//현재 문서가 화면에 나타나면 처리하는 함수.
+window.onload = function(){loadNews();}
+</script>
+</head>
+<body>
+  <div id="newsList"></div>
+</body>
+</html>

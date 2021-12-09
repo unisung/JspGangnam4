@@ -1,0 +1,23 @@
+<!DOCTYPE html><html><head>
+<meta charset="UTF-8">
+<title>Member클래스 사용</title>
+<script type="text/javascript" src="httpRequest.js"></script>
+<script type="text/javascript" src="Member_json.js"></script>
+<script>
+window.onload=function(){
+	var mem=new Member("beginner","길동","0101013000000");
+	log('변경전');
+	log('회원:'+mem.toString());
+	log('나이:'+mem.getAge());
+	
+	mem.setValue("꺽정","excellent","8002011000000");
+	log('변경후');
+	log('회원:'+mem.toString());
+	log('나이:'+mem.getAge());
+}
+</script>
+</head>
+<body>
+ <div id="console"></div>
+</body>
+</html>

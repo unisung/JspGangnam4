@@ -4,13 +4,13 @@
 <script type="text/javascript" src="httpRequest.js"></script>
 <script>
  function helloToServer(){
-	 var params = "name=" + encodeURIComponent(document.f.name.value);
+	 var params = "name=" + encodeURIComponent(document.f.name.value);//name=홍길동
 	 sendRequest('hello.jsp', params, helloFromServer, 'post');
  }
 
  function helloFromServer(){
-	 if(httpRequest.readyState==4){
-		 if(httpRequest.state==200){
+	 if(httpRequest.readyState==4){//응답전송완료
+		 if(httpRequest.status==200){//상태가 'OK'이면 처리
 			 alert("서버응답:"+httpRequest.responseText);
 		 }
 	 }

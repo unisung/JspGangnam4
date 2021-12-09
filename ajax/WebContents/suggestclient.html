@@ -80,10 +80,19 @@ function show(elementId){
 <body>
 <form name="search">
   <input name='keyword' id='keyword' onkeydown="startSuggest()">
-  <input type='button' value='검색'>
-  <div id="suggest" style="display: ; position:absolute; left:0px; top:30px;">
+  <input type='button' value='검색' onclick="searchWord()">
+  <div id="suggest" style="display:''; position:absolute; left:0px; top:30px;">
    <div id="suggestList"></div>
    </div>
 </form>
 </body>
 </html>
+<script>
+function searchWord(){
+	var searchKeyword =document.getElementById('keyword').value;
+	alert(searchKeyword);
+	location.href='https://search.naver.com/search.naver?query='+searchKeyword;
+	//location.href='https://www.google.com/search?q='+searchKeyword;
+	//location.href='http://search.daum.net/search?q='+searchKeyword;
+}
+</script>

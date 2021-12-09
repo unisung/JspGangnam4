@@ -1,0 +1,48 @@
+<!DOCTYPE html><html><head><meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript" src="httpRequest.js"></script>
+<script>
+ var xmlDoc=null;
+ var xslDoc=null;
+ function loadBooks(){
+	 sendRequest("book.xml", null, loadedBooksXML, "GET");
+ }
+ function loadedBooksXML(){
+	 if(httpRequest.readyState==4){
+			if(httpRequest.status==200){
+				xmlDoc=httpRequest.responseXML; //alert(xmlDoc);
+			  sendRequest("books.xsl", null, loadedBooksXSL, "GET");//xml의 내용을 xsl로 전달후 로딩
+			}
+	}
+ }
+ function loadedBooksXSL(){
+	 if(httpRequest.readyState==4){
+			if(httpRequest.status==200){
+				xslDoc=httpRequest.responseXML;
+			    doXSLT();
+			}
+	}
+ }
+ function doXSLT(){
+	 if(xmlDoc==null || xslDoc==null) return;
+	 var bookList = document.getElementById("bookList");
+	 if(window.ActiveXObject){
+		 bookList.innerHTML=xmlDoc.transformNode(xslDoc);//IE인 경우 변환
+	 }else{
+		 var xsltProc = new XSLTProcessor();
+		 xsltProc.importStylesheet(xslDoc);//기타브라우저 인 경우 
+		 var fragment = xsltProc.transformToFragment(xmlDoc, document);
+		 bookList.appendChild(fragment);
+	 }
+ }
+ 
+ window.onload=function(){
+	 loadBooks();
+ }
+</script>
+</head>
+<body>
+ <h1>신규 책 목록</h1>
+ <div id="bookList"></div>
+</body>
+</html>

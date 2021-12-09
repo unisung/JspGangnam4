@@ -1,0 +1,33 @@
+<!DOCTYPE html><html><head><meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript" src="httpRequest.js"></script>
+<script>
+function loadBooks(){
+	sendRequest("book.xml", null, loadedBooks, "GET");
+}
+function loadedBooks(){
+	if(httpRequest.readyState==4){
+		if(httpRequest.status==200){
+			var xmlDoc = httpRequest.responseXML;
+			var bookList = xmlDoc.getElementsByTagName("book");
+			var message = "책 갯수 : "+bookList.length+"권\n"; //alert(message);
+			for(var i=0;i<bookList.length;i++){
+				var book = bookList.item(i);
+				var titleValue 
+				     = book.getElementsByTagName("title").item(0).firstChild.nodeValue;//alert(titleValue);
+				var authorValue
+				     =book.getElementsByTagName("author").item(0).firstChild.nodeValue;//alert(authorValue);
+				message += titleValue +"("+authorValue+")\n";    
+			}
+			alert(message);
+		}
+	}
+}
+
+window.onload=function(){loadBooks();};
+</script>
+</head>
+<body>
+ 책 정보를 alert으로 출력
+</body>
+</html>

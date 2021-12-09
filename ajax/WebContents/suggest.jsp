@@ -1,14 +1,8 @@
 <%@page import="java.util.Collections"%><%@page import="java.util.ArrayList"%><%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-</head>
-<body>
-<!-- 선언부 -->
+<%@ page trimDirectiveWhitespaces="true" %>    
+<%-- 선언부 --%>
 <%!
 	String[] keywords={"AJAX", "AJAX 실전 프로그래밍", "자바", 
 			 "자바 프로그래밍","자바서버 페이지", "자바스터디", "자바서비스", "자바캔"};
@@ -28,7 +22,7 @@
     	return result;
     }
 %>
-<!-- 스크립틀릿 -->
+<%-- 스크립틀릿 --%>
 <%
 	request.setCharacterEncoding("utf-8");
     String keyword = request.getParameter("keyword");
@@ -44,6 +38,3 @@
     	}
     }
 %>
-
-</body>
-</html>

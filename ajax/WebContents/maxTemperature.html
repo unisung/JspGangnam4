@@ -1,0 +1,43 @@
+<!DOCTYPE html><html><head><meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript" src="httpRequest.js"></script>
+<script>
+function maxView(){
+	sendRequest('getMaxTemperature.jsp',null,maxResult,'get');
+}
+function maxResult(){
+	if(httpRequest.readyState==4){
+		if(httpRequest.status==200){
+		   var csvStr1 = httpRequest.responseText;//응답객체 문자열
+		   var temp = document.getElementById("temp");
+		   temp.innerHTML=csvStr1;
+		   
+		   var start = csvStr1.indexOf('<body>');
+		   var end = csvStr1.indexOf('</body>');
+		   var csvStr = csvStr1.substring(start+6,end);
+		   //alert(start+","+end+","+csvStr);
+		   var tempCsv = csvStr.split(",");//배열
+		   
+		   //정렬을 위해 숫자형으로 된 배열로 변경
+           var arrTemp = new Array(tempCsv.lenght);//길이가 tempCsv길이인 빈 배열 생성
+           for(var i=0;i<tempCsv.length;i++){
+        	   arrTemp[i] = parseFloat(tempCsv[i]);//문자열로 된 배열의 내용을 실수로 변경하여 저장
+           }
+           //최대값 구하기
+           var max = 0;
+           for(var i=0;i<arrTemp.length;i++){
+        	   if(max < arrTemp[i]){max=arrTemp[i];}
+           }
+           var tempMax = document.getElementById("max");
+           tempMax.innerHTML = max;
+		}
+	}
+}
+</script>
+</head>
+<body>
+ <div id="temp"></div>
+ <p>최고 기온은 <span id="max"></span>입니다.
+ <p><input type="button" value="최고온도 보기" onclick="maxView()">
+</body>
+</html>

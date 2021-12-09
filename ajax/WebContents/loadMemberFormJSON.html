@@ -1,0 +1,31 @@
+<!DOCTYPE html><html><head>
+<meta charset="UTF-8">
+<title>JSON으로 부터 객체 생성</title>
+<script type="text/javascript" src="ajax.js"></script>
+<script>
+  window.onload=function(){
+	  new ajax.xhr.Request("member_json.jsp","",viewInfo,"GET");
+ }
+
+function viewInfo(req){
+	 if(req.readyState==4){
+			if(req.status==200){
+				var result=eval("("+req.responseText+")"); //alert(result);
+				if(result.code='scuccess'){
+					var m = result.data.member;
+					alert(m.id+"["+m.name+"]");
+					document.write("<h1>"+m.id+"["+m.name+"]"+"</h1>");
+				}else{
+					alert("실패");
+				}
+			}else{
+				alert("에러 발생: " +req.status);
+			}
+	 }			
+} 
+</script>
+</head>
+<body>
+
+</body>
+</html>

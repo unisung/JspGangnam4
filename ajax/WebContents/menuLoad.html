@@ -1,6 +1,23 @@
 <!DOCTYPE html><html><head>
 <meta charset="UTF-8">
+<style>
+div{width:180px; height: 180px; margin: 3px; float: left;}
+</style>
 <title>서버의 데이터를 대상 엘리먼트에 삽입하기</title>
+<script type="text/javascript" src="./js/jquery-3.6.0.min.js"></script>
+<script>
+$(document).ready(function(){
+	$('#menu1').click(function(){
+		$('#message1').load('menu.html');
+		return false;
+	});
+	$('#menu2').click(function(){
+		$('#message2').load('menu.html li');/* 해당 영역만 추출 */
+		return false;
+	});
+	
+});
+</script>
 </head>
 <body>
 <div><a href="#" id="menu1">메뉴보기 1</a>

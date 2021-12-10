@@ -1,0 +1,26 @@
+<!DOCTYPE html><html><head><meta charset="UTF-8">
+<title>개인 정보</title>
+<script type="text/javascript" src="../js/jquery-3.6.0.min.js"></script>
+<script>
+$(function(){
+	$('#sub').click(function(){
+		var $form_data = $('form').serialize();
+		     $('#msg').text($form_data);
+	});
+});
+</script>
+</head>
+<body>
+<h2>개인 정보</h2>
+ <form>
+   이름:<input name="name" id="name"><p>
+   암호:<input type="password" name="pass" id="pass"><p>
+   취미:가요<input type="checkbox" name="hobby" value="music">
+       영화<input type="checkbox" name="hobby" value="movie">
+       춤<input type="checkbox" name="hobby" value="dance"><p>
+       <input type="button" value="확인" id="sub">
+ </form>
+ <div id="msg"></div>
+
+</body>
+</html>

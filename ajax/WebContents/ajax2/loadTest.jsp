@@ -5,7 +5,7 @@
 <title>서버의 데이터를 대상 엘리먼트에 삽입하기</title>
 </head>
 <!-- jquery 라이브러리 링크 -->
-<script type="text/javascript" src="./js/jquery-3.6.0.min.js"></script>
+<script type="text/javascript" src="../js/jquery-3.6.0.min.js"></script>
 <script>
 /* load(url[,data][,success]): 
 	data: 요청시 서버에 보낼 자바스크립트 객체 맵, 문자열 형식의 데이타,

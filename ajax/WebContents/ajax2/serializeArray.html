@@ -1,12 +1,19 @@
 <!DOCTYPE html><html><head><meta charset="UTF-8">
 <title>개인 정보</title>
+<style>
+div{font-weight: bold; color:red;}
+</style>
 <script type="text/javascript" src="../js/jquery-3.6.0.min.js"></script>
 <script>
 $(function(){
-	$('#sub').click(function(){
-		var $form_data = $('form').serialize();
-		     $('#msg').text($form_data);
-	});
+     $('#sub').click(function(){
+    	 $('#msg').empty();/*요소내의 내용 삭제 */
+    	 var $form_data = $('form').serializeArray();
+    	 console.log($form_data);
+    	 $.each($form_data,function(index, value){
+    		  $('#msg').append(value.name +"="+value.value+'<br>');
+    	 });
+     });
 });
 </script>
 </head>
@@ -14,7 +21,9 @@ $(function(){
 <h2>개인 정보</h2>
  <form>
    <input type="hidden" name="seq" value="1">
+   <label>이름을 입력하세요: </label>
    이름:<input name="name" id="name"><p>
+   <label>패스워드를 입력하세요: </label>
    암호:<input type="password" name="pass" id="pass"><p>
    취미:가요<input type="checkbox" name="hobby" value="music">
        영화<input type="checkbox" name="hobby" value="movie">

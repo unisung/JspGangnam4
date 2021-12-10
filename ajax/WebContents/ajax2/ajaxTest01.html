@@ -1,0 +1,42 @@
+<!DOCTYPE html><html><head>
+<meta charset="UTF-8">
+<title>$.ajax()사용</title>
+<style>
+div{width:200px; height: 80px; margin:3px; float:left;}
+</style>
+<script type="text/javascript" src="../js/jquery-3.6.0.min.js"></script>
+<script>
+$(function(){    // <-$(document).ready(function(){})
+	$('#menu1').click(function(){ /* $.ajax({객체}) */
+		$.ajax({
+			url:'menu.html',
+			dataType:'html',/*응답 데이타 타입 */
+			success:function(data){/* 응답데이타를 매개변수로 받는 콜백함수  */
+				$('#message1').html(data);/* innerHTML="데이타"  */
+			}
+		});
+	});
+	$('#menu2').click(function(){
+		$.ajax({
+			   url:'menu.html',
+			   dataType:'html',
+			   success:function(data){
+				   //alert($(data).find('li'));
+				   $('#message2').html($(data).find('li'));
+			   }
+		});
+	});
+}); 
+</script>
+</head>
+<body>
+ <div>
+ 	<a href="#" id="menu1">메뉴보기1</a>
+ 	<p><span id="message1"></span>
+ </div>
+ <div>
+ 	<a href="#" id="menu2">메뉴보기2</a>
+ 	<p><span id="message2"></span>
+ </div>
+</body>
+</html>

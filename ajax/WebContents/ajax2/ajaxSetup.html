@@ -1,7 +1,32 @@
 <!DOCTYPE html><html><head><meta charset="UTF-8">
 <title>Insert title here</title>
+<script type="text/javascript" src="../js/jquery-3.6.0.min.js"></script>
+<script>
+$(function(){
+	$('#sub').click(function(){
+			var name=$('#name').val();
+			var pass=$('#pass').val();
+			var sendData = 'name='+name+'&pass='+pass;
+			/* global설정 $.ajaxSetup()함수 */
+			$.ajaxSetup({
+				type:'POST',
+				url:'checkin.jsp',
+				dataType:'text',
+				success:function(msg){
+					$('#msg').html(msg);
+				}
+			});
+			$.ajax({data:sendData});
+	});
+});
+</script>
 </head>
 <body>
-
+<form>
+  이름:<input type="text" name="name" id="name"><p>
+  암호:<input type="password" name="pass" id="pass"><p>
+  <input type="button" id="sub" value="확인">
+</form>
+<div id="msg"></div>
 </body>
 </html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html><html><head><meta charset="UTF-8">
+<title>Insert title here</title>
+<style type="text/css">
+td{border:1px solid gray;}
+</style>
+<script src="../js/jquery-3.6.0.min.js"></script>
+<script>
+/* $.post(url,전송데이타, 콜백함수(응답데이타){}) */
+$(function(){
+	$('#submit').click(function(){
+	var $username = $('.username').val();// val(값)<-setValue, val()<-getValue
+    var $sendData ='username=' + $username;
+	/* post방식 전송 */
+	$.post('welcome.jsp',$sendData,function(msg){
+		$('#message').html(msg); //html()<-getHML, html(값)<-setHTML
+	  });
+	});
+});
+</script>
+</head>
+<body>
+  <form>
+    <label>이름을 입력하세요:</label>
+    <input type="text" name="username" class="username"/><br>
+    <input type="button" id="submit" value="전송"/>
+  </form>
+  <div id="message">
+  </div>
+
+</body>
+</html>

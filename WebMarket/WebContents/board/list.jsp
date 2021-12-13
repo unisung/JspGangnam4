@@ -8,5 +8,6 @@
 </head>
 <body>
 <h1>list.jsp 페이지</h1>
+<p>${message}
 </body>
 </html>

@@ -16,11 +16,14 @@ public class DBConnection {
 	 conn=DriverManager.getConnection(url,user,password);
 	 return conn;
  }
- 
+
+ /*
 public static void main(String[] args) throws ClassNotFoundException, SQLException {
 	if(DBConnection.getConnection()!=null)
 		System.out.println("연결 성공!");
 	else
 		System.out.println("연결 실패!");
 } 
+*/
+
 }

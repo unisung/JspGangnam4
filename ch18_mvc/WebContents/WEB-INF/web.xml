@@ -14,9 +14,10 @@
    <servlet-name>myLoginServlet</servlet-name>
    <servlet-class>ch18_mvc.ControllerSevlet</servlet-class>
   </servlet>
+  <!-- url패턴 /서블릿명 -->
   <servlet-mapping>
    <servlet-name>myLoginServlet</servlet-name>
-   <url-pattern>/ch18_mvc/ControllerSevlet</url-pattern>
+   <url-pattern>/ControllerSevlet</url-pattern>
   </servlet-mapping>
   
 </web-app>

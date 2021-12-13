@@ -41,11 +41,11 @@ public class BoardController extends HttpServlet {
        
        //URI 코멘드 요청에 따른 로직 분기 처리 후, 응답(view)페이지로 이동 처리
        if(command.equals("/BoardListAction.do")) {//등록된 게시글 목록 페이지 출력 요청
-           request.setAttribute("message", "hello!!!");
+           //게시글 리스트 얻기 메소드
            RequestDispatcher rd = request.getRequestDispatcher("/board/list.jsp");
            rd.forward(request, response);
        }else if(command.equals("/BoardWriteForm.do")) {//새 게시글 등록 페이지 요청
-     
+           //로그인 후 게시글 등록 페이지로 이동했는지, 로그인 한 작성자 이름 얻기
                RequestDispatcher rd = request.getRequestDispatcher("/board/writeForm.jsp");
                rd.forward(request, response);
        }else if(command.equals("/BoardWriteAction.do")) {//새 게시글 등록 프로세스 페이지 

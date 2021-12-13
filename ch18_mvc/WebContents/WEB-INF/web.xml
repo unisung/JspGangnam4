@@ -20,4 +20,14 @@
    <url-pattern>/ControllerSevlet</url-pattern>
   </servlet-mapping>
   
+  <servlet>
+   <servlet-name>myLoginServlet2</servlet-name>
+   <servlet-class>ch18_mvc.ControllerSevlet</servlet-class>
+  </servlet>
+  <!-- url패턴 /서블릿명 -->
+  <servlet-mapping>
+   <servlet-name>myLoginServlet2</servlet-name>
+   <url-pattern>/ch18/ControllerSevlet</url-pattern>
+  </servlet-mapping>
+  
 </web-app>

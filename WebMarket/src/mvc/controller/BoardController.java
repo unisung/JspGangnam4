@@ -49,23 +49,24 @@ public class BoardController extends HttpServlet {
                RequestDispatcher rd = request.getRequestDispatcher("/board/writeForm.jsp");
                rd.forward(request, response);
        }else if(command.equals("/BoardWriteAction.do")) {//새 게시글 등록 프로세스 페이지 
-    	     
+    	     //DB에 신규등록 게시글 저장
            RequestDispatcher rd = request.getRequestDispatcher("/BoardListAction.do");//게시글 등록후 게시글 리스트로 이동
            rd.forward(request, response);
        }else if(command.equals("/BoardViewAction.do")) {//게시글 상세보기 요청
-    	     
+    	    //게시글 리스트에서 글 번호에 해당하는 게시글 정보를 DB에서 얻기 
            RequestDispatcher rd = request.getRequestDispatcher("/BoardView.do");//상세페이지 보기 요청
            rd.forward(request, response);
-       }else if(command.equals("/BoardView.do")) {//상세페이지 용청
-    	     
+       }else if(command.equals("/BoardView.do")) {//상세페이지 요청
+    	 //게시글 리스트에서 글 번호에 해당하는 게시글 정보를 DB에서 얻기
+    	  //조회수 증가 처리 hit = hit+1  
            RequestDispatcher rd = request.getRequestDispatcher("/board/view.jsp");
            rd.forward(request, response);
        }else if(command.equals("/BoardUpdateAction.do")) {//게시글 수정 처리 요청
-    	     
+    	   //수정된 내용을 파라미터로 받아서 db에 수정처리  
            RequestDispatcher rd = request.getRequestDispatcher("/BoardListAction.do");//게시글 리스트페이지로 이동
            rd.forward(request, response);
        }else if(command.equals("/BoardDeleteAction.do")) {//게시글 삭제요청
-    	     
+    	   //삭제할 글 번호를 파라미터로 받아서 db에서 삭제 처리  
            RequestDispatcher rd = request.getRequestDispatcher("/BoardListAction.do");//게시글 리스트로 이동
            rd.forward(request, response);
        }

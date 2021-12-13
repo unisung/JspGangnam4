@@ -9,4 +9,14 @@
   <servlet-name>myController</servlet-name>
   <url-pattern>/MyController</url-pattern>
   </servlet-mapping>
+  
+  <servlet>
+   <servlet-name>myLoginServlet</servlet-name>
+   <servlet-class>ch18_mvc.ControllerSevlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+   <servlet-name>myLoginServlet</servlet-name>
+   <url-pattern>/ch18_mvc/ControllerSevlet</url-pattern>
+  </servlet-mapping>
+  
 </web-app>

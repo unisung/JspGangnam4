@@ -1,7 +1,5 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
-<% /* String sessionId=(String)session.getAttribute("sessionId"); */
-   String sessionId = "hong";
-%>    
+<% String sessionId=(String)session.getAttribute("sessionId"); %>    
 <!DOCTYPE html><html><head>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
 <meta charset="UTF-8">

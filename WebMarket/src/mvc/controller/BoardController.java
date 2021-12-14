@@ -8,6 +8,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import mvc.model.BoardDAO;
+
 public class BoardController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -45,7 +47,8 @@ public class BoardController extends HttpServlet {
            RequestDispatcher rd = request.getRequestDispatcher("./board/list.jsp");
            rd.forward(request, response);
        }else if(command.equals("/BoardWriteForm.do")) {//새 게시글 등록 페이지 요청
-           //로그인 후 게시글 등록 페이지로 이동했는지, 로그인 한 작성자 이름 얻기
+              //로그인 후 게시글 등록 페이지로 이동했는지, 로그인 한 작성자 이름 얻기
+    	       requestLoginName(request); 
                RequestDispatcher rd = request.getRequestDispatcher("./board/writeForm.jsp");
                rd.forward(request, response);
        }else if(command.equals("/BoardWriteAction.do")) {//새 게시글 등록 프로세스 페이지 
@@ -71,8 +74,24 @@ public class BoardController extends HttpServlet {
            rd.forward(request, response);
        }
        
-       
-       
+	}
 
+	//인증된 사용자명 얻기
+	private void requestLoginName(HttpServletRequest request) {
+        //파라미터로 넘어온 request의 id에 해당하는 값 얻기
+		String id = request.getParameter("id");
+		
+		//DB에서 id에 해당하는 name정보 얻기
+		BoardDAO dao = BoardDAO.getInstance();
+		String name = dao.getLoginNameById(id);//id에 해당하는 name 얻기메소드
+		
+		request.setAttribute("name", name);
+	}
+
+	//새로울 글 등록하기
+	private void requestBoardWrite(HttpServletRequest request) {
+		
+		BoardDAO dao = BoardDAO.getInstance();
+		
 	}
 }

@@ -99,6 +99,7 @@ public class BoardDAO {
 	  int total_record = getListCount();
 	  int start  = (pageNum-1)*limit;// 예)1페이지-> start=0; 4페이지 -> start=(4-1)*5=>15
 	  int index = start +1;//index = 1, index = 15+1 => 16
+	  System.out.println("index:"+index);
 	  //[1]1,2,3,4,5   [2]6,7,8,9,10, [3]11,12,13,14,15, [4]16,17,18,19,20
 	  
 	  //게시글 리스트 객체 생성
@@ -106,13 +107,16 @@ public class BoardDAO {
 	  
 	  try {
 		    conn = DBConnection.getConnection();
-		    pstmt = conn.prepareStatement(sql);
+		    pstmt = conn.prepareStatement(sql,
+		    		                      ResultSet.TYPE_SCROLL_INSENSITIVE, 
+		    		                      ResultSet.CONCUR_UPDATABLE);
 		    rs = pstmt.executeQuery();
-		    while(rs.next()) {
+		    while(rs.absolute(index)) {
 		    	//게시글 객체 생성
 		    	BoardDTO board = new BoardDTO();
 		    	//조회된 레코드로부터 속성값 설정
 		    	board.setNum(rs.getInt("num"));
+		    	System.out.println("글번호:"+rs.getInt("num"));
 		    	board.setId(rs.getString("id"));
 		    	board.setName(rs.getString("name"));
 		    	board.setSubject(rs.getString("subject"));

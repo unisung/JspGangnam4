@@ -6,6 +6,8 @@
  int total_page=(Integer)request.getAttribute("total_page");
  int total_record=(Integer)request.getAttribute("total_record");
  List<BoardDTO>boardList =(List<BoardDTO>)request.getAttribute("boardlist");
+ System.out.println("글번호:"+boardList.get(0).getNum());
+ 
 %>    
 <!DOCTYPE html><html><head>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">

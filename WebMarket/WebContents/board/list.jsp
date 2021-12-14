@@ -8,7 +8,7 @@
  List<BoardDTO>boardList =(List<BoardDTO>)request.getAttribute("boardlist");
  int startPage = (Integer)request.getAttribute("startPage");
  int endPage=(Integer)request.getAttribute("endPage");
- int fianlPage = (Integer)request.getAttribute("finalPage");
+ int finalPage = (Integer)request.getAttribute("finalPage");
  
 %>    
 <!DOCTYPE html><html><head>
@@ -67,7 +67,7 @@ function checkForm(){
    <div align="center">
      <c:set var="pageNum" value="<%=pageNum%>"/>
    <nav aria-label="...">
-   <ul class="pagination">
+   <ul class="pagination justify-content-center">
   
    <c:if test="${startPage-1==1 }">
    <li class="page-item  disabled"> 
@@ -104,10 +104,7 @@ function checkForm(){
   </c:if>
    </ul>
 </nav>
-
-   
    </div>
-
    <a href="#" onclick="checkForm(); return false;" class="btn btn-primary">&laquo;글쓰기</a>
   </form> 
   <hr>

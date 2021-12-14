@@ -125,11 +125,25 @@ public class BoardController extends HttpServlet {
 			total_page = total_page +1;// 자투리 건수를 위해 한 페이지 추가
 		}
 		
+		//전체 페이지
+		int finalPage = (total_record + (LISTCOUNT - 1))/LISTCOUNT;//103 , total_record=513, (513 +4)/5
+		
+		//페이지 세그먼트 처리
+		int startPage =((pageNum -1)/10)*10 +1;  //1페이지 1, 2페이지 1, 6페이지 1, 11페이지 11, 19페이지11,20페이지 11,21페이지,21 
+		int endPage =startPage + 10 -1;//1 + 10 -1=>10, 11+10-1=>20, 21+10-1=>30
+		
+		//페이지 보정
+		if(endPage > finalPage) endPage = finalPage;
+		
+		
 		//list.jsp(view페이지로 결과 전달)
 		request.setAttribute("pageNum", pageNum);
 		request.setAttribute("total_page", total_page);
 		request.setAttribute("total_record", total_record);
 		request.setAttribute("boardlist", boardList);
+		request.setAttribute("startPage", startPage);
+		request.setAttribute("endPage", endPage);
+		request.setAttribute("finalPage",finalPage);
 	}
 
 	//인증된 사용자명 얻기

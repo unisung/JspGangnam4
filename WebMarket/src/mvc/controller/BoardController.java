@@ -2,7 +2,9 @@ package mvc.controller;
 
 import java.io.IOException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -51,6 +53,7 @@ public class BoardController extends HttpServlet {
        //URI 코멘드 요청에 따른 로직 분기 처리 후, 응답(view)페이지로 이동 처리
        if(command.equals("/BoardListAction.do")) {//등록된 게시글 목록 페이지 출력 요청
            //게시글 리스트 얻기 메소드
+    	   requestBoardList(request);
            RequestDispatcher rd = request.getRequestDispatcher("./board/list.jsp");
            rd.forward(request, response);
        }else if(command.equals("/BoardWriteForm.do")) {//새 게시글 등록 페이지 요청
@@ -58,8 +61,10 @@ public class BoardController extends HttpServlet {
     	       HttpSession session = request.getSession();
     	       String sessionId=(String)session.getAttribute("sessionId");
     	      //로그인 아이디가 없으면 로그인 페이지로 이동 처리
-    	      if(sessionId==null || "".equ)
-    	   
+    	      if(sessionId==null || "".equals(sessionId)) {
+    	    	   response.sendRedirect("./member/loginMember.jsp");
+    	    	   return;
+    	      }
               //로그인 후 게시글 등록 페이지로 이동했는지, 로그인 한 작성자 이름 얻기
     	       requestLoginName(request); 
                RequestDispatcher rd = request.getRequestDispatcher("./board/writeForm.jsp");
@@ -88,6 +93,44 @@ public class BoardController extends HttpServlet {
            rd.forward(request, response);
        }
        
+	}
+
+	//등록되 글 목록 가져오기
+	private void requestBoardList(HttpServletRequest request) {
+		//DB억세스 객체 생성
+		BoardDAO dao = BoardDAO.getInstance();
+		List<BoardDTO> boardList = new ArrayList<BoardDTO>();
+		//게시판 이동시 첫 페이지 설정
+		int pageNum=1;
+		int limit = LISTCOUNT;//초기값 5
+		
+		//파라미터로 넘어온 페이지 번호가 있으면 해당 페이지 번호로 변경
+		if(request.getParameter("pageNum")!=null)
+			pageNum=Integer.parseInt(request.getParameter("pageNum"));
+		
+		//DB로 부터 페이지당 갯수 별로 리스트 생성
+		boardList = dao.getBoardList(pageNum, limit);
+		int total_record = dao.getListCount();
+		
+		//전체 글 갯수 얻기
+		int total_page;
+		
+		//페이징처리
+		if(total_record%limit==0) { // 예) 485건 -> 한페이지당 5건 출력 => 485=5*97+0, 97페이지
+			total_page = total_record/limit;// 정수/정수 => 정수 
+			Math.floor(total_page);// 버림
+		}else {                    // 예) 487건 -> 한페이지당 5건 출력 => 487=5*97 + 2, 98페이지
+			total_page = total_record/limit;//정수 /정수 => 정수
+			Math.floor(total_page);
+			total_page = total_page +1;// 자투리 건수를 위해 한 페이지 추가
+		}
+		
+		//list.jsp(view페이지로 결과 전달)
+		request.setAttribute("pageNum", pageNum);
+		request.setAttribute("total_page", total_page);
+		request.setAttribute("total_record", total_record);
+		request.setAttribute("boardlist", boardList);
+	
 	}
 
 	//인증된 사용자명 얻기

@@ -9,6 +9,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import mvc.model.BoardDAO;
 import mvc.model.BoardDTO;
@@ -53,6 +54,12 @@ public class BoardController extends HttpServlet {
            RequestDispatcher rd = request.getRequestDispatcher("./board/list.jsp");
            rd.forward(request, response);
        }else if(command.equals("/BoardWriteForm.do")) {//새 게시글 등록 페이지 요청
+    	      //세션으로 부터 로그인 아이디 얻기
+    	       HttpSession session = request.getSession();
+    	       String sessionId=(String)session.getAttribute("sessionId");
+    	      //로그인 아이디가 없으면 로그인 페이지로 이동 처리
+    	      if(sessionId==null || "".equ)
+    	   
               //로그인 후 게시글 등록 페이지로 이동했는지, 로그인 한 작성자 이름 얻기
     	       requestLoginName(request); 
                RequestDispatcher rd = request.getRequestDispatcher("./board/writeForm.jsp");

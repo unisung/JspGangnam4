@@ -49,24 +49,32 @@ function checkForm(){
         	    BoardDTO notice = boardList.get(j);
        %> 	    
         <tr>
-         <td></td>
-         <td></td>
-         <td></td>
-         <td></td>
-         <td></td>
+         <td><%=notice.getNum()%></td>
+         <td><%=notice.getSubject() %></td>
+         <td><%=notice.getRegist_day() %></td>
+         <td><%=notice.getHit() %></td>
+         <td><%=notice.getName() %></td>
         </tr>        	    	    
         <% 
         }
-       %>
-       
-       
+       %>   
        </table>
-    
-    
-    
-    
-    </div>
-
+    </div><!-- 페이지별 게시글 리스트 출력 영역 끝. -->
+   <div align="center">
+     <c:set var="pageNum" value="<%=pageNum%>"/>
+     <c:forEach var="i" begin="1" end="<%=total_page%>">
+      <a href="<c:url value="./BoardListAction.do?pageNum=${i}"/>">
+         <c:choose>
+            <c:when test="${pageNum==i }">
+            		<font color='4C5317'><b>[${i}]</b></font>
+            </c:when>
+            <c:otherwise>
+                     <font color='4C5317'>[${i}]</font>
+            </c:otherwise>
+         </c:choose>
+      </a>
+     </c:forEach>
+   </div>
 
    <a href="#" onclick="checkForm(); return false;" class="btn btn-primary">&laquo;글쓰기</a>
   </form> 

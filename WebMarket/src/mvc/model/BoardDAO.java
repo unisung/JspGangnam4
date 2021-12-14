@@ -3,6 +3,8 @@ package mvc.model;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
 
 import mvc.database.DBConnection;
 
@@ -84,6 +86,92 @@ public class BoardDAO {
 		  }
 	  }
   }//insertBoard()메소드 끝.
+  
+  //board테이블의 레코드 가져오기
+  public List<BoardDTO> getBoardList(int pageNum, int limit){
+	  Connection conn=null;
+	  PreparedStatement pstmt=null;
+	  ResultSet rs = null;
+	  
+	  String name=null;
+	  String sql = "select * from board order by num desc";//최근 등록글이 먼저나오도록 처리
+	  
+	  int total_record = getListCount();
+	  int start  = (pageNum-1)*limit;// 예)1페이지-> start=0; 4페이지 -> start=(4-1)*5=>15
+	  int index = start +1;//index = 1, index = 15+1 => 16
+	  //[1]1,2,3,4,5   [2]6,7,8,9,10, [3]11,12,13,14,15, [4]16,17,18,19,20
+	  
+	  //게시글 리스트 객체 생성
+	  ArrayList<BoardDTO> list = new ArrayList<>();
+	  
+	  try {
+		    conn = DBConnection.getConnection();
+		    pstmt = conn.prepareStatement(sql);
+		    rs = pstmt.executeQuery();
+		    while(rs.next()) {
+		    	//게시글 객체 생성
+		    	BoardDTO board = new BoardDTO();
+		    	//조회된 레코드로부터 속성값 설정
+		    	board.setNum(rs.getInt("num"));
+		    	board.setId(rs.getString("id"));
+		    	board.setName(rs.getString("name"));
+		    	board.setSubject(rs.getString("subject"));
+		    	board.setContent(rs.getString("content"));
+		    	board.setRegist_day(rs.getString("regist_day"));
+		    	board.setHit(rs.getInt("hit"));
+		    	board.setIp(rs.getString("ip"));
+		    	
+		    	//리스트에 추가하기
+		    	list.add(board);
+		    	
+		    	//현재 페이지에 나타날범위 내이면 index증가
+		    	if(index<(start + limit) && index <=total_record) index++;
+		    	else
+		    		break;	
+		    }
+		    return list;
+	  }catch(Exception e) {
+		  System.out.println("에러:"+e);
+		  }finally {
+			  try {
+				    if(rs!=null) rs.close(); if(pstmt!=null) pstmt.close();
+				    if(conn!=null)conn.close();
+			  }catch(Exception e) {
+				  throw new RuntimeException(e.getMessage());
+			  }
+		  }
+	  return null;
+  }//getBoardList()메소드 끝.
+  
+ //전체 게시글 건 수 가져오기 
+ public int getListCount() {
+	 Connection conn=null;
+	 PreparedStatement pstmt=null;
+	 ResultSet rs = null;
+	 
+	 //게시글 전체 건수 변수 
+	 int x =0;
+	 
+	 String sql = "select count(*) from board";
+	 
+	 try {
+		    conn=DBConnection.getConnection();
+		    pstmt=conn.prepareStatement(sql);
+		    rs=pstmt.executeQuery();
+		    
+		    if(rs.next()) x=rs.getInt(1);
+	  }catch(Exception e) {
+		  System.out.println("에러:"+e);
+	  }finally {
+		  try {
+			    if(rs!=null) rs.close(); if(pstmt!=null) pstmt.close();
+			    if(conn!=null)conn.close();
+		  }catch(Exception e) {
+			  throw new RuntimeException(e.getMessage());
+		  }
+	  }
+	return x;
+}//getListCount() 끝.
   
   
   

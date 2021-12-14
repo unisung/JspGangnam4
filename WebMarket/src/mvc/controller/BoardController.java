@@ -130,7 +130,6 @@ public class BoardController extends HttpServlet {
 		request.setAttribute("total_page", total_page);
 		request.setAttribute("total_record", total_record);
 		request.setAttribute("boardlist", boardList);
-	
 	}
 
 	//인증된 사용자명 얻기

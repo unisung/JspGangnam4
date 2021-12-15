@@ -3,6 +3,7 @@ package mvc.model;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -269,10 +270,38 @@ public void updateHit(int num) {
 	  }catch(Exception e) {
 		  throw new RuntimeException(e.getMessage());
 	  }
- }//updateHit() 끝.
- 
+  }
+}//updateHit() 끝.
+
+public void deleteBoard(int num){
+	Connection conn=null;
+	PreparedStatement pstmt=null;
+	String sql="delete from board where num=?";
+ try {
+	    conn=DBConnection.getConnection();
+	    conn.setAutoCommit(false);//수동 transaction처리
+	    pstmt = conn.prepareStatement(sql);
+	    pstmt.setInt(1, num);
+	    pstmt.executeUpdate();
+	    conn.commit();//commit 처리
+} catch (Exception e) {
+	 try {
+		conn.rollback(); //rollback 처리
+	} catch (SQLException e1) {
+		e1.printStackTrace();
+	}
+	 System.out.println("에러:"+e);
+}finally {
+	  try {
+		   conn.setAutoCommit(true);//자동 transaction으로 처리
+         if(pstmt!=null) pstmt.close();
+		    if(conn!=null)conn.close();
+	  }catch(Exception e) {
+		  throw new RuntimeException(e.getMessage());
+	  }
+ }
 	
-}
+}//deleteBoard()끝.
   
   
   

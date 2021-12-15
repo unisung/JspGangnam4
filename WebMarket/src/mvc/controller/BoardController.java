@@ -91,13 +91,25 @@ public class BoardController extends HttpServlet {
            RequestDispatcher rd = request.getRequestDispatcher("/BoardListAction.do");//게시글 리스트페이지로 이동
            rd.forward(request, response);
        }else if(command.equals("/BoardDeleteAction.do")) {//게시글 삭제요청
-    	   //삭제할 글 번호를 파라미터로 받아서 db에서 삭제 처리  
+    	   //삭제할 글 번호를 파라미터로 받아서 db에서 삭제 처리
+    	   requestBoardDelete(request);
            RequestDispatcher rd = request.getRequestDispatcher("/BoardListAction.do");//게시글 리스트로 이동
            rd.forward(request, response);
        }
        
 	}
+	
+	//선택글 삭제 처리
+    private void requestBoardDelete(HttpServletRequest request) {
+   	 //파라미터로 넘어온 값 얻기
+   	 int num = Integer.parseInt(request.getParameter("num"));
+   	 int pageNum =Integer.parseInt(request.getParameter("pageNum"));
+   	 //DB억세스 객체 생성
+   	 BoardDAO dao = BoardDAO.getInstance();
+   	 dao.deleteBoard(num);
+	}
 
+	//게시글 조회수 증가 처리
 	private void requestUpdateHit(HttpServletRequest request) {
 		int num = Integer.parseInt(request.getParameter("num"));
 	    //DB억세스 객체 생성

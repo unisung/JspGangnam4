@@ -165,7 +165,7 @@ public class BoardController extends HttpServlet {
 
 	}
 
-	//등록되 글 목록 가져오기
+	//등록된 글 목록 가져오기
 	private void requestBoardList(HttpServletRequest request) {
 		//DB억세스 객체 생성
 		BoardDAO dao = BoardDAO.getInstance();
@@ -178,9 +178,15 @@ public class BoardController extends HttpServlet {
 		if(request.getParameter("pageNum")!=null)
 			pageNum=Integer.parseInt(request.getParameter("pageNum"));
 		
+		//검색조회 파라미터 얻기
+		String items =request.getParameter("items");
+		String text = request.getParameter("text");
+				
 		//DB로 부터 페이지당 갯수 별로 리스트 생성
-		boardList = dao.getBoardList(pageNum, limit);
-		int total_record = dao.getListCount();
+		//boardList = dao.getBoardList(pageNum, limit);
+		boardList = dao.getBoardList(pageNum, limit, items, text);
+		//int total_record = dao.getListCount();
+		int total_record = dao.getListCount(items, text);
 		
 		//전체 글 갯수 얻기
 		int total_page;
@@ -214,6 +220,8 @@ public class BoardController extends HttpServlet {
 		request.setAttribute("startPage", startPage);
 		request.setAttribute("endPage", endPage);
 		request.setAttribute("finalPage",finalPage);
+		request.setAttribute("items", items);
+		request.setAttribute("text", text);
 	}
 
 	//인증된 사용자명 얻기

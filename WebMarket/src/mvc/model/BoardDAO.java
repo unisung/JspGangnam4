@@ -89,15 +89,23 @@ public class BoardDAO {
   }//insertBoard()메소드 끝.
   
   //board테이블의 레코드 가져오기
-  public List<BoardDTO> getBoardList(int pageNum, int limit){
+  public List<BoardDTO> getBoardList(int pageNum, int limit, String items, String text){
 	  Connection conn=null;
 	  PreparedStatement pstmt=null;
 	  ResultSet rs = null;
 	  
-	  String name=null;
-	  String sql = "select * from board order by num desc";//최근 등록글이 먼저나오도록 처리
+	  String sql="";
 	  
-	  int total_record = getListCount();
+	  if(items==null && text==null)//검색 조건이 파라미터로 넘어오지 않은 경우
+	   sql ="select * from board order by num desc";
+	  else//검색 조건이 파라미터로 넘어온 경우
+	   sql = "select * from board where "+items+" like '%"+text+"%' order by num desc";
+	  
+	  System.out.println("sql:"+sql);
+	  
+	  //전체 레코드 건수 구하기
+	  int total_record = getListCount(items,text);
+	  
 	  int start  = (pageNum-1)*limit;// 예)1페이지-> start=0; 4페이지 -> start=(4-1)*5=>15
 	  int index = start +1;//index = 1, index = 15+1 => 16
 	  System.out.println("index:"+index);
@@ -149,7 +157,7 @@ public class BoardDAO {
   }//getBoardList()메소드 끝.
   
  //전체 게시글 건 수 가져오기 
- public int getListCount() {
+ public int getListCount(String items, String text) {
 	 Connection conn=null;
 	 PreparedStatement pstmt=null;
 	 ResultSet rs = null;
@@ -157,7 +165,12 @@ public class BoardDAO {
 	 //게시글 전체 건수 변수 
 	 int x =0;
 	 
-	 String sql = "select count(*) from board";
+	 String sql;
+	 if(items==null && text==null)//검색 조건이 파라미터로 넘어오지 않은 경우
+	   sql = "select count(*) from board ";
+     else//검색 조건이 파라미터로 넘어온 경우
+	   sql = "select count(*) from board where "+items+" like '%"+text+"%' ";
+	 System.out.println("getListcount_SQL:"+sql);
 	 
 	 try {
 		    conn=DBConnection.getConnection();

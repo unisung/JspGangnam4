@@ -214,6 +214,40 @@ public class BoardDAO {
 	  }
 	return board; 
  }//getBoardByNum() 끝.
+ 
+ //글 내용 수정 처리
+public void updateBoard(BoardDTO board) {
+	  Connection conn=null;
+	  PreparedStatement pstmt=null;
+	  
+	  String sql = "update board set id=?,name=?,subject=?,content=?,regist_day=?,ip=? where num=?";
+	  
+	  try {
+		    //db연결
+		    conn=DBConnection.getConnection();
+		    pstmt=conn.prepareStatement(sql);
+		    //값 설정
+		    pstmt.setString(1, board.getId());
+		    pstmt.setString(2, board.getName());
+			pstmt.setString(3, board.getSubject());
+			pstmt.setString(4, board.getContent());
+			pstmt.setString(5, board.getRegist_day());
+			pstmt.setString(6, board.getIp());
+			pstmt.setInt(7, board.getNum());
+			
+			//db저장처리
+			pstmt.executeUpdate();		  
+	  }catch(Exception e) {
+		  System.out.println("에러:"+e);
+	  }finally {
+		  try {
+               if(pstmt!=null) pstmt.close();
+			    if(conn!=null)conn.close();
+		  }catch(Exception e) {
+			  throw new RuntimeException(e.getMessage());
+		  }
+	  }
+}//updateBoard()끝.
   
   
   

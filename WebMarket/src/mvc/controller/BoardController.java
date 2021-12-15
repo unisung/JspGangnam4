@@ -107,6 +107,7 @@ public class BoardController extends HttpServlet {
 	 
 	 //BoardDTO객체 생성
 	 BoardDTO board = new BoardDTO();
+	 board.setId(request.getParameter("id"));
 	 board.setNum(num);
 	 board.setName(request.getParameter("name"));
 	 board.setSubject(request.getParameter("subject"));
@@ -117,7 +118,7 @@ public class BoardController extends HttpServlet {
 	 String regist_day = formatter.format(new Date());
 	 
 	 board.setRegist_day(regist_day);
-	 board.setId(request.getRemoteAddr());
+	 board.setIp(request.getRemoteAddr());
 	
 	 //수정 메소드 호출
 	 dao.updateBoard(board);

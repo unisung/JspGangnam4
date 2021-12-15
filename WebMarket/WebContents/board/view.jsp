@@ -26,6 +26,7 @@
           class="form-horizontal" method="post" >
 <%--          <input name="num" type="hidden" value="<%=notice.getNum()%>"> 
          <input name="pageNum" type="hidden" value="<%=nowPage%>"> --%>
+         <input type="hidden" name="id" value="${sessionId}">
     <div class="form-group row">
         <label class="col-sm-2 control-label">성명</label>
         <div class="col-sm-3">

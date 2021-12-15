@@ -248,6 +248,31 @@ public void updateBoard(BoardDTO board) {
 		  }
 	  }
 }//updateBoard()끝.
+
+//조회수 증가
+public void updateHit(int num) {
+ Connection conn=null;
+ PreparedStatement pstmt=null;
+ 
+ String sql="update board set hit=hit+1 where num=?";
+ try {
+	   conn=DBConnection.getConnection();
+	   pstmt = conn.prepareStatement(sql);
+	   pstmt.setInt(1, num);
+	   pstmt.executeUpdate();
+ }catch(Exception e) {
+	 System.out.println("에러:"+e);
+ }finally {
+	  try {
+          if(pstmt!=null) pstmt.close();
+		    if(conn!=null)conn.close();
+	  }catch(Exception e) {
+		  throw new RuntimeException(e.getMessage());
+	  }
+ }//updateHit() 끝.
+ 
+	
+}
   
   
   

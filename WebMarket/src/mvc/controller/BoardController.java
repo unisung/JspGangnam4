@@ -81,7 +81,8 @@ public class BoardController extends HttpServlet {
            rd.forward(request, response);
        }else if(command.equals("/BoardView.do")) {//상세페이지 요청
     	 //게시글 리스트에서 글 번호에 해당하는 게시글 정보를 DB에서 얻기
-    	  //조회수 증가 처리 hit = hit+1  
+    	  //조회수 증가 처리 hit = hit+1
+    	   requestUpdateHit(request);
            RequestDispatcher rd = request.getRequestDispatcher("./board/view.jsp");
            rd.forward(request, response);
        }else if(command.equals("/BoardUpdateAction.do")) {//게시글 수정 처리 요청
@@ -95,6 +96,13 @@ public class BoardController extends HttpServlet {
            rd.forward(request, response);
        }
        
+	}
+
+	private void requestUpdateHit(HttpServletRequest request) {
+		int num = Integer.parseInt(request.getParameter("num"));
+	    //DB억세스 객체 생성
+		BoardDAO dao = BoardDAO.getInstance();
+		dao.updateHit(num);
 	}
 
 	//글 수정 처리

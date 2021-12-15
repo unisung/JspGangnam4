@@ -9,8 +9,16 @@
 <!DOCTYPE html><html><head>
 <link rel="stylesheet" 
       href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>      
 <meta charset="UTF-8">
 <title>글 내용 보기</title>
+<script>
+function confirmDelete(num,pageNum){
+	 location.href="./BoardDeleteAction.do?num="+num+"&pageNum="+pageNum;
+}
+</script>
 </head>
 <body>
 <jsp:include page="../menu.jsp"/>
@@ -51,8 +59,9 @@
             <c:set var="userId" value="<%=notice.getId() %>" />
             <c:if test="${sessionId==userId}"><!-- 작성자와 로그인 아이디가 같은 경우 버튼 보이기  -->
               <p>
-         <a href="./BoardDeleteAction.do?num=<%=notice.getNum()%>&pageNum=<%=nowPage%>" 
-             class="btn btn-danger">삭제</a>
+
+        <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal">삭제
+        </button>
              <input type="submit" class="btn btn-success" value="수정">
             </c:if>
             <a href="./BoardListAction.do?pageNum=<%=nowPage%>" class="btn btn-primary">목록</a>
@@ -61,6 +70,29 @@
     </form>
     <hr>
 </div>
-<jsp:include page="../footer.jsp"/>    
+<jsp:include page="../footer.jsp"/>
+
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+       <%=notice.getNum() %>번 글을 삭제하시겠습니까?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">아니오</button>
+        <button type="button" class="btn btn-primary" onclick="confirmDelete('<%=notice.getNum()%>','<%=nowPage%>')">예</button>
+      </div>
+    </div>
+  </div>
+</div>
+    
 </body>
 </html>

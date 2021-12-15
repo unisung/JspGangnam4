@@ -9,6 +9,9 @@
  int startPage = (Integer)request.getAttribute("startPage");
  int endPage=(Integer)request.getAttribute("endPage");
  int finalPage = (Integer)request.getAttribute("finalPage");
+ String items =(String)request.getAttribute("items")==null?"":(String)request.getAttribute("items");
+ String text=(String)request.getAttribute("text")==null?""
+		              :(String)request.getAttribute("text");
  
 %>    
 <!DOCTYPE html><html><head>
@@ -54,7 +57,7 @@ function checkForm(){
        %> 	    
         <tr>
          <td><%=notice.getNum()%></td>
-         <td><a href="./BoardViewAction.do?num=<%=notice.getNum()%>&pageNum=<%=pageNum%>"><%=notice.getSubject()%></a></td>
+         <td><a href="./BoardViewAction.do?num=<%=notice.getNum()%>&pageNum=<%=pageNum%>&items=${items}&text=${text}"><%=notice.getSubject()%></a></td>
          <td><%=notice.getRegist_day() %></td>
          <td><%=notice.getHit() %></td>
          <td><%=notice.getName() %></td>
@@ -76,7 +79,7 @@ function checkForm(){
    </c:if>
    <c:if test="${startPage-1>1 }">
     <li class="page-item"> 
-     <a  class="page-link" href="<c:url value="./BoardListAction.do?pageNum=${startPage-1}"/>">Previous</a> 
+     <a  class="page-link" href="<c:url value="./BoardListAction.do?pageNum=${startPage-1}&items=${items}&text=${text}"/>">Previous</a> 
     </li>
   </c:if>
       
@@ -84,22 +87,22 @@ function checkForm(){
          <c:choose>
             <c:when test="${pageNum==i }">
                  <li class="page-item active" aria-current="page">
-                    <a class="page-link" href="<c:url value="./BoardListAction.do?pageNum=${i}"/>">${i}</a>
+                    <a class="page-link" href="<c:url value="./BoardListAction.do?pageNum=${i}&items=${items}&text=${text}"/>">${i}</a>
                   </li>
             </c:when>
             <c:otherwise>
-                   <li class="page-item"><a class="page-link" href="<c:url value="./BoardListAction.do?pageNum=${i}"/>">${i}</a></li>
+                   <li class="page-item"><a class="page-link" href="<c:url value="./BoardListAction.do?pageNum=${i}&items=${items}&text=${text}"/>">${i}</a></li>
             </c:otherwise>
          </c:choose>
      </c:forEach>
      <c:if test="${endPage+1==finalPage }">
    <li class="page-item  disabled"> 
-     <a  class="page-link" href="<c:url value="./BoardListAction.do?pageNum=${endPage+1}"/>">Next</a> 
+     <a  class="page-link" href="<c:url value="./BoardListAction.do?pageNum=${endPage+1}&items=${items}&text=${text}"/>">Next</a> 
     </li>
    </c:if>
    <c:if test="${endPage+1 < finalPage }">
     <li class="page-item"> 
-     <a  class="page-link" href="<c:url value="./BoardListAction.do?pageNum=${endPage+1}"/>">Next</a> 
+     <a  class="page-link" href="<c:url value="./BoardListAction.do?pageNum=${endPage+1}&items=${items}&text=${text}"/>">Next</a> 
     </li>
   </c:if>
    </ul>
@@ -110,11 +113,11 @@ function checkForm(){
         <tr>
          <td width="100%" align="left">&nbsp;&nbsp;
           <select name="items" class="txt">
-                <option value="subject">제목에서</option>
-                <option value="content">본문에서</option>
-                <option value="name">글쓴이에서</option>
+                <option value="subject" <%=items.equals("subject")?"selected":""%>>제목에서</option>
+                <option value="content" <%=items.equals("content")?"selected":""%>>본문에서</option>
+                <option value="name" <%=items.equals("name")?"selected":""%> >글쓴이에서</option>
           </select>
-                <input name="text" type="search">
+                <input name="text" type="search" value="<%=text%>">
                 <input type="submit" id="btnAdd" class="btn btn-primary" value="검색">
          </td>
          <td width="100%" align="right">

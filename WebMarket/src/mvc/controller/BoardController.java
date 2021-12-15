@@ -152,6 +152,9 @@ public class BoardController extends HttpServlet {
 		//파라미터로 넘어온 글 번호와 페이지 번호(리스트로 다시 이동시 해당 페이지 블럭으로 이동처리위해)
 		int num = Integer.parseInt(request.getParameter("num"));
 		int pageNum = Integer.parseInt(request.getParameter("pageNum"));
+		//검색조회 파라미터 얻기
+		String items =request.getParameter("items");
+		String text = request.getParameter("text");
 		
 		//개별 속성 변수를 묶어서 처리할 DTO 객체 생성
 		BoardDTO board = new BoardDTO();
@@ -162,6 +165,8 @@ public class BoardController extends HttpServlet {
 		request.setAttribute("num", num);//글번호-autoBoxing(기본타입-래퍼객체로 자동형변환)
 		request.setAttribute("page", pageNum);//페이지 번호
 		request.setAttribute("board", board);//글 정보
+		request.setAttribute("items", items);//검색 타입
+		request.setAttribute("text", text);//검색어
 
 	}
 
@@ -185,6 +190,7 @@ public class BoardController extends HttpServlet {
 		//DB로 부터 페이지당 갯수 별로 리스트 생성
 		//boardList = dao.getBoardList(pageNum, limit);
 		boardList = dao.getBoardList(pageNum, limit, items, text);
+		System.out.println("boardList건수:"+boardList.size());
 		//int total_record = dao.getListCount();
 		int total_record = dao.getListCount(items, text);
 		

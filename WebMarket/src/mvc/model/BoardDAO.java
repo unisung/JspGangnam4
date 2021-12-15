@@ -95,8 +95,8 @@ public class BoardDAO {
 	  ResultSet rs = null;
 	  
 	  String sql="";
-	  
-	  if(items==null && text==null)//검색 조건이 파라미터로 넘어오지 않은 경우
+	
+	  if((items==null && text==null)||( items.length()==0 || text.length()==0))//검색 조건이 파라미터로 넘어오지 않은 경우
 	   sql ="select * from board order by num desc";
 	  else//검색 조건이 파라미터로 넘어온 경우
 	   sql = "select * from board where "+items+" like '%"+text+"%' order by num desc";

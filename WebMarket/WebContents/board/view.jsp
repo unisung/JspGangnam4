@@ -64,7 +64,7 @@ function confirmDelete(num,pageNum){
         </button>
              <input type="submit" class="btn btn-success" value="수정">
             </c:if>
-            <a href="./BoardListAction.do?pageNum=<%=nowPage%>" class="btn btn-primary">목록</a>
+            <a href="./BoardListAction.do?pageNum=<%=nowPage%>&items=${items}&text=${text}" class="btn btn-primary">목록</a>
         </div>
     </div>
     </form>

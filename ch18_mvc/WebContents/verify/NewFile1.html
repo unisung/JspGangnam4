@@ -1,0 +1,82 @@
+<!DOCTYPE html><html><head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style>
+ header{
+   border:black;
+   position: absolute;
+   left:50%;
+   border: 3px;
+   color:#0a58ca;
+   font-size:large;
+ }
+ .btn{color:white;
+      background-color: blue;
+      border: none;}
+td{border-bottom: 0.5px solid gray; width:140px;} 
+.large{width: 90%;} 
+    
+</style>
+</head>
+<body>
+
+  <header>
+   <div>MEMBER INFO</div>
+  </header>
+ <br><br>
+ <div class="container">
+  <fieldset>
+   <legend>*표시는 필수 입력표시입니다.</legend>
+   <table>
+   <tr>
+     <td align="left" >*ID</td><td><input type="text" name="id" maxlength="14" required></td>
+   </tr>
+   <tr>
+     <td align="left">*이름</td><td><input type="text" name="name" maxlength="14" required></td>
+   </tr>
+   <tr>
+     <td align="left">*비밀번호</td><td><input type="password" name="password" maxlength="15" required></td>
+   </tr>
+   <tr>
+     <td align="left" >*비밀번호확인</td><td><input type="password" name="passwordConfirm" maxlength="15" required></td>
+   </tr>
+   <tr>
+     <td align="left" ">*생일</td>
+     <td class="large"><input type="text" name="year" maxlength="4" required>년
+         <input type="text" name="month" maxlength="2" required>월
+         <input type="text" name="day" maxlength="2" required>일
+      </td>
+   </tr>
+   <tr>
+     <td align="left">*E-mail</td>
+     <td class="large"><input name="email" required>@<select name="domain">
+       <option>naver.com</option>
+       <option>daum.net</option>
+     </select>
+     <button class="btn">중복확인</button>
+     </td>
+     
+   </tr>
+   <tr style="border-bottom:2px solid gray;">
+     <td align="left" style="width:100px;">*휴대폰</td>
+     <td class="large"><input type="text" name="phone1" maxlength="3" required>-
+         <input type="text" name="phone2" maxlength="3" required>-
+         <input type="text" name="phone3" maxlength="3" required>
+         </td>
+   </tr>
+   <tr style="border-bottom:2px solid gray;">
+     <td align="left">*주소</td><td class="large"><input type="text" name="address" maxlength="14" required style="width:100%;"></td>
+   </tr>
+   <tr style="border-bottom:2px solid gray;">
+     <td align="left">*상세주소</td><td class="large"><input type="text" name="detail" maxlength="14" style="width:100%;" required></td>
+   </tr>
+   <tr>
+   <td colspan=2 align="center" class="large">
+   <button type="submit">수정</button><button>목록</button>
+   </td>
+   </tr>
+   </table>
+ </fieldset>
+ </div> 
+</body>
+</html>

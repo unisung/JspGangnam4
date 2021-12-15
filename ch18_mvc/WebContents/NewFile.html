@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0" />
+    <style>
+        header{
+            border: black;
+            position: absolute;
+            left: 50%;
+            border: 3px;
+            color: #0a58ca;
+            font-size: large;
+        }
+        .line{
+            position: relative;
+            top: 100px;
+        }
+        .foot{
+            position: relative;
+            left: 50%;
+            top: 150px;
+        }
+        .abc{
+            display: flex;
+            color: #0a58ca;
+        }
+        .inp{
+            color: #bb2d3b;
+        }
+        .bu{
+            color: #146c43;
+        }
+        .bold{
+            color: #bb2d3b;
+        }
+        .inp{
+            position: absolute;
+            left: 300px;
+        }
+
+    </style>
+</head>
+<body>
+<header>
+    <div class="head">MEMBER INFO</div>
+</header>
+<section class="line">
+    <div class="bold" >*표시는 필수 입력 표시입니다.</div>
+    <hr>
+    <div class="abc">
+        *ID  <input class="inp" type="text" name="Id" maxlength = "14"  required/>
+    </div>
+    <hr>
+    <div class="abc">*이름 <input class="inp" type="text" name="Id"  required/></div>
+    <hr>
+    <div class="abc">*비밀번호  <input class="inp" type="text" name="Id" maxlength = "15"  required/></div>
+    <hr>
+    <div class="abc">*비밀번호확인  <input class="inp" type="text" name="Id"  maxlength = "15" required/></div>
+    <hr>
+    <div class="abc">*생일
+        <div class="inp" >
+            <input class= type="text" name="Id">년
+            <input class= type="text" name="Id">월
+            <input class= type="text" name="Id">일
+        </div>
+        <hr>
+    </div>
+    <hr>
+    <div class="abc">*E-Mail
+        <div class="inp" >
+            <input  type="text" name="Id">@
+            <input  type="text" name="Id">
+            <button class="bu" type="button" name="Id">중복확인</button>
+        </div>
+        <hr>
+    </div>
+    <hr>
+    <div class="abc">*휴대폰
+        <div class="inp" >
+            <input  type="text" name="Id">-
+            <input  type="text" name="Id">-
+            <input  type="text" name="Id">
+        </div>
+        <hr>
+    </div>
+    <hr>
+    <div class="abc">*주소  <input class="inp" type="text" name="Id"  size=100></div>
+    <hr>
+    <div class="abc">*상세주소 <input class="inp" type="text" name="Id" size=100></div>
+</section>
+<footer class="foot">
+    <button class="bu" type="button" name="edit">수정</button>
+    <button class="bu" type="button" name="list">삭제</button>
+</footer>
+
+</body>
+</html>

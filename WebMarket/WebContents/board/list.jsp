@@ -54,7 +54,7 @@ function checkForm(){
        %> 	    
         <tr>
          <td><%=notice.getNum()%></td>
-         <td><%=notice.getSubject() %></td>
+         <td><a href="./BoardViewAction.do?num=<%=notice.getNum()%>&pageNum=<%=pageNum%>"><%=notice.getSubject()%></a></td>
          <td><%=notice.getRegist_day() %></td>
          <td><%=notice.getHit() %></td>
          <td><%=notice.getName() %></td>

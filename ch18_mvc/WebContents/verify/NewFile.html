@@ -1,0 +1,39 @@
+<!DOCTYPE html><html><head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style>
+.box > ul > li > p {color: orange;}
+/* 클래스가 box인 요소의 ul 요소바로 아래의 li 요소 바로 아래의 p요소의 글자색을 orange로 스타일 처리  */
+header .menu li:nth-child(2) {background: red;}
+/* header태그 내의 menu클래스 내의 li중에서 왼쪽에서 2번째 요소의 배경색을 red로 스타일 처리 */
+ #wrap .content .prod {border: 3px dashed gray;}
+/* 아이디가 wrap인 요소 내의 클래스명이 content인 요소 내의 클래스명이 prod인 요소의 테두리를
+  굵기3px 끊어진 실선모양의 회색으로 스타일 처리 */
+</style>
+</head>
+<body>
+<div class="box">
+   <ul>
+         <li>
+       	<p>hello
+          </li>
+   </ul>
+</div>
+
+<header>
+  <ul class="menu">
+      <li>짜장면</li>
+      <li>짬뽕</li>
+      <li>탕수육</li>
+      <li>울면</li>
+      <li>볶음밥</li>      
+  </ul>
+</header>
+
+<div id="wrap">
+ <div class="content">
+    <div class="prod">hello</div>
+ </div>
+</div>
+</body>
+</html>

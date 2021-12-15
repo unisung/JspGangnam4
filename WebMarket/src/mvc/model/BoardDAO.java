@@ -187,8 +187,21 @@ public class BoardDAO {
 	 String sql = "select * from board where num=?";//글 번호에 해당하는 글 정보 얻기
  
 	 try {
-         	
-		 
+		    conn=DBConnection.getConnection();
+		    pstmt=conn.prepareStatement(sql);
+		    pstmt.setInt(1, num);
+		    rs=pstmt.executeQuery();
+		    
+		    if(rs.next()) {
+		    	board.setNum(rs.getInt(1));
+		    	board.setId(rs.getString(2));
+		    	board.setName(rs.getString(3));
+		    	board.setSubject(rs.getString(4));
+		    	board.setContent(rs.getString(5));
+		    	board.setRegist_day(rs.getString(6));
+		    	board.setHit(rs.getInt(7));
+		    	board.setIp(rs.getString(8));
+		    }
 	 }catch(Exception e) {
 		 System.out.println("에러:"+e);// e.toString() 자동 호출
 	 }finally {

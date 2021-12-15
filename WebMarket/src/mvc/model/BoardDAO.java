@@ -166,7 +166,7 @@ public class BoardDAO {
 	 int x =0;
 	 
 	 String sql;
-	 if(items==null && text==null)//검색 조건이 파라미터로 넘어오지 않은 경우
+	 if((items==null && text==null)||( items.length()==0 || text.length()==0))//검색 조건이 파라미터로 넘어오지 않은 경우
 	   sql = "select count(*) from board ";
      else//검색 조건이 파라미터로 넘어온 경우
 	   sql = "select count(*) from board where "+items+" like '%"+text+"%' ";

@@ -64,6 +64,8 @@ public class BoardController extends HttpServlet {
 	    	  Command actionCommand=(Command) action.newInstance();// new mvc.command.BoardUpdateAction();
 	    	  commandMap.put(command, actionCommand);  
 	      }
+	      /*
+	      System.out.println("저장된 객체수:"+commandMap.size());
 	      
 	      Iterator it = commandMap.keySet().iterator();
 	      System.out.println("commandMap에 저장된 객체 정보 출력");
@@ -72,9 +74,9 @@ public class BoardController extends HttpServlet {
 	    	  Command a = commandMap.get(c);
 	    	  System.out.println(c+"="+a.getClass().getName());
 	      }
-	      
+	      */
 	    }catch(Exception e) {
-	    	
+	    	System.out.println("에러:"+e.getMessage());
 	    }
 	}
 	
@@ -89,24 +91,13 @@ public class BoardController extends HttpServlet {
 			throws ServletException, IOException {
 	   //문자셋 설정
 	   request.setCharacterEncoding("utf-8");
-		
-	   String requestURL = request.getRequestURL().toString();	
-       String requestURI = request.getRequestURI();
-       String contextPath = request.getContextPath();
-       String command = requestURI.substring(contextPath.length());
-       String queryString 
-         = request.getQueryString()==null?"":request.getQueryString();//get방식일때 쿼리스트링 얻기
-       
-       System.out.println("requestURL:"+requestURL);
-       System.out.println("requestURI:"+requestURI);
-       System.out.println("contextPath:"+contextPath);
-       System.out.println("command:"+command);
-       System.out.println("queryString:"+queryString);
        
        //응답으로 생성되는 객체의 문서타입 설정
        response.setContentType("text/html;charset=utf-8");
        response.setCharacterEncoding("utf-8");
        
+       action(request,response);
+  /*     
        RequestDispatcher rd=null;
        
        //URI 코멘드 요청에 따른 로직 분기 처리 후, 응답(view)페이지로 이동 처리
@@ -151,8 +142,39 @@ public class BoardController extends HttpServlet {
        }
        
        rd.forward(request, response);
+       */
        
-	}
+}//doGet()메소드 끝.
+	
+ //request요청을 처리하는 메소드	
+ private void action(HttpServletRequest request, 
+		             HttpServletResponse response) throws ServletException,IOException{
+	 String requestURL = request.getRequestURL().toString();	
+     String requestURI = request.getRequestURI();
+     String contextPath = request.getContextPath();
+     String command = requestURI.substring(contextPath.length());
+     String queryString 
+       = request.getQueryString()==null?"":request.getQueryString();//get방식일때 쿼리스트링 얻기
+     
+     System.out.println("requestURL:"+requestURL);
+     System.out.println("requestURI:"+requestURI);
+     System.out.println("contextPath:"+contextPath);
+     System.out.println("command:"+command);
+     System.out.println("queryString:"+queryString);
+     
+     Command commandAction = commandMap.get(command);
+     String viewPage=null;
+     try {
+    	//command에 해당하는 객체의 action메소드 실행(각 요청의 서비스 로 분기 처리) 후 이동페이지 얻기
+       viewPage=commandAction.action(request, response);
+     }catch(Throwable e) {
+    	 throw new ServletException(e);
+     }
+     if(viewPage!=null) {
+    	 RequestDispatcher dispatcher = request.getRequestDispatcher(viewPage);
+    	 dispatcher.forward(request, response);
+     }
+ }
 	
 	//선택글 삭제 처리
     private void requestBoardDelete(HttpServletRequest request) {

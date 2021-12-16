@@ -107,7 +107,7 @@ public class BoardController extends HttpServlet {
      try {
     	//command에 해당하는 객체의 action메소드 실행(각 요청의 서비스 로 분기 처리) 후 
     	// 이동페이지 얻기
-       viewPage=commandAction.action(request, response);
+       viewPage=commandAction.action(request, response);//다형성을 이용한 메소드 실행
      }catch(Throwable e) {
     	 throw new ServletException(e);
      }

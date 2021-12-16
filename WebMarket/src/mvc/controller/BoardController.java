@@ -54,7 +54,24 @@ public class BoardController extends HttpServlet {
 	    	  String key = (String)itor.next();
 	    	  System.out.println(key+"="+prop.get(key));
 	      } */
+	      //propteries파이로부터 읽어들인 정보를 추출하여 객체 생성
+	      Iterator keyItor = prop.keySet().iterator();
+	      while(keyItor.hasNext()) {
+	    	  String command =(String)keyItor.next();
+	    	  String className = prop.getProperty(command);
+	    	  Class<?> action = Class.forName(className);
+	    	  //properties의 value에 해당하는 문자열로 객체 생성
+	    	  Command actionCommand=(Command) action.newInstance();// new mvc.command.BoardUpdateAction();
+	    	  commandMap.put(command, actionCommand);  
+	      }
 	      
+	      Iterator it = commandMap.keySet().iterator();
+	      System.out.println("commandMap에 저장된 객체 정보 출력");
+	      while(it.hasNext()) {
+	    	  String c = (String)it.next();
+	    	  Command a = commandMap.get(c);
+	    	  System.out.println(c+"="+a.getClass().getName());
+	      }
 	      
 	    }catch(Exception e) {
 	    	

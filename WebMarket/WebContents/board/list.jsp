@@ -12,7 +12,6 @@
  String items =(String)request.getAttribute("items")==null?"":(String)request.getAttribute("items");
  String text=(String)request.getAttribute("text")==null?""
 		              :(String)request.getAttribute("text");
- 
 %>    
 <!DOCTYPE html><html><head>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">

@@ -1,7 +1,4 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
-<%  /* 콘트롤러에서 db에서 조회한 id에 해당하는 name을 request에 실어서 전달한 name을 받음 */ 
-  String name
-     =(String)request.getAttribute("name")==null?"":(String)request.getAttribute("name"); %>
 <!DOCTYPE html><html><head>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
 <meta charset="UTF-8">
@@ -21,7 +18,8 @@
       <div class="form-group row">
         <label class="col-sm-2 control-label">성명</label>
         <div class="col-sm-3">
-           <input name="name" class="form-control" value="<%=name%>" placeholder="name">
+              <!--${}의 속성값은 자동 형변환처리 및 null 처리, String 인 경우 빈 문자열("")로 처리 -->
+           <input name="name" class="form-control" value="${name}" placeholder="name">
         </div>
       </div>
       

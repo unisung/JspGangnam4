@@ -12,3 +12,5 @@ insert into
         :new.phone,:new.zipcode,:new.roadAddress, :new.jibunAddress, :new.detailAddress, :new.extraAddress,
         sysdate);
 END;
+
+create sequence history_member_seq start with 1;

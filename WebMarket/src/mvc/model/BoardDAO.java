@@ -75,7 +75,6 @@ public class BoardDAO {
 		     pstmt.setInt(6, board.getHit());
 		     pstmt.setString(7,board.getIp());
 		     pstmt.setString(8, board.getAttachFile());
-
 		     
 		     //4. 쿼리 객체 전달 및 실행
 		     pstmt.executeUpdate();

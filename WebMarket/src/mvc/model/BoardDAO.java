@@ -307,12 +307,33 @@ public void updateBoard(BoardDTO board) {
 			  throw new RuntimeException(e.getMessage());
 		  }
 	  } 	
-	
-}
+}//updateBoard() 끝.
+
+//게시글 삭제 메소드
 public void deleteBoard(int num) {
-	
-	
-}
+	Connection conn=null;
+    PreparedStatement pstmt=null;
+    
+    String sql="delete from board  where num=?";    System.out.println("sql:"+sql);
+   
+    try {
+          //1.OracleDB 연결객체 생성
+    	 conn = DBConnectionOracle.getConnection();
+    	 pstmt = conn.prepareStatement(sql);
+    	 //2. 바인딩변수 세팅
+    	 pstmt.setInt(1, num);
+    	 //update처리
+    	 pstmt.executeUpdate();
+    }catch(Exception e) {
+		  System.out.println("에러:"+e.getMessage());
+	  }finally {
+		  try {
+			    if(pstmt!=null) pstmt.close();    if(conn!=null)conn.close();
+		  }catch(Exception e) {
+			  throw new RuntimeException(e.getMessage());
+		  }
+	  } 	
+}//deleteBoard() 끝.
 
 
 }

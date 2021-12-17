@@ -97,10 +97,40 @@ public List<BoardDTO> getBoardList(int pageNum, int limit, String items, String 
     ResultSet rs = null;
     String sql="";
     
+    if((items==null && text==null) || (items.length()==0|| text.length()==0)){
+        sql="select * from "
+           +" (select rownum rn, board.* "
+           +"  from board  "
+           +"  order by num desc) "
+           +" where rn between ? and ? ";	
+    }else {
+    	sql="select * from "
+    	   +" (select rownum rn, board.* "
+    	   +"  from board "
+    	   +"  where "+items+" like '%?%' "
+    	   +"  order by num desc) "
+    	   +" where rn between ? and ?";
+    }
+     System.out.println("sql:"+sql);
+     
+     
+     int start = (pageNum-1)*limit; //예)3페이지 -> (3-1)*10=>20, 1페이지->0
+     int index = start +1;//index,//예) 21, 1,
+     int end = index +9;//21+9=>30, 1+9=10,
+   
     try {
           //1.OracleDB 연결객체 생성
     	 conn = DBConnectionOracle.getConnection();
-    	 pstmt = conn.prepareCall(sql);
+    	 if((items==null && text==null) || (items.length()==0|| text.length()==0)){
+    		 pstmt = conn.prepareCall(sql);
+    		 pstmt.setInt(1, index);
+    		 pstmt.setInt(2, end);
+    	 }else {
+    		 pstmt = conn.prepareCall(sql);
+    		 pstmt.setString(1, text);
+    		 pstmt.setInt(2, index);
+    		 pstmt.setInt(3, end);
+    	 }
     	 rs = pstmt.executeQuery();
     	 while(rs.next()) {
 
@@ -117,7 +147,7 @@ public List<BoardDTO> getBoardList(int pageNum, int limit, String items, String 
 		  }catch(Exception e) {
 			  throw new RuntimeException(e.getMessage());
 		  }
-	  }
+	  } 
 	return boardList;
 }//getBoardList()메소드 끝.
 

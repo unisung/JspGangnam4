@@ -122,12 +122,10 @@ public List<BoardDTO> getBoardList(int pageNum, int limit, String items, String 
           //1.OracleDB 연결객체 생성
     	 conn = DBConnectionOracle.getConnection();
     	 if((items==null && text==null) || (items.length()==0|| text.length()==0)){
-    		 System.out.println("items=null");
     		 pstmt = conn.prepareCall(sql);
     		 pstmt.setInt(1, index);
     		 pstmt.setInt(2, end);
     	 }else {
-    		 System.out.println("items!=null");
     		 pstmt = conn.prepareCall(sql);
     		 pstmt.setString(1, text);
     		 pstmt.setInt(2, index);

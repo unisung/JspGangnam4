@@ -89,123 +89,122 @@ public class BoardDAO {
 	  }
   }//insertBoard() 끝.
   
-public List<BoardDTO> getBoardList(int pageNum, int limit, String items, String text) {
-	List<BoardDTO> boardList = new ArrayList<BoardDTO>();
-	
-	Connection conn=null;
-    PreparedStatement pstmt=null;
-    ResultSet rs = null;
-    String sql="";
-    
-    if((items==null && text==null) || (items.length()==0|| text.length()==0)){
-        sql="select * from "
-           +" (select rownum rn, board.* "
-           +"  from board  "
-           +"  order by num desc) "
-           +" where rn between ? and ? ";	
-    }else {
-    	sql="select * from "
-    	   +" (select rownum rn, board.* "
-    	   +"  from board "
-    	   +"  where "+items+" like '%'||?||'%' "
-    	   +"  order by num desc) "
-    	   +" where rn between ? and ?";
-    }
-     System.out.println("sql:"+sql);
-     
-     //페이지 번호로 해당 페지이지의 시작 글번호과 끝 글번호 구하기
-     int start = (pageNum-1)*limit; //예)3페이지 -> (3-1)*10=>20, 1페이지->0
-     int index = start +1;//index,//예) 21, 1,
-     int end = index +9;//21+9=>30, 1+9=10,
-   
-    try {
-          //1.OracleDB 연결객체 생성
-    	 conn = DBConnectionOracle.getConnection();
-    	 if((items==null && text==null) || (items.length()==0|| text.length()==0)){
-    		 pstmt = conn.prepareCall(sql);
-    		 pstmt.setInt(1, index);
-    		 pstmt.setInt(2, end);
-    	 }else {
-    		 pstmt = conn.prepareCall(sql);
-    		 pstmt.setString(1, text);
-    		 pstmt.setInt(2, index);
-    		 pstmt.setInt(3, end);
-    	 }
-    	 rs = pstmt.executeQuery();
-    	 while(rs.next()) {
-           //db로 부터 결과레코드를 하나씪 가져와서 boardDTO에 담은 후 리스트에 저장하기
-    	  BoardDTO board = new BoardDTO();
-    	  board.setNum(rs.getInt(2));
-    	  board.setId(rs.getString(3));
-          board.setName(rs.getString(4));
-          board.setSubject(rs.getString(5));
-          board.setContent(rs.getString(6));
-          board.setRegist_day(rs.getString(7));
-          board.setHit(rs.getInt(8));
-          board.setIp(rs.getString(9));
-    	 //리스트에 추가하기
-          boardList.add(board);
-    	 }
-    }catch(Exception e) {
-		  System.out.println("에러:"+e.getMessage());
-	  }finally {
-		  try {
-			    if(rs!=null) rs.close();
-			    if(pstmt!=null) pstmt.close();
-			    if(conn!=null)conn.close();
-		  }catch(Exception e) {
-			  throw new RuntimeException(e.getMessage());
-		  }
-	  } 
-	return boardList;
-}//getBoardList()메소드 끝.
+//board테이블의 레코드 가져오기
+	public List<BoardDTO> getBoardList(int pageNum, int limit, String items, String text) {
+		List<BoardDTO> boardlist = new ArrayList<BoardDTO>();
+		
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql="";
+		
+		if((items==null && text==null)||( items.length()==0 || text.length()==0)) {//검색 조건이 파라미터로 넘어오지 않은 경우
+			sql = "select * from "
+				+ " (select rownum rn, board.* "
+				+ " from board "
+				+ " order by num desc) " //최근 등록글이 먼저 나오도록 처리
+				+ " where rn between ? and ?";	
+		}else { //검색 조건이 파라미터로 넘어온 경우 
+			sql = "select * from "
+				+ " (select rownum rn, board.* "
+				+ " from board "
+				+ " where "+items+" like '%'||?||'%' " //|| : 결합 연산자
+				+ " order by num desc) "
+				+ " where rn between ? and ?";
+		 }
+		System.out.println("sql:"+sql);
+		
+		//페이지 번호로 해당 페이지의 시작 글번호와 끝 글번호 구하기
+		int start = (pageNum-1)*limit; //예)3페이지 -> (3-1)*10=20, 1페이지 ->0
+		int index = start +1; //예)index=21, 1
+		int end = index +9; //예)21+9=30, 1+9=10
+		
+		try {
+			//1.OracleDB 연결객체 생성
+			conn = DBConnectionOracle.getConnection();
+			if((items==null && text==null)||( items.length()==0 || text.length()==0)) {
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setInt(1, index);
+				pstmt.setInt(2, end);
+			}else {
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setString(1, text);
+				pstmt.setInt(2, index);
+				pstmt.setInt(3, end);
+			}
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				//DB로부터 결과 레코드를 하나씩 가져와서 boardDTO에 담은 후 리스트에 저장하기
+				BoardDTO board = new BoardDTO();
+				board.setNum(rs.getInt(2));
+				board.setId(rs.getString(3));
+				board.setName(rs.getString(4));
+				board.setSubject(rs.getString(5));
+				board.setContent(rs.getString(6));
+				board.setRegist_day(rs.getString(7));
+				board.setHit(rs.getInt(8));
+				board.setIp(rs.getString(9));
+				
+				//리스트에 추가하기
+				boardlist.add(board);
+			}
+		}catch (Exception e) {
+			System.out.println("에러:"+e.getMessage());
+		}finally {
+			try {
+				if(rs!=null) rs.close(); if(pstmt!=null)pstmt.close(); if(conn!=null)conn.close();
+			} catch (Exception e) {
+				throw new RuntimeException(e.getMessage());
+			}
+		}
+		return boardlist;
+	} //getBoardList()메소드 끝.
 
 
-public int getListCount(int pageNum, int limit, String items, String text) {
-	//조회한 게시글 건수 변수
-	int count=0;
-	Connection conn=null;
-    PreparedStatement pstmt=null;
-    ResultSet rs = null;
-    String sql="";
-    
-    if((items==null && text==null) || (items.length()==0|| text.length()==0)){
-        sql="select count(*) "
-           +"  from board  ";	
-    }else {
-    	sql="select count(*) "
-    	   +"  from board "
-    	   +"  where "+items+" like '%'||?||'%' ";
-    }
-     System.out.println("sql:"+sql);
-   
-    try {
-          //1.OracleDB 연결객체 생성
-    	 conn = DBConnectionOracle.getConnection();
-    	 if((items==null && text==null) || (items.length()==0|| text.length()==0)){
-    		 pstmt = conn.prepareStatement(sql);
-    	 }else {
-    		 pstmt = conn.prepareStatement(sql);
-    		 pstmt.setString(1, text);
-    	 }
-    	 rs = pstmt.executeQuery();
-    	 while(rs.next()) {
-           //db로 부터 게시글 건수를 가져와서 count에 저장
-    	   count = rs.getInt(1);
-    	}
-    }catch(Exception e) {
-		  System.out.println("에러:"+e.getMessage());
-	  }finally {
-		  try {
-			    if(rs!=null) rs.close();
-			    if(pstmt!=null) pstmt.close();
-			    if(conn!=null)conn.close();
-		  }catch(Exception e) {
-			  throw new RuntimeException(e.getMessage());
-		  }
-	  } 
-	return count;
-  }//getListCount() 끝.
+//전체 게시글 건수 가져오기
+	public int getListCount(int pageNum, int limit, String items, String text) {
+		//조회한 게시글 건수 변수
+		int count=0;
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql="";
+		
+		if((items==null && text==null)||( items.length()==0 || text.length()==0)) {//검색 조건이 파라미터로 넘어오지 않은 경우
+			sql = "select count(*) "
+				+ " from board ";	
+		}else { //검색 조건이 파라미터로 넘어온 경우 
+			sql = "select count(*) "
+				+ " from board "
+				+ " where "+items+" like '%'||?||'%' ";
+		 }
+		System.out.println("sql:"+sql);
+		
+		try {
+			//1.OracleDB 연결객체 생성
+			conn = DBConnectionOracle.getConnection();
+			if((items==null && text==null)||( items.length()==0 || text.length()==0)) {
+				pstmt = conn.prepareStatement(sql);
+			}else {
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setString(1, text);
+			}
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				//DB로부터 게시글 건수를 가져와서 count에 저장
+				count = rs.getInt(1);
+			}
+		}catch (Exception e) {
+			System.out.println("에러:"+e);
+		}finally {
+			try {
+				if(rs!=null) rs.close(); if(pstmt!=null)pstmt.close(); if(conn!=null)conn.close();
+			} catch (Exception e) {
+				throw new RuntimeException(e.getMessage());
+			}
+		}
+		return count;
+	} //getListCount() 끝.
 
  //상세 페이지 뷰 메소드
 public BoardDTO getBoardByNum(int num,int pageNum) {
@@ -275,6 +274,45 @@ public void updateHit(int num) {
 			  }
 		  } 	
 }//updateHit() 끝.
+
+//게시글 내용 수정
+public void updateBoard(BoardDTO board) {
+	Connection conn=null;
+    PreparedStatement pstmt=null;
+    
+    String sql="update board set id=?,name=?,subject=?,content=?, regist_day=?,ip=?  where num=?";
+    System.out.println("sql:"+sql);
+   
+    try {
+          //1.OracleDB 연결객체 생성
+    	 conn = DBConnectionOracle.getConnection();
+    	 pstmt = conn.prepareStatement(sql);
+    	 //2. 바인딩변수 세팅
+    	 pstmt.setString(1, board.getId());
+    	 pstmt.setString(2, board.getName());
+    	 pstmt.setString(3, board.getSubject());
+    	 pstmt.setString(4, board.getContent());
+    	 pstmt.setString(5, board.getRegist_day());
+    	 pstmt.setString(6, board.getIp());
+    	 pstmt.setInt(7, board.getNum());
+    	 //update처리
+    	 pstmt.executeUpdate();
+    }catch(Exception e) {
+		  System.out.println("에러:"+e.getMessage());
+	  }finally {
+		  try {
+			    if(pstmt!=null) pstmt.close();
+			    if(conn!=null)conn.close();
+		  }catch(Exception e) {
+			  throw new RuntimeException(e.getMessage());
+		  }
+	  } 	
+	
+}
+public void deleteBoard(int num) {
+	
+	
+}
 
 
 }

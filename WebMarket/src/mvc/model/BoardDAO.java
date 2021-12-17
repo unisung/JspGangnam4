@@ -133,9 +133,18 @@ public List<BoardDTO> getBoardList(int pageNum, int limit, String items, String 
     	 }
     	 rs = pstmt.executeQuery();
     	 while(rs.next()) {
-
-    		 
-    		 
+           //db로 부터 결과레코드를 하나씪 가져와서 boardDTO에 담은 후 리스트에 저장하기
+    	  BoardDTO board = new BoardDTO();
+    	  board.setNum(rs.getInt(2));
+    	  board.setId(rs.getString(3));
+          board.setName(rs.getString(4));
+          board.setSubject(rs.getString(5));
+          board.setContent(rs.getString(6));
+          board.setRegist_day(rs.getString(7));
+          board.setHit(rs.getInt(8));
+          board.setIp(rs.getString(9));
+    	 //리스트에 추가하기
+          boardList.add(board);
     	 }
     }catch(Exception e) {
 		  System.out.println("에러:"+e.getMessage());

@@ -250,5 +250,31 @@ public BoardDTO getBoardByNum(int num,int pageNum) {
 	return board;//BoardDTO객체 리턴.
 }//getBoardByNum() 끝.
 
+//게시글 조회수 증가 메소드
+public void updateHit(int num) {
+		Connection conn=null;
+	    PreparedStatement pstmt=null;
+	    
+	    String sql="update board set hit=hit+1  where num=?";
+	    System.out.println("sql:"+sql);
+	   
+	    try {
+	          //1.OracleDB 연결객체 생성
+	    	 conn = DBConnectionOracle.getConnection();
+	    	 pstmt = conn.prepareStatement(sql);
+	    	 pstmt.setInt(1, num);
+	    	 pstmt.executeUpdate();
+	    }catch(Exception e) {
+			  System.out.println("에러:"+e.getMessage());
+		  }finally {
+			  try {
+				    if(pstmt!=null) pstmt.close();
+				    if(conn!=null)conn.close();
+			  }catch(Exception e) {
+				  throw new RuntimeException(e.getMessage());
+			  }
+		  } 	
+}//updateHit() 끝.
+
 
 }

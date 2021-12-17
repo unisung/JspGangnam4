@@ -222,7 +222,7 @@ public BoardDTO getBoardByNum(int num,int pageNum) {
           //1.OracleDB 연결객체 생성
     	 conn = DBConnectionOracle.getConnection();
     	 pstmt = conn.prepareStatement(sql);
-    	 
+    	 pstmt.setInt(1, num);//매개변수 넘어온 글번호 설정
     	 rs = pstmt.executeQuery();
     	 if(rs.next()) {
            //db로 부터 해당 글번호에 맞는 게시글 정보를 가져와서 BoardDTO에 저장

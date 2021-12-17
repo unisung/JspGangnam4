@@ -1,7 +1,7 @@
 package mvc.model;
 
 public class BoardDTO {
- private int num;//자동 생성
+private int num;//자동 생성
  private String id;//로그인 아이디
  private String name;//로그인 아이디에 해당하는 이름
  private String subject;
@@ -9,6 +9,7 @@ public class BoardDTO {
  private String regist_day;//등록일자
  private int hit;//초기값 0
  private String ip;//접속ip는 request에서 구함.
+ private String attachFile;//첨부파일명
  
 public int getNum() {
 	return num;
@@ -59,5 +60,11 @@ public void setIp(String ip) {
 	this.ip = ip;
 }
  
+public String getAttachFile() {
+	return attachFile;
+}
+public void setAttachFile(String attachFile) {
+	this.attachFile = attachFile;
+}
  
 }

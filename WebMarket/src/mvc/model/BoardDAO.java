@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import mvc.database.DBConnection;
+import mvc.database.DBConnectionOracle;
 
 //싱글톤 
 public class BoardDAO {
@@ -21,6 +22,7 @@ public class BoardDAO {
 	return instance;
   }
   
+  //Mysql의 회원정보 얻기
   public String getLoginNameById(String id) {
 	  Connection conn=null;
 	  PreparedStatement pstmt=null;
@@ -30,9 +32,10 @@ public class BoardDAO {
 	  String sql="select * from member where id=?";
 	  
 	  try {
+		    //Mysql 접속용 DBConnection객체 
 		    conn=DBConnection.getConnection();
 		    pstmt=conn.prepareStatement(sql);
-		    pstmt.setString(1, id);
+		    pstmt.setString(1, id); 
 		
 		    rs=pstmt.executeQuery();
 		    
@@ -57,14 +60,12 @@ public class BoardDAO {
   public void insertBoard(BoardDTO board) {
 	  Connection conn=null;
 	  PreparedStatement pstmt=null;
-	  
-	  String name=null;
-	  String sql = "insert into board(id, name, subject, content, regist_day, hit, ip) "
-	  		     + " values(?,?,?,?,?,?,?)";
-	  
+
+	  String sql = "insert into board(num, id, name, subject, content, regist_day, hit, ip) "
+	  		     + " values(board_seq.nextval,?,?,?,?,?,?,?)";
 	  try {
 		    //db연결
-		    conn=DBConnection.getConnection();
+		    conn=DBConnectionOracle.getConnection();
 		    pstmt=conn.prepareStatement(sql);
 		    //값 설정
 		    pstmt.setString(1,board.getId());
@@ -115,7 +116,7 @@ public class BoardDAO {
 	  ArrayList<BoardDTO> list = new ArrayList<>();
 	  
 	  try {
-		    conn = DBConnection.getConnection();
+		    conn = DBConnectionOracle.getConnection();
 		    pstmt = conn.prepareStatement(sql,
 		    		                      ResultSet.TYPE_SCROLL_INSENSITIVE, 
 		    		                      ResultSet.CONCUR_UPDATABLE);
@@ -173,7 +174,7 @@ public class BoardDAO {
 	 System.out.println("getListcount_SQL:"+sql);
 	 
 	 try {
-		    conn=DBConnection.getConnection();
+		    conn=DBConnectionOracle.getConnection();
 		    pstmt=conn.prepareStatement(sql);
 		    rs=pstmt.executeQuery();
 		    

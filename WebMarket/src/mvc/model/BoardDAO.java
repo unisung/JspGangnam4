@@ -207,4 +207,48 @@ public int getListCount(int pageNum, int limit, String items, String text) {
 	return count;
   }//getListCount() 끝.
 
+ //상세 페이지 뷰 메소드
+public BoardDTO getBoardByNum(int num,int pageNum) {
+	//조회한 게시글 정보 저장 객체 생성
+	BoardDTO board=null;
+	Connection conn=null;
+    PreparedStatement pstmt=null;
+    ResultSet rs = null;
+    
+    String sql="select * from board where num=?";
+    System.out.println("sql:"+sql);
+   
+    try {
+          //1.OracleDB 연결객체 생성
+    	 conn = DBConnectionOracle.getConnection();
+    	 pstmt = conn.prepareStatement(sql);
+    	 
+    	 rs = pstmt.executeQuery();
+    	 if(rs.next()) {
+           //db로 부터 해당 글번호에 맞는 게시글 정보를 가져와서 BoardDTO에 저장
+    	   board = new BoardDTO();	 
+    		 board.setNum(rs.getInt(1));
+    		 board.setId(rs.getString(2));
+    		 board.setName(rs.getString(3));
+    		 board.setSubject(rs.getString(4));
+    		 board.setContent(rs.getString(5));
+    		 board.setRegist_day(rs.getString(6));
+    		 board.setHit(rs.getInt(7));
+    		 board.setIp(rs.getString(8));
+    	}
+    }catch(Exception e) {
+		  System.out.println("에러:"+e.getMessage());
+	  }finally {
+		  try {
+			    if(rs!=null) rs.close();
+			    if(pstmt!=null) pstmt.close();
+			    if(conn!=null)conn.close();
+		  }catch(Exception e) {
+			  throw new RuntimeException(e.getMessage());
+		  }
+	  } 
+	return board;//BoardDTO객체 리턴.
+}//getBoardByNum() 끝.
+
+
 }

@@ -314,7 +314,8 @@ public void deleteBoard(int num) {
 	Connection conn=null;
     PreparedStatement pstmt=null;
     
-    String sql="delete from board  where num=?";    System.out.println("sql:"+sql);
+    String sql="delete from board  where num=?";    
+    System.out.println("sql:"+sql);
    
     try {
           //1.OracleDB 연결객체 생성

@@ -183,9 +183,9 @@ public int getListCount(int pageNum, int limit, String items, String text) {
           //1.OracleDB 연결객체 생성
     	 conn = DBConnectionOracle.getConnection();
     	 if((items==null && text==null) || (items.length()==0|| text.length()==0)){
-    		 pstmt = conn.prepareCall(sql);
+    		 pstmt = conn.prepareStatement(sql);
     	 }else {
-    		 pstmt = conn.prepareCall(sql);
+    		 pstmt = conn.prepareStatement(sql);
     		 pstmt.setString(1, text);
     	 }
     	 rs = pstmt.executeQuery();

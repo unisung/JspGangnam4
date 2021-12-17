@@ -60,7 +60,7 @@ public class BoardDAO {
   public void insertBoard(BoardDTO board) {
 	  Connection conn=null;
 	  PreparedStatement pstmt=null;
-	  String sql ="insert into board values(board_seq.nextval,?,?,?,?,?,?,?)";
+	  String sql ="insert into board values(board_seq.nextval,?,?,?,?,?,?,?,?)";
 	  try {
 		     //1.Oracle dbconnection 맺기
 		     conn =DBConnectionOracle.getConnection();
@@ -74,6 +74,8 @@ public class BoardDAO {
 		     pstmt.setString(5, board.getRegist_day());
 		     pstmt.setInt(6, board.getHit());
 		     pstmt.setString(7,board.getIp());
+		     pstmt.setString(8, board.getAttachFile());
+
 		     
 		     //4. 쿼리 객체 전달 및 실행
 		     pstmt.executeUpdate();

@@ -144,12 +144,13 @@ public class BbsDAO {
 					bbs.setWriter(rs.getString(3));
 					bbs.setSubject(rs.getString(4));
 					bbs.setContent(rs.getString(5));
-					bbs.setReg_date(rs.getDate(6));
+					bbs.setReadcount(rs.getInt(6));
 					bbs.setPassword(rs.getString(7));
-					bbs.setIp(rs.getString(8));
-					bbs.setRef(rs.getInt(9));
-					bbs.setRe_step(rs.getInt(10));
-					bbs.setRe_level(rs.getInt(11));
+					bbs.setReg_date(rs.getString(8));
+					bbs.setIp(rs.getString(9));
+					bbs.setRef(rs.getInt(10));
+					bbs.setRe_step(rs.getInt(11));
+					bbs.setRe_level(rs.getInt(12));
                    
 					//리스트에 추가
 					bbslist.add(bbs);

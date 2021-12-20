@@ -28,8 +28,7 @@ select *
   from 
 (select rownum rn, a.* from
  (select * 
-    from bbs
-   where "+items+" like '%'||?||'%'  
+    from bbs  
     order by ref desc, re_step asc)a )
 where rn between 11 and 20 ;
 

@@ -11,3 +11,9 @@ create table bbs(
  re_step  number not null,        -- ref내의 순서
  re_level number not null         -- 들여쓰기 
 );
+
+
+create sequence bbs_seq start with 1 increment by 1;
+
+select * from user_objects
+where object_type='SEQUENCE';

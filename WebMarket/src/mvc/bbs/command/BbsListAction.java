@@ -7,8 +7,8 @@ public class BbsListAction implements ActionCommand {
 
 	@Override
 	public String action(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+		
+		return "./bbs/list.jsp";
 	}
 
 }

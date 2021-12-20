@@ -34,5 +34,4 @@ public class BbsViewAction implements ActionCommand {
 		//이동 페이지 
 		return "./bbs/view.jsp";
 	}
-
 }

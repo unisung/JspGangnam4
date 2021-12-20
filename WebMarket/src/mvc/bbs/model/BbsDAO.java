@@ -107,10 +107,11 @@ public class BbsDAO {
 					+ "where rn between ? and ? ";	
 			}else { //검색 조건이 파라미터로 넘어온 경우 
 				sql = "select * from "
-					+ " (select rownum rn, board.* "
-					+ " from bbs "
-					+ " where "+items+" like '%'||?||'%' " //|| : 결합 연산자
-					+ " order by ref desc, re_step asc) a) "
+					+ " (select rownum rn, a.* from "
+					+ "  (select * "	
+					+ "     from bbs "
+					+ "    where "+items+" like '%'||?||'%' " //|| : 결합 연산자
+					+ "    order by ref desc, re_step asc) a) "
 					+ " where rn between ? and ?";
 			 }
 			System.out.println("sql:"+sql);
@@ -198,6 +199,9 @@ public class BbsDAO {
 					pstmt.setString(1, text);
 				}
 				rs = pstmt.executeQuery();
+				if(rs.next()) {
+					count = rs.getInt(1);
+				}
 	  }catch(Exception e) {
 		  System.out.println("에러:"+e);
 	  }finally {

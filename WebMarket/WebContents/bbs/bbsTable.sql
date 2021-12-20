@@ -17,3 +17,12 @@ create sequence bbs_seq start with 1 increment by 1;
 
 select * from user_objects
 where object_type='SEQUENCE';
+
+select * from bbs;
+
+insert into bbs(num,writer,subject,content, password,ip,ref,re_step,re_level)
+select bbs_seq.nextval,writer,subject,content,password,ip,bbs_seq.currval,0,0 from bbs;
+			    
+			    
+			    
+			    

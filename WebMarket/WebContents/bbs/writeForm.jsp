@@ -2,13 +2,13 @@
 <!DOCTYPE html><html><head>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
 <meta charset="UTF-8">
-<title>게시판</title>
+<title>Bbs</title>
 </head>
 <body>
 <jsp:include page="../menu.jsp"/>
 <div class="jumbotron">
    <div class="container">
-      <h1 class="display-3">게시판</h1>
+      <h1 class="display-3">Bbs</h1>
    </div>
 </div>
 <div class="container">
@@ -38,7 +38,15 @@
            <textarea rows="5" cols="50" class="form-control" placeholder="content" name="content"></textarea>
         </div>
       </div>
-   
+      
+      <div class="form-group row">
+        <label class="col-sm-2 control-label">password</label>
+        <div class="col-sm-5">
+           <input name="password" type="password" class="form-control" placeholder="password" required>
+        </div>
+      </div>
+
+      
      <div class="form-group row">
         <div class="col-sm-offset-2 col-sm-10">
            <input type="submit" class="btn btn-success" value="등록">

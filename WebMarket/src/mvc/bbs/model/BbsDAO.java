@@ -97,7 +97,6 @@ public class BbsDAO {
 	 
 	  String sql="";
 	  
-	 
 		  if((items==null && text==null)||( items.length()==0 || text.length()==0)) {//검색 조건이 파라미터로 넘어오지 않은 경우
 				sql = "select * "
 				    + " from "
@@ -121,6 +120,9 @@ public class BbsDAO {
 			int index = start +1; //예)index=21, 1
 			int end = index +9; //예)21+9=30, 1+9=10
 			
+			System.out.println("index:"+index);
+			System.out.println("end:"+end);
+			
 			try {
 				//1.OracleDB 연결객체 생성
 				conn = DBConnectionOracle.getConnection();
@@ -135,6 +137,22 @@ public class BbsDAO {
 					pstmt.setInt(3, end);
 				}
 				rs = pstmt.executeQuery();
+				while(rs.next()) {
+					BbsDTO bbs = new BbsDTO();
+					bbs.setNum(rs.getInt(2));
+					bbs.setWriter(rs.getString(3));
+					bbs.setSubject(rs.getString(4));
+					bbs.setContent(rs.getString(5));
+					bbs.setReg_date(rs.getDate(6));
+					bbs.setPassword(rs.getString(7));
+					bbs.setIp(rs.getString(8));
+					bbs.setRef(rs.getInt(9));
+					bbs.setRe_step(rs.getInt(10));
+					bbs.setRe_level(rs.getInt(11));
+                   
+					//리스트에 추가
+					bbslist.add(bbs);
+				}
 	  }catch(Exception e) {
 		  System.out.println("에러:"+e);
 	  }finally {
@@ -148,4 +166,49 @@ public class BbsDAO {
 	return bbslist;   
   }//getBbsList() 끝.
 
+ public int getBbsCount(int pageNum, int limit, String items, String text){
+	 int count =0;
+	 Connection conn=null;
+	  PreparedStatement pstmt=null;
+	  ResultSet rs=null;
+	 
+	  String sql="";
+	  
+		  if((items==null && text==null)||( items.length()==0 || text.length()==0)) {//검색 조건이 파라미터로 넘어오지 않은 경우
+				sql = "select count(*) from bbs ";	
+			}else { //검색 조건이 파라미터로 넘어온 경우 
+				sql = "select count(*) "
+					+ "  from bbs "
+					+ " where "+items+" like '%'||?||'%' " ;
+			 }
+			System.out.println("sql:"+sql);
+			
+			//페이지 번호로 해당 페이지의 시작 글번호와 끝 글번호 구하기
+			int start = (pageNum-1)*limit; //예)3페이지 -> (3-1)*10=20, 1페이지 ->0
+			int index = start +1; //예)index=21, 1
+			int end = index +9; //예)21+9=30, 1+9=10
+			
+			try {
+				//1.OracleDB 연결객체 생성
+				conn = DBConnectionOracle.getConnection();
+				if((items==null && text==null)||( items.length()==0 || text.length()==0)) {
+					pstmt = conn.prepareStatement(sql);
+				}else {
+					pstmt = conn.prepareStatement(sql);
+					pstmt.setString(1, text);
+				}
+				rs = pstmt.executeQuery();
+	  }catch(Exception e) {
+		  System.out.println("에러:"+e);
+	  }finally {
+		  try {
+			    if(rs!=null) rs.close(); if(pstmt!=null) pstmt.close();
+			    if(conn!=null)conn.close();
+		  }catch(Exception e) {
+			  throw new RuntimeException(e.getMessage());
+		  }
+	  } 
+	 return count;
+ }//getBbsCount() 끝.
+ 
 }

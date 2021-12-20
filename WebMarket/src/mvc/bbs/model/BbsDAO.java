@@ -223,7 +223,7 @@ public class BbsDAO {
   PreparedStatement pstmt=null;
   ResultSet rs=null;
  
-  String sql="select * form bbs where num=?";
+  String sql="select * from bbs where num=?";
  
   System.out.println("sql:"+sql);
 
@@ -234,19 +234,20 @@ public class BbsDAO {
 			pstmt.setInt(1, num);
 			
 			rs = pstmt.executeQuery();
+			
 			if(rs.next()) {
 			bbs = new BbsDTO();
-			bbs.setNum(rs.getInt(2));
-			bbs.setWriter(rs.getString(3));
-			bbs.setSubject(rs.getString(4));
-			bbs.setContent(rs.getString(5));
-			bbs.setReadcount(rs.getInt(6));
-			bbs.setPassword(rs.getString(7));
-			bbs.setReg_date(rs.getString(8));
-			bbs.setIp(rs.getString(9));
-			bbs.setRef(rs.getInt(10));
-			bbs.setRe_step(rs.getInt(11));
-			bbs.setRe_level(rs.getInt(12));				
+			bbs.setNum(rs.getInt(1));
+			bbs.setWriter(rs.getString(2));
+			bbs.setSubject(rs.getString(3));
+			bbs.setContent(rs.getString(4));
+			bbs.setReadcount(rs.getInt(5));
+			bbs.setPassword(rs.getString(6));
+			bbs.setReg_date(rs.getString(7));
+			bbs.setIp(rs.getString(8));
+			bbs.setRef(rs.getInt(9));
+			bbs.setRe_step(rs.getInt(10));
+			bbs.setRe_level(rs.getInt(11));				
 			}
   }catch(Exception e) {
 	  System.out.println("에러:"+e);

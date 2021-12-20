@@ -57,24 +57,6 @@
        /WEB-INF/commandHandlerURI.properties
        </param-value>
     </init-param>
-    <init-param>
-       <param-name>BbsconfigFile</param-name>
-       <param-value>
-       /WEB-INF/commandBbsURI.properties
-       </param-value>
-    </init-param>
-    <load-on-startup>1</load-on-startup> 
-   </servlet>
-  
-  <servlet>
-    <servlet-name>BoardController</servlet-name>
-    <servlet-class>mvc.controller.BoardController</servlet-class>
-    <init-param>
-       <param-name>configFile</param-name>
-       <param-value>
-       /WEB-INF/commandHandlerURI.properties
-       </param-value>
-    </init-param>
     <load-on-startup>1</load-on-startup> 
    </servlet>
   <servlet-mapping>

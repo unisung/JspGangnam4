@@ -8,6 +8,7 @@
 <meta charset="UTF-8">
 <script>
 function checkForm(){
+	console.log(${sessionScope.sessionId});
 	if(${sessionScope.sessionId==null}){
 		$('#myModal').modal('show');
 	}else{

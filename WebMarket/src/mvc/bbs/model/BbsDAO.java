@@ -88,5 +88,64 @@ public class BbsDAO {
 	  } 
  }//insertBbs() 끝.
   
+ //BbsList출력 메소드
+ public List<BbsDTO> getBbsList(int pageNum, int limit, String items, String text){
+	 List<BbsDTO> bbslist = new ArrayList<>();
+	  Connection conn=null;
+	  PreparedStatement pstmt=null;
+	  ResultSet rs=null;
+	 
+	  String sql="";
+	  
+	  try {
+		  if((items==null && text==null)||( items.length()==0 || text.length()==0)) {//검색 조건이 파라미터로 넘어오지 않은 경우
+				sql = "select * "
+				    + " from "
+					+ "(select rownum rn, a.* from "
+					+ " (select * "
+					+ "    from bbs "
+					+ "    order by ref desc, re_step asc)a ) "
+					+ "where rn between ? and ? ";	
+			}else { //검색 조건이 파라미터로 넘어온 경우 
+				sql = "select * from "
+					+ " (select rownum rn, board.* "
+					+ " from bbs "
+					+ " where "+items+" like '%'||?||'%' " //|| : 결합 연산자
+					+ " order by ref desc, re_step asc) a) "
+					+ " where rn between ? and ?";
+			 }
+			System.out.println("sql:"+sql);
+			
+			//페이지 번호로 해당 페이지의 시작 글번호와 끝 글번호 구하기
+			int start = (pageNum-1)*limit; //예)3페이지 -> (3-1)*10=20, 1페이지 ->0
+			int index = start +1; //예)index=21, 1
+			int end = index +9; //예)21+9=30, 1+9=10
+			
+			try {
+				//1.OracleDB 연결객체 생성
+				conn = DBConnectionOracle.getConnection();
+				if((items==null && text==null)||( items.length()==0 || text.length()==0)) {
+					pstmt = conn.prepareStatement(sql);
+					pstmt.setInt(1, index);
+					pstmt.setInt(2, end);
+				}else {
+					pstmt = conn.prepareStatement(sql);
+					pstmt.setString(1, text);
+					pstmt.setInt(2, index);
+					pstmt.setInt(3, end);
+				}
+				rs = pstmt.executeQuery();
+	  }catch(Exception e) {
+		  System.out.println("에러:"+e);
+	  }finally {
+		  try {
+			    if(rs!=null) rs.close(); if(pstmt!=null) pstmt.close();
+			    if(conn!=null)conn.close();
+		  }catch(Exception e) {
+			  throw new RuntimeException(e.getMessage());
+		  }
+	  }
+	return bbslist;   
+ }//getBbsList() 끝.
 
 }

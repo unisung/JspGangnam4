@@ -97,7 +97,7 @@ public class BbsDAO {
 	 
 	  String sql="";
 	  
-	  try {
+	 
 		  if((items==null && text==null)||( items.length()==0 || text.length()==0)) {//검색 조건이 파라미터로 넘어오지 않은 경우
 				sql = "select * "
 				    + " from "
@@ -146,6 +146,6 @@ public class BbsDAO {
 		  }
 	  }
 	return bbslist;   
- }//getBbsList() 끝.
+  }//getBbsList() 끝.
 
 }

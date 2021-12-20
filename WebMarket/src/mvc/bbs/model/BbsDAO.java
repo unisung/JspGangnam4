@@ -215,5 +215,49 @@ public class BbsDAO {
 	  } 
 	 return count;
  }//getBbsCount() 끝.
+
+ //글번호에 해당하는 Bbs정보 얻기
+ public BbsDTO getBbsByNum(int num,int pageNum) {
+  BbsDTO bbs =null;
+  Connection conn=null;
+  PreparedStatement pstmt=null;
+  ResultSet rs=null;
  
+  String sql="select * form bbs where num=?";
+ 
+  System.out.println("sql:"+sql);
+
+		try {
+			//1.OracleDB 연결객체 생성
+			conn = DBConnectionOracle.getConnection();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, num);
+			
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+			bbs = new BbsDTO();
+			bbs.setNum(rs.getInt(2));
+			bbs.setWriter(rs.getString(3));
+			bbs.setSubject(rs.getString(4));
+			bbs.setContent(rs.getString(5));
+			bbs.setReadcount(rs.getInt(6));
+			bbs.setPassword(rs.getString(7));
+			bbs.setReg_date(rs.getString(8));
+			bbs.setIp(rs.getString(9));
+			bbs.setRef(rs.getInt(10));
+			bbs.setRe_step(rs.getInt(11));
+			bbs.setRe_level(rs.getInt(12));				
+			}
+  }catch(Exception e) {
+	  System.out.println("에러:"+e);
+  }finally {
+	  try {
+		    if(rs!=null) rs.close(); if(pstmt!=null) pstmt.close();
+		    if(conn!=null)conn.close();
+	  }catch(Exception e) {
+		  throw new RuntimeException(e.getMessage());
+	  }
+  } 
+  return bbs;
+ }//getBbsByNum() 끝.
 }

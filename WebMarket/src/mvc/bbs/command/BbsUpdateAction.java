@@ -40,6 +40,10 @@ request.getParameter("re_level").equals("")?0:Integer.parseInt(request.getParame
 		bbs.setRe_step(re_step);
 		bbs.setRe_level(re_level);
 		
+		System.out.println(bbs.getRef());
+		System.out.println(bbs.getRe_step());
+		System.out.println(bbs.getRe_level());
+		
 		//글 등록 처리
 		BbsDAO dao = BbsDAO.getInstance();
 		

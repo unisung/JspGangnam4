@@ -9,7 +9,7 @@ public class BbsReplyForm implements ActionCommand {
 	@Override
 	public String action(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		//로그인 후 게시글 등록 페이지로 이동했는지, 로그인 한 작성자 이름 얻기
-	    requestLoginName(request);
+	      requestLoginName(request);
 	    
 	    request.setAttribute("pageNum",request.getParameter("pageNum"));
 	    request.setAttribute("items",request.getParameter("items"));

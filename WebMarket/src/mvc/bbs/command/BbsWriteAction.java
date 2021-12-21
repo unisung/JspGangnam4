@@ -39,7 +39,7 @@ request.getParameter("re_level").equals("")?0:Integer.parseInt(request.getParame
 		BbsDAO dao = BbsDAO.getInstance();
 		
 		System.out.println("ref:"+ref);
-		//dao.insertBbs(bbs);
+		dao.insertBbs(bbs);
 		
 		//글 등록 후 리스트로 이동처리
 		return "/BbsListAction.go";

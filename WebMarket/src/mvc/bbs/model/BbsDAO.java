@@ -260,6 +260,32 @@ public class BbsDAO {
 	 return count;
  }//getBbsCount() 끝.
 
+//글 조회수 증가 처리
+public void updateBbsReadcount(int num) {
+	Connection conn = null;
+	PreparedStatement pstmt = null;
+	
+	String sql = "update bbs set readcount=readcount+1 where num=?";
+	
+	try { //조회수 증가 처리
+		conn = DBConnectionOracle.getConnection();	
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1,num );
+			//update처리
+			pstmt.executeUpdate();
+ }catch(Exception e){
+	  System.out.println("에러:"+e);
+  }finally {
+	  try {
+		    if(pstmt!=null) pstmt.close();
+		    if(conn!=null)conn.close();
+	  }catch(Exception e) {
+		  throw new RuntimeException(e.getMessage());
+	  }
+  } 
+}//updateBbsReadcount() 끝.
+ 
+ 
  //글번호에 해당하는 Bbs정보 얻기
  public BbsDTO getBbsByNum(int num,int pageNum) {
   BbsDTO bbs =null;
@@ -270,7 +296,10 @@ public class BbsDAO {
   String sql="select * from bbs where num=?";
  
   System.out.println("sql:"+sql);
-
+  
+  //조회수 증가 처리
+   updateBbsReadcount(num);
+   
 		try {
 			//1.OracleDB 연결객체 생성
 			conn = DBConnectionOracle.getConnection();

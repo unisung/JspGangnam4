@@ -12,7 +12,7 @@ function checkForm(){
 	if(${sessionScope.sessionId==null}){
 		$('#myModal').modal('show');
 	}else{
-		location.href="./BbsWriteForm.go?id=${sessionScope.sessionId}&pageNum=${page}&items=${items}&text=${text}";
+		location.href="./BbsWriteForm.go?id=${sessionScope.sessionId}&pageNum=${pageNum}&items=${items}&text=${text}";
 	}	
 }
 </script>
@@ -133,7 +133,7 @@ function checkForm(){
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">아니오</button>
-        <button type="button" class="btn btn-primary" onclick='javascript:location.href="./BbsWriteForm.go?id=${sessionScope.sessionId}&pageNum=${page}&items=${items}&text=${text}'>예</button>
+        <button type="button" class="btn btn-primary" onclick='javascript:location.href="./BbsWriteForm.go?id=${sessionScope.sessionId}&pageNum=${pageNum}&items=${items}&text=${text}'>예</button>
       </div>
     </div>
   </div>

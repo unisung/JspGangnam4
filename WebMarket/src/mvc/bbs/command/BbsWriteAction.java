@@ -14,9 +14,12 @@ public class BbsWriteAction implements ActionCommand {
 		 String pageNum=request.getParameter("pageNum");
 		 String items=request.getParameter("items");
 		 String text = request.getParameter("text");
-		 int ref =request.getParameter("ref").equals("")?0:Integer.parseInt(request.getParameter("ref"));
-		// int re_step= Integer.parseInt(request.getParameter("re_step"));
-		// int re_level =Integer.parseInt(request.getParameter("re_level"));
+	int ref=
+	    request.getParameter("ref").equals("")?0:Integer.parseInt(request.getParameter("ref"));
+	int re_step=
+	request.getParameter("re_step").equals("")?0:Integer.parseInt(request.getParameter("re_step"));
+	int re_level=
+request.getParameter("re_level").equals("")?0:Integer.parseInt(request.getParameter("re_level"));
 		
 		String writer =request.getParameter("writer");
 		String subject = request.getParameter("subject");

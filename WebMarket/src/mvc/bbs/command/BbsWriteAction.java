@@ -6,10 +6,18 @@ import javax.servlet.http.HttpServletResponse;
 import mvc.bbs.model.BbsDAO;
 import mvc.bbs.model.BbsDTO;
 
+//신규글 등록 & 답변글 등록 둘 다 처리 
 public class BbsWriteAction implements ActionCommand {
-
 	@Override
 	public String action(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		 
+		 String pageNum=request.getParameter("pageNum");
+		 String items=request.getParameter("items");
+		 String text = request.getParameter("text");
+		 int ref =request.getParameter("ref").equals("")?0:Integer.parseInt(request.getParameter("ref"));
+		// int re_step= Integer.parseInt(request.getParameter("re_step"));
+		// int re_level =Integer.parseInt(request.getParameter("re_level"));
+		
 		String writer =request.getParameter("writer");
 		String subject = request.getParameter("subject");
 		String content = request.getParameter("content");

@@ -8,18 +8,16 @@ import mvc.model.BoardDAO;
 public class BbsReplyForm implements ActionCommand {
 	@Override
 	public String action(HttpServletRequest request, HttpServletResponse response) throws Exception {
-      
-		//pageNum=1&items=&text=&num=20&ref=20&re_step=0&re_level=0
 		//로그인 후 게시글 등록 페이지로 이동했는지, 로그인 한 작성자 이름 얻기
 	    requestLoginName(request);
 	    
-	    request.setAttribute("pageNum",request.getAttribute("pageNum"));
-	    request.setAttribute("items",request.getAttribute("items"));
-	    request.setAttribute("text",request.getAttribute("text"));
-	    request.setAttribute("num",request.getAttribute("num"));
-	    request.setAttribute("ref",request.getAttribute("ref"));
-	    request.setAttribute("re_step",request.getAttribute("re_step"));
-	    request.setAttribute("re_level",request.getAttribute("re_level"));
+	    request.setAttribute("pageNum",request.getParameter("pageNum"));
+	    request.setAttribute("items",request.getParameter("items"));
+	    request.setAttribute("text",request.getParameter("text"));
+	    request.setAttribute("num",request.getParameter("num"));
+	    request.setAttribute("ref",request.getParameter("ref"));
+	    request.setAttribute("re_step",request.getParameter("re_step"));
+	    request.setAttribute("re_level",request.getParameter("re_level"));
 	    
 		return "./bbs/writeForm.jsp";
 	}

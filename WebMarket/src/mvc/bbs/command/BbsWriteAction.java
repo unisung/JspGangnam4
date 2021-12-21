@@ -34,6 +34,7 @@ request.getParameter("re_level").equals("")?0:Integer.parseInt(request.getParame
 		bbs.setContent(content);
 		bbs.setPassword(password);
 		bbs.setIp(ip);
+		//원글의 글 그룹, 스텝,레벨 세팅
 		bbs.setRef(ref);
 		bbs.setRe_step(re_step);
 		bbs.setRe_level(re_level);
@@ -41,7 +42,8 @@ request.getParameter("re_level").equals("")?0:Integer.parseInt(request.getParame
 		//글 등록 처리
 		BbsDAO dao = BbsDAO.getInstance();
 		
-		System.out.println("ref:"+ref);
+		System.out.println("ref:"+ref+",re_step:"+re_step+",re_level:"+re_level);
+		
 		dao.insertBbs(bbs);
 		
 		//글 등록 후 리스트로 이동처리

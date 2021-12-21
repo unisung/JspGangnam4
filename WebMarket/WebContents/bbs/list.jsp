@@ -46,7 +46,11 @@ function checkForm(){
      <c:forEach items="${bbslist}"  var="bbs">          
         <tr>
          <td>${bbs.num}</td>
-         <td><a href="./BbsViewAction.go?num=${bbs.num}&pageNum=${pageNum}&items=${items}&text=${text}">${bbs.subject}</a></td>
+         <td>
+         <c:forEach var="blank" begin="1" end="${bbs.re_level}">
+            ---
+         </c:forEach> 
+         <a href="./BbsViewAction.go?num=${bbs.num}&pageNum=${pageNum}&items=${items}&text=${text}">${bbs.subject}</a></td>
          <td>${bbs.reg_date}</td>
          <td>${bbs.readcount}</td>
          <td>${bbs.writer}</td>

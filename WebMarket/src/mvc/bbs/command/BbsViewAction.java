@@ -31,6 +31,11 @@ public class BbsViewAction implements ActionCommand {
 		request.setAttribute("bbs", bbs);//글 정보
 		request.setAttribute("items", items);//검색 타입
 		request.setAttribute("text", text);//검색어
+		
+		//
+		request.setAttribute("firstNum", request.getParameter("firstNum"));
+		request.setAttribute("lastNum", request.getParameter("lastNum"));
+		
 		//이동 페이지 
 		return "./bbs/view.jsp";
 	}

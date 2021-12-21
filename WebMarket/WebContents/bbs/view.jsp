@@ -61,8 +61,17 @@ function confirmDelete(num,pageNum,items,text){
         </div>
     </div>
     </form>
-    <div>이전글:<a href="./BbsViewAction.go?num=${bbs.num-1}&pageNum=${page}&items=${items}&text=${text}">${bbs.num-1}</a></div>
-    <div>다음글:<a href="./BbsViewAction.go?num=${bbs.num+1}&pageNum=${page}&items=${items}&text=${text}">${bbs.num+1}</a></div>
+    <div>이전글:
+      <c:if test="${firstNum!=bbs.num}">
+      <a href="./BbsViewAction.go?firstNum=${firstNum}&lastNum=${lastNum}&num=${bbs.num-1}&pageNum=${page}&items=${items}&text=${text}">${bbs.num-1}</a>
+      </c:if>
+    </div>
+    <div>다음글:
+	 <c:if test="${lastNum!=bbs.num}">
+	  <a href="./BbsViewAction.go?firstNum=${firstNum}&lastNum=${lastNum}&num=${bbs.num+1}&pageNum=${page}&items=${items}&text=${text}">${bbs.num+1}</a>
+	 </c:if>
+	 	
+	</div>
     <hr>
 </div>
 <jsp:include page="../footer.jsp"/>

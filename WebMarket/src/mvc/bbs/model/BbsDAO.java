@@ -61,8 +61,14 @@ public class BbsDAO {
 	 Connection conn=null;
 	 PreparedStatement pstmt=null;
 	 
+	 if(bbs.getRef()==0) {
 	 String sql ="insert into bbs(num,writer,subject,content, password,ip,ref,re_step,re_level) "
 			    +" values (bbs_seq.nextval,?,?,?,?,?,bbs_seq.currval,?,?)";
+	 }else {
+		 String sql ="insert into bbs(num,writer,subject,content, password,ip,ref,re_step,re_level) "
+				    +" values (bbs_seq.nextval,?,?,?,?,?,bbs_seq.currval,?,?)";
+	 }
+	 
 	 try {
 		   conn = DBConnectionOracle.getConnection();
 		   pstmt =conn.prepareStatement(sql);

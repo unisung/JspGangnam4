@@ -70,7 +70,7 @@ public class BbsDAO {
 		 System.out.println("x");
 		 //원글중에 댓글이 있으면, 신규 댓글 입력 전에, 
 		 //등록하려는 댓글과 같은 ref 그룹의 기존 댓글의 스텝을 1씩 증가 처리 
-		 updateSql="update bbs set re_setp=re_step+1 where ref=? and re_step > ? ";
+		 updateSql="update bbs set re_step=re_step+1 where ref=? and re_step > ? ";
 		 
 		//원글에 대한 댓글 입력
 	   sql ="insert into bbs(num,writer,subject,content, password,ip,ref,re_step,re_level) "

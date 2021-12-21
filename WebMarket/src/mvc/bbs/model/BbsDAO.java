@@ -305,4 +305,56 @@ public class BbsDAO {
   } 
   return bbs;
  }//getBbsByNum() 끝.
+ 
+public int getFirstNum() {
+	 int minNum =0;
+	 Connection conn=null;
+	  PreparedStatement pstmt=null;
+	  ResultSet rs=null;
+	 
+	  String sql="select nvl(min(num),0) from bbs ";	
+	try {
+		 //1.OracleDB 연결객체 생성
+		 conn = DBConnectionOracle.getConnection();
+		 pstmt = conn.prepareStatement(sql);
+		 rs = pstmt.executeQuery();
+		 if(rs.next()) minNum = rs.getInt(1);
+	   }catch(Exception e) {
+		  System.out.println("에러:"+e);
+	  }finally {
+		  try {
+			    if(rs!=null) rs.close(); if(pstmt!=null) pstmt.close();
+			    if(conn!=null)conn.close();
+		  }catch(Exception e) {
+			  throw new RuntimeException(e.getMessage());
+		  }
+	  } 
+	return minNum;
+}//getFirstNum() 끝.
+
+public int getLastNum() {
+	 int maxNum =0;
+	 Connection conn=null;
+	  PreparedStatement pstmt=null;
+	  ResultSet rs=null;
+	 
+	  String sql="select nvl(max(num),0) from bbs ";	
+	try {
+		 //1.OracleDB 연결객체 생성
+		 conn = DBConnectionOracle.getConnection();
+		 pstmt = conn.prepareStatement(sql);
+		 rs = pstmt.executeQuery();
+		 if(rs.next()) maxNum = rs.getInt(1);
+	   }catch(Exception e) {
+		  System.out.println("에러:"+e);
+	  }finally {
+		  try {
+			    if(rs!=null) rs.close(); if(pstmt!=null) pstmt.close();
+			    if(conn!=null)conn.close();
+		  }catch(Exception e) {
+			  throw new RuntimeException(e.getMessage());
+		  }
+	  } 
+	return maxNum;
+  }//getLastNum() 끝.
 }

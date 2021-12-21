@@ -61,6 +61,8 @@ function confirmDelete(num,pageNum,items,text){
         </div>
     </div>
     </form>
+    <div>이전글:<a href="./BbsViewAction.go?num=${bbs.num-1}&pageNum=${page}&items=${items}&text=${text}">${bbs.num-1}</a></div>
+    <div>다음글:<a href="./BbsViewAction.go?num=${bbs.num+1}&pageNum=${page}&items=${items}&text=${text}">${bbs.num+1}</a></div>
     <hr>
 </div>
 <jsp:include page="../footer.jsp"/>

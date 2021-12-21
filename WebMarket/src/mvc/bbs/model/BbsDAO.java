@@ -67,6 +67,7 @@ public class BbsDAO {
 	   sql ="insert into bbs(num,writer,subject,content, password,ip,ref,re_step,re_level) "
 			    +" values (bbs_seq.nextval,?,?,?,?,?,bbs_seq.currval,?,?)";
 	 }else {
+		 System.out.println("x");
 		 //원글중에 댓글이 있으면, 신규 댓글 입력 전에, 
 		 //등록하려는 댓글과 같은 ref 그룹의 기존 댓글의 스텝을 1씩 증가 처리 
 		 updateSql="update bbs set re_setp=re_step+1 where ref=? and re_step > ? ";
@@ -91,6 +92,9 @@ public class BbsDAO {
 		  
 		   pstmt.executeUpdate();
 		}else {
+			
+			System.out.println("y");
+			
 		   //기존 댓글 update처리
 		  pstmt = conn.prepareStatement(updateSql);	
 		  pstmt.setInt(1, bbs.getRef());
@@ -101,6 +105,7 @@ public class BbsDAO {
 		  
 		  //댓글 입력 처리
 		  pstmt = conn.prepareStatement(sql);
+		  System.out.println("sql:"+sql);
 		  
 		  pstmt.setString(1, bbs.getWriter());
 		  pstmt.setString(2, bbs.getSubject());

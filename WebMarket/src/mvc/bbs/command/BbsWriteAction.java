@@ -34,6 +34,9 @@ request.getParameter("re_level").equals("")?0:Integer.parseInt(request.getParame
 		bbs.setContent(content);
 		bbs.setPassword(password);
 		bbs.setIp(ip);
+		bbs.setRef(ref);
+		bbs.setRe_step(re_step);
+		bbs.setRe_level(re_level);
 		
 		//글 등록 처리
 		BbsDAO dao = BbsDAO.getInstance();

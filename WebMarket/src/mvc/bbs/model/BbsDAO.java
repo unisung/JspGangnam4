@@ -457,4 +457,90 @@ public void deleteBbs(int num) {
 	  }
  } 	
 }//updateBbs() 끝.
+
+public void insertUpdateBbsGoodBad(BbsGoodBadDTO bbsGoodBad) {
+	Connection conn = null;
+	PreparedStatement pstmt = null;
+	ResultSet rs=null;
+	
+	String sql = "select count(*) from bbsgoodbad where num=?";//rs.next() =true, 0, > 0
+	String insertSql = "insert into bbsgoodbad values(?,?,?)";
+	String updateSql = "update bbsgoodbad set good=good+?,bad=bad+? where num=?";
+	int count=0;
+	try { //신규글 등록 처리
+		conn = DBConnectionOracle.getConnection();
+		pstmt = conn.prepareStatement(sql);
+		pstmt.setInt(1, bbsGoodBad.getNum());
+		
+		rs = pstmt.executeQuery();
+	    if(rs.next()) {
+	       count = rs.getInt(1);
+	    }
+	    rs.close();
+	    if(count==0){//입력
+	    		pstmt = conn.prepareStatement(insertSql);
+	    		pstmt.setInt(1, bbsGoodBad.getNum());
+	    		pstmt.setInt(2, bbsGoodBad.getGood());
+	    		pstmt.setInt(3, bbsGoodBad.getBad());
+	    		pstmt.executeUpdate();
+	    }else {//수정
+	    		System.out.println("y");
+	    		pstmt = conn.prepareStatement(updateSql);
+	    		pstmt.setInt(1, bbsGoodBad.getGood());
+	    		pstmt.setInt(2, bbsGoodBad.getBad());
+	    		pstmt.setInt(3, bbsGoodBad.getNum());
+	    		pstmt.executeUpdate();	
+	    	}
+ }catch(Exception e){
+	  System.out.println("에러:"+e);
+	  e.printStackTrace();
+  }finally {
+	  try {
+		    if(rs!=null) rs.close();
+		    if(pstmt!=null) pstmt.close();
+		    if(conn!=null)conn.close();
+	  }catch(Exception e) {
+		  throw new RuntimeException(e.getMessage());
+	  }
+   } 
+ }//insertUpdateBbsGoodBad() 끝.
+
+public BbsGoodBadDTO getBbsGoodBadByNum(int num) {
+	BbsGoodBadDTO goodBad =null;
+	Connection conn = null;
+	PreparedStatement pstmt = null;
+	ResultSet rs=null;
+	
+	String sql = "select * from bbsgoodbad where num=?";
+	System.out.println("z");
+	
+	try { //신규글 등록 처리
+		conn = DBConnectionOracle.getConnection();
+		pstmt = conn.prepareStatement(sql);
+	    pstmt.setInt(1, num);	
+		
+		rs = pstmt.executeQuery();
+	    if(rs.next()) {
+	    	System.out.println("z");
+	    	goodBad = new BbsGoodBadDTO();
+	    	goodBad.setNum(num);
+            goodBad.setGood(rs.getInt(2));
+            goodBad.setBad(rs.getInt(3));
+	    }
+    }catch(Exception e){
+	  System.out.println("에러:"+e);
+	  e.printStackTrace();
+  }finally {
+	  try {
+		    if(rs!=null) rs.close();
+		    if(pstmt!=null) pstmt.close();
+		    if(conn!=null)conn.close();
+	  }catch(Exception e) {
+		  throw new RuntimeException(e.getMessage());
+	  }
+   } 
+	return goodBad;
+}//getBbsGoodBadByNum() 끝.
+
+
 }

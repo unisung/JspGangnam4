@@ -63,7 +63,14 @@ ${bbs.re_level}
             <a href="./BbsListAction.go?pageNum=${page}&items=${items}&text=${text}" class="btn btn-primary">목록</a>
             <a href="./BbsReplyForm.go?id=${sessionId}&pageNum=${page}&items=${items}&text=${text}&num=${bbs.num}&ref=${bbs.ref}&re_step=${bbs.re_step}&re_level=${bbs.re_level}" 
             class="btn btn-warning">답변</a>
-        </div>
+
+        
+        <a href="./BbsGoodBadAction.go?firstNum=${firstNum}&lastNum=${lastNum}&id=${sessionId}&pageNum=${page}&items=${items}&text=${text}&num=${bbs.num}&ref=${bbs.ref}&re_step=${bbs.re_step}&re_level=${bbs.re_level}&good=1&bad=0">좋아요${bbsGoodbad.good }</a></div>
+
+   
+        
+        <a href="./BbsGoodBadAction.go?firstNum=${firstNum}&lastNum=${lastNum}&id=${sessionId}&pageNum=${page}&items=${items}&text=${text}&num=${bbs.num}&ref=${bbs.ref}&re_step=${bbs.re_step}&re_level=${bbs.re_level}&good=0&bad=1">싫어요${bbsGoodbad.bad }</a></div>
+   
     </div>
     </form>
     <div>이전글:

@@ -12,6 +12,8 @@ private int num;//자동 생성
  private int ref;// 답변글 그룹
  private int re_step;// ref내의 순서
  private int re_level;// 들여쓰기
+ private int good;
+ private int bad;
 
  //getters/setters
 public int getNum() {

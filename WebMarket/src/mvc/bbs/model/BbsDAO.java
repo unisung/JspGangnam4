@@ -165,12 +165,26 @@ public class BbsDAO {
 				    ;
 				
 			}else { //검색 조건이 파라미터로 넘어온 경우 
-				sql = "select * from "
-					+ " (select rownum rn, a.* from "
-					+ "  (select * "	
-					+ "     from bbs "
-					+ "    where "+items+" like '%'||?||'%' " //|| : 결합 연산자
-					+ "    order by ref desc, re_step asc) a) "
+				sql = "select * "
+					+ "   from "
+					+ "	(select rownum rn, a.* from "
+					+ "	  (select  bbs.num num,"
+					+ "		       bbs.writer writer,"
+					+ "		       bbs.subject subject,"
+					+ "		       bbs.content content,"
+					+ "		       bbs.readcount readcount,"
+					+ "		       bbs.password password,"
+					+ "		       bbs.reg_date reg_date,"
+					+ "		       bbs.ip ip,"
+					+ "		       bbs.ref ref,"
+					+ "		       bbs.re_step re_step,"
+					+ "		       bbs.re_level re_level,"
+					+ "		       nvl(bbsgoodbad.good,0) good,"
+					+ "		       nvl(bbsgoodbad.bad,0) bad 	"
+					+ "		 from bbs, bbsgoodbad"
+					+ "	    where subject like '%'||?||'%'"
+					+ "	      and bbs.num = bbsgoodbad.num(+) "
+					+ "	    order by ref desc, re_step asc) a) "
 					+ " where rn between ? and ?";
 			 }
 			System.out.println("sql:"+sql);
@@ -316,7 +330,7 @@ public void updateBbsReadcount(int num) {
   System.out.println("sql:"+sql);
   
   //조회수 증가 처리
-   updateBbsReadcount(num);
+  // updateBbsReadcount(num);
    
 		try {
 			//1.OracleDB 연결객체 생성

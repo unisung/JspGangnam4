@@ -143,12 +143,27 @@ public class BbsDAO {
 	  
 		  if((items==null && text==null)||( items.length()==0 || text.length()==0)) {//검색 조건이 파라미터로 넘어오지 않은 경우
 				sql = "select * "
-				    + " from "
-					+ "(select rownum rn, a.* from "
-					+ " (select * "
-					+ "    from bbs "
-					+ "    order by ref desc, re_step asc)a ) "
-					+ "where rn between ? and ? ";	
+				    + "  from  "
+				    + "(select rownum rn, a.* from "
+				    + " (select bbs.num num, "
+				    + "       bbs.writer writer, "
+				    + "       bbs.subject subject, "
+				    + "       bbs.content content, "
+				    + "       bbs.readcount readcount, "
+				    + "       bbs.password password, "
+				    + "       bbs.reg_date reg_date, "
+				    + "       bbs.ip ip, "
+				    + "       bbs.ref ref, "
+				    + "       bbs.re_step re_step, "
+				    + "       bbs.re_level re_level, "
+				    + "       nvl(bbsgoodbad.good,0) good, "
+				    + "       nvl(bbsgoodbad.bad,0) bad "
+				    + "  from bbs, bbsgoodbad "
+				    + " where bbs.num=bbsgoodbad.num(+) "
+				    + " order by ref desc, re_step asc)a ) "
+				    + " where rn between ? and ? "
+				    ;
+				
 			}else { //검색 조건이 파라미터로 넘어온 경우 
 				sql = "select * from "
 					+ " (select rownum rn, a.* from "
@@ -195,6 +210,9 @@ public class BbsDAO {
 					bbs.setRef(rs.getInt(10));
 					bbs.setRe_step(rs.getInt(11));
 					bbs.setRe_level(rs.getInt(12));
+					//좋아요, 싫어요 추가
+					bbs.setGood(rs.getInt(13));
+					bbs.setBad(rs.getInt(14));
                    
 					//리스트에 추가
 					bbslist.add(bbs);

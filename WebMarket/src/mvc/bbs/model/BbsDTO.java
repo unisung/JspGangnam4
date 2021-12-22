@@ -83,6 +83,18 @@ public int getRe_level() {
 public void setRe_level(int re_level) {
 	this.re_level = re_level;
 }
+public int getGood() {
+	return good;
+}
+public void setGood(int good) {
+	this.good = good;
+}
+public int getBad() {
+	return bad;
+}
+public void setBad(int bad) {
+	this.bad = bad;
+}
  
  
  

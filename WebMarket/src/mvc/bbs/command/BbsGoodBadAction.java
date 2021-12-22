@@ -49,8 +49,8 @@ public class BbsGoodBadAction implements ActionCommand {
 				request.setAttribute("firstNum", request.getParameter("firstNum"));
 				request.setAttribute("lastNum", request.getParameter("lastNum"));
 			
-		    
-		   return "/BbsViewAction.go";
+		        request.setAttribute("bbsGoodbad", bbsGoodBad);
+		  return "./bbs/view.jsp";
 	}
 	
 }

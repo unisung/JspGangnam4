@@ -10,6 +10,10 @@
 <%-- <jsp:useBean id="productDAO" class="dao.ProductRepository" scope="session"/> --%>
 <%-- <% ProductRepository productDAO = ProductRepository.getInstance(); %> --%>
 <%@ include file="dbconn.jsp" %>
+<% request.setAttribute("rate", 5.0);%>
+<% double rate =(Double)request.getAttribute("rate");%>
+<%=rate %><br>
+
 <%
 String id = request.getParameter("id");
  System.out.println("p_id:"+id);
@@ -65,6 +69,9 @@ $(document).ready(function(){
 	$(".star_rating a").click(function(){
 		$(this).parent().children("a").removeClass("on");
 		$(this).addClass("on").prevAll("a").addClass("on");
+		$rate =$(".on").length;
+		$("#rate").val($rate);
+		alert($rate);
 		return false;
 	});
 });
@@ -103,7 +110,7 @@ function addToCart(){
         <p class='star_rating' >
          <% 
              for(int i=1;i<=5;i++){
-            	if(i<=4)
+            	if(i<=rate)
             	 out.print("<a href='#' class='on'>★</a>");
             	else
             	 out.print("<a href='#' >★</a>");
@@ -119,6 +126,7 @@ function addToCart(){
        <h4><%=rs.getInt("p_unitPrice") %>원</h4>
        <p><form name="addForm" action="./addCart.jsp?id=<%=id%>" method="post">
           <div class="col-md-2">
+          <input type="hidden" name="rate"  id="rate" value="<%=rate%>">
           <input type="number" name="qty" value="0" class="form-control input-md">
           </div>
           <a href="#" class="btn btn-info" onclick="addToCart()">상품주문 &raquo;</a>

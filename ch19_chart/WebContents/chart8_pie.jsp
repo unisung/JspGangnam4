@@ -1,11 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html><html>
+<!DOCTYPE html>
+<html>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
 <script>
 var xValues=["Italy","France","Spain","USA","Argentina"];
 var yValues=[55,49,44,24,15];
-var barColors=["red","green","blue","orange","brown"];
+var barColors=["#b91d47", "#00aba9","#2b5797", "#e8c3b9","#1e7145"];
 </script>
 
 <style>
@@ -16,26 +17,18 @@ var barColors=["red","green","blue","orange","brown"];
 <title>Insert title here</title>
 </head>
 <body>
-<canvas id="mychart"></canvas>
-
+<canvas id="myChart"></canvas>
 <script>
-new Chart(mychart,{
-	type:"horizontalBar",
-	data:{labels:xValues,
-	      datasets:[{
-	    	  backgroundColor:barColors,
-	    	  data:yValues
-	      }]	
+new Chart("myChart",{
+	type:"pie",data:{
+		labels: xValues,
+		datasets:[{backgroundColor:barColors, data:yValues}]
 	},
 	options:{
-		legend:{display:false},
-		title:{
-			display:true,
-			text:"World Wine Production 2018"
-		},
-		scales:{
-			xAxes:[{ticks:{min:10,max:60}}]
-		}
+	  title:{
+		  display:true,
+		  text:"World Wide Wine Production 2018"
+	  }	
 	}
 });
 </script>

@@ -20,7 +20,7 @@ var barColors=["red","green","blue","orange","brown"];
 
 <script>
 new Chart(mychart,{
-	type:"horizontalBar",
+	type:"bar",
 	data:{labels:xValues,
 	      datasets:[{
 	    	  backgroundColor:barColors,
@@ -32,9 +32,6 @@ new Chart(mychart,{
 		title:{
 			display:true,
 			text:"World Wine Production 2018"
-		},
-		scales:{
-			xAxes:[{ticks:{min:10,max:60}}]
 		}
 	}
 });

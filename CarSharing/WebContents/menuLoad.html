@@ -1,0 +1,25 @@
+<!DOCTYPE html><html><head>
+<meta charset="UTF-8">
+<style>
+</style>
+<title>서버의 데이터를 대상 엘리먼트에 삽입하기</title>
+<script type="text/javascript" src="./resources/js/jquery-3.6.0.min.js"></script>
+<script>
+$(document).ready(function(){
+	$('#menu1').click(function(){
+		$('#message1').load('menu.html');
+		return false;
+	});
+	
+});
+</script>
+</head>
+<body>
+<div><input type="datetime-local"></div>
+<div><input type="datetime-local"></div>
+<div><a href="#" id="menu1">조회</a>
+     <p><span id="message1"></span>
+</div>
+
+</body>
+</html>
